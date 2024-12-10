@@ -6,7 +6,9 @@ import Home from '../views/HomeView.vue';
 import About from '../views/AboutView.vue';
 import Services from '../views/ServicesView.vue';
 import Contact from '../views/ContactView.vue';
-import Login from '../views/LoginView.vue';
+import Login from '../views/Auth/LoginView.vue';
+import Register from '../views/Auth/RegisterView.vue';
+import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 import SeekerDashboard from '../views/SeekerDashboard.vue';
 
@@ -49,6 +51,20 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+    meta: { layout: DefaultLayout },
+  },
+
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    meta: { layout: DefaultLayout },
+  },
+
+  {
+    path: '/forgot_password',
+    name: 'ForgotPassword',
+    component: ForgotPassword,
     meta: { layout: DefaultLayout },
   },
 
