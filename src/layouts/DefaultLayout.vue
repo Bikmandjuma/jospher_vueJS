@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-xl dark:bg-gray-800">
       <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="/" class="text-2xl font-bold text-blue-500"><span class="text-red-400">Job</span> <span class="text-purple-900">Sphere</span> <span style="color: black;">Rwanda</span></a>
         <div class="hidden md:flex space-x-6">
