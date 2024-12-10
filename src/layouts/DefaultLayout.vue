@@ -1,0 +1,92 @@
+<template>
+  <div>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg">
+      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-blue-500"><span class="text-red-400">Job</span> <span class="text-purple-900">Sphere</span> <span style="color: black;">Rwanda</span></a>
+        <div class="hidden md:flex space-x-6">
+          <a href="/" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
+          <a href="/about" class="text-gray-600 hover:text-blue-500"><i class="fa fa-list-alt mr-2"></i>About us</a>
+          <a href="/services" class="text-gray-600 hover:text-blue-500"><i class="fas fa-cogs mr-2"></i>
+            Services</a>
+          <a href="/jobs" class="text-gray-600 hover:text-blue-500"><i class="fa fa-wrench mr-2"></i>Jobs</a>
+          <a href="/pricing" class="text-gray-600 hover:text-blue-500"><i class="fa fa-dollar mr-2"></i>Pricing</a>
+          <a href="/contact" class="text-gray-600 hover:text-blue-500"><i class="fa fa-phone mr-2"></i>Contact</a>
+          <a href="/login" class="text-gray-600 hover:text-blue-500"><i class="fa fa-user mr-2"></i>Login</a>
+        </div>
+        <button
+          @click="toggleMenu"
+          class="md:hidden text-gray-600 hover:text-blue-500 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        v-show="isMenuOpen"
+        class="bg-gray-50 md:hidden"
+      >
+        <a href="/" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-home mr-2"></i>Home</a>
+        <a href="/about" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-list-alt mr-2"></i>About us</a>
+        <a href="/services" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-cogs mr-2"></i>Services</a>
+        <a href="/jobs" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-wrench mr-2"></i>Jobs</a>
+        <a href="/pricing" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-dollar mr-2"></i>Pricing</a>
+        <a href="/contact" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-phone mr-2"></i>Contact</a>
+        <a href="/login" class="block text-gray-600 px-4 py-2 hover:bg-blue-100"><i class="fa fa-user mr-2"></i>Login</a>
+      </div>
+    </nav>
+
+
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <slot></slot>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2024 Job-sphere-rwanda. All rights reserved.</p>
+        <div class="mt-4 space-x-4">
+          <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>
+          <a href="#" class="text-blue-400 hover:underline">Terms of Service</a>
+          <a href="#" class="text-blue-400 hover:underline">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "DefaultLayout",
+  data() {
+    return {
+      isMenuOpen: false, // Tracks mobile menu state
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen; // Toggle menu visibility
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Add custom styles if necessary */
+</style>
