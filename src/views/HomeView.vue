@@ -16,6 +16,44 @@
       </div>
     </section>
 
+        <div class="about">
+            <div class="container">
+              <br>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <!-- <div class="section-header text-left">
+                            <p>About Us</p>
+                        </div> -->
+
+                        <div class="about-img">
+                            <img src="../assets/Homepage_images/carousel5.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- <div class="section-header text-left">
+                            <h2>{{ app_name }}</h2>
+                        </div> -->
+                        <div class="about-content">
+                            <p>
+                                Welcome to <strong>Job sphere Rwanda</strong>, your one-stop platform for streamlined job searching! We understand how time-consuming it can be to browse multiple job sites, so we bring together listings from a variety of platforms to help job seekers find opportunities faster and easier. Our mission is to make job hunting more accessible, giving you more time to focus on preparing for your dream job.
+                                </p>
+                                <p>
+                                At <strong>Job sphere Rwanda</strong>, we proudly offer <strong>0 job categories</strong> and <strong>0 job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
+                                </p>
+                                <p>
+                                When new job postings appear on any of our sourced platforms, you’ll receive a personalized email notification that matches your unique skills and chosen job categories. Whether you're a software developer, accountant, technician, secretary, or lawyer, we’ll make sure you’re alerted about roles relevant to your field, such as openings in Java development, accounting, technical support, and more.
+                                </p>
+                                <p>
+                                Our real-time alert system keeps you in the loop with the latest job opportunities without the need for constant searching, so you’ll always be among the first to know and apply. If you're looking for a smart, time-saving solution to streamline your job search, <strong>{{ app_name }}</strong> is here to help. Let us do the work of finding new opportunities while you focus on landing your ideal position.
+                            </p>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
      <!-- Features Section -->
     <section class="py-12 bg-gray-100">
       <div class="container mx-auto px-4 text-center">

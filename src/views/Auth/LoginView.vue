@@ -1,6 +1,5 @@
 <template>
-    <div>
-      <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+      <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900" id="login_container">
         <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
           <div class="flex flex-col overflow-y-auto md:flex-row">
             <div class="h-32 md:h-auto md:w-1/2">
@@ -22,7 +21,7 @@
                 <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
                 <form id="loginForm">
                   <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Email</span>
+                    <span class="text-gray-700 dark:text-gray-400"><i class="fa fa-envelope"></i>&nbsp;Email</span>
                     <input
                       id="email"
                       name="email"
@@ -32,7 +31,7 @@
                     />
                   </label>
                   <label class="block mt-4 text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Password</span>
+                    <span class="text-gray-700 dark:text-gray-400"><i class="fa fa-key"></i>&nbsp;Password</span>
                     <input
                       id="password"
                       name="password"
@@ -47,7 +46,7 @@
                     id="loginButton"
                     class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                   >
-                    Log in
+                  <i class="fa fa-lock-open"></i>&nbsp;Log in
                   </button>
                 </form>
   
@@ -63,7 +62,7 @@
                       class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                       href="/forgot_password"
                     >
-                      Forgot your password?
+                    <i class="fa fa-key"></i>&nbsp;Forgot your password?
                     </a>
                   </p>
                   <p class="mt-1">
@@ -71,7 +70,7 @@
                       class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                       href="/register"
                     >
-                      Don't have an account? Sign up
+                     Don't have an account? Sign up
                     </a>
                   </p>
                 </div>
@@ -87,7 +86,6 @@
         <p>User Code: {{ userData.user_code }}</p>
         <p>JWT Token: {{ token }}</p>
       </div>
-    </div>
   </template>
   
   <script>
@@ -122,20 +120,10 @@
   </script>
   
   <style scoped>
-  /* Optional styling */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 5px 0;
-    font-size: 18px;
-  }
-  
-  .error {
-    color: red;
-    font-weight: bold;
-  }
+    @media(max-width:600px){
+      #login_container{
+        
+      }
+    }
   </style>
   

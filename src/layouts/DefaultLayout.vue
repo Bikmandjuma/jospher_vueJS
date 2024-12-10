@@ -1,9 +1,16 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="bg-white shadow-xl dark:bg-gray-800">
+    <nav class="bg-white shadow-xl dark:bg-gray-800" style="box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);">
       <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-blue-500"><span class="text-red-400">Job</span> <span class="text-purple-900">Sphere</span> <span style="color: black;">Rwanda</span></a>
+        <a href="/" class="text-2xl font-bold text-blue-500" style="display: flex;">
+          <img
+                aria-hidden="true"
+                class="object-cover dark:hidden"
+                src="../assets/Homepage_images/logo.png"
+                alt="Office" style="height: 60px;width:60px;"
+              /><div id="title_name"><span class="text-red-400">Job</span> <span class="text-purple-900">Sphere</span> <span style="color: black;">Rwanda</span></div>
+        </a>
         <div class="hidden md:flex space-x-6">
           <a href="/" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
           <a href="/about" class="text-gray-600 hover:text-blue-500"><i class="fa fa-list-alt mr-2"></i>About us</a>
@@ -88,5 +95,13 @@ export default {
 </script>
 
 <style scoped>
-/* Add custom styles if necessary */
+  #title_name{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 15px;
+  }
+
+  a{
+    text-decoration: none;
+  }
 </style>
