@@ -1,53 +1,69 @@
 <template>
   <div>
-    <h1>Items</h1>
-    <ul v-if="items.length">
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }}
-      </li>
+    <h1>Job Listings</h1>
+    <ul>
+      <li v-for="job in jobListings" :key="job">{{ job }}</li>
     </ul>
-    <p v-else>Loading items...</p>
+    <div v-if="loading">Loading...</div>
+    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="jobCount !== null">Total jobs: {{ jobCount }}</div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { flaskApiUrl } from '../api';
 
 export default {
   data() {
     return {
-      items: [],
+      jobListings: [],  // Will store the job listings
+      jobCount: null,   // Will store the job count
+      loading: false,   // For loading state
+      error: null       // For error state
     };
   },
   created() {
-    this.fetchItems();
+    // Fetch job listings when the component is created
+    this.fetchJobListings();
   },
   methods: {
-    async fetchItems() {
-      try {
-        // Send a GET request to the Flask API
-        const response = await axios.get(`${flaskApiUrl}/api/items`);
-        
-        // Set the items data to the response
-        this.items = response.data;
+    async fetchJobListings() {
+      this.loading = true;
+      this.error = null;
 
-        // Save the item data to localStorage (example storing only the first item for demo)
-        if (this.items.length > 0) {
-          const itemData = {
-            id: this.items[0].id,
-            item: this.items[0].name,
-          };
-          localStorage.setItem('itemData', JSON.stringify(itemData));
-        }
-      } catch (error) {
-        console.error("There was an error fetching the data:", error);
+      try {
+        // Replace with the correct URL to your API endpoint
+        const response = await axios.get('http://192.168.0.82:8000/api/expired');
+        
+        // Extract job listings and job count from the response
+        this.jobListings = response.data.job_listings;
+        this.jobCount = response.data.job_count;
+      } catch (err) {
+        // Handle any error that occurs during the API call
+        this.error = 'Failed to load job listings. Please try again later.';
+      } finally {
+        // Set loading to false once the API call is finished
+        this.loading = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-/* Your CSS styles here */
+/* Optional styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
 </style>
