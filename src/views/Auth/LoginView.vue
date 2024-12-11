@@ -51,7 +51,7 @@
                 </form>
   
                 <hr class="my-8" />
-                <div style="align-items: center; text-align: center;">
+                <div id="forgot_pswd">
                   <!-- <div class="footer-social">
                     <a class="btn" @click="loginWithGoogle">
                       <i class="fab fa-google mr-3"></i>
@@ -100,19 +100,17 @@
     },
     methods: {
         async loginWithGoogle() {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/auth/google');
-                this.token = response.data.authorisation.token;
-                this.userData = response.data.user;
+          try {
+              const response = await axios.get('https://jobsphererdaapi-production.up.railway.app/api/auth/google');
+              if (response.data && response.data.token) {
+                  this.token = response.data.token;
+                  localStorage.setItem("token", this.token);
+              }
+          } catch (error) {
+              console.error("Google Login Error:", error);
+              alert("Failed to log in with Google. Please check the console for details.");
+          }
 
-                localStorage.setItem("token", this.token);
-                axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
-
-                alert("Login successful!");
-            } catch (error) {
-                console.error("Google Login Error:", error.response || error.message);
-                alert("Failed to log in with Google. Please check the console for details.");
-            }
         }
 
     },
@@ -124,6 +122,20 @@
       #login_container{
         
       }
+    }
+
+    a{
+      text-decoration: none;
+    }
+
+    #forgot_pswd a:hover{
+      text-decoration: none;
+      color:black;
+    }
+
+    #forgot_pswd{
+      align-items: center;
+      text-align: center;
     }
   </style>
   

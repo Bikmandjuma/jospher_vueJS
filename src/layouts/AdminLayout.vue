@@ -1,22 +1,8 @@
 <template>
-    <div>
-      <header>
-        <!-- Admin header with navigation -->
-        <nav>
-          <router-link to="/admin/dashboard">Dashboard</router-link>
-          <router-link to="/admin/settings">Settings</router-link>
-        </nav>
-      </header>
-  
-      <main>
-        <slot></slot>  <!-- This will inject content from child components -->
-      </main>
-  
-      <footer>
-        <!-- Admin footer -->
-      </footer>
-    </div>
-  </template>
+  <div>
+    <h1>Admin panel</h1>
+  </div>
+</template>
   
   <script>
   export default {

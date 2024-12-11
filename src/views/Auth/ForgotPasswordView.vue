@@ -41,7 +41,7 @@
 
                     <hr class="my-8" />
 
-                    <div style="align-items: center;text-align: center;">
+                    <div id="forgot_pswd">
 
                         <p class="mt-4">
                         <a
@@ -64,19 +64,33 @@
 
   
 <style scoped>
-/* Optional styling */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+    /* Optional styling */
+    ul {
+    list-style-type: none;
+    padding: 0;
+    }
 
-li {
-  margin: 5px 0;
-  font-size: 18px;
-}
+    li {
+    margin: 5px 0;
+    font-size: 18px;
+    }
 
-.error {
-  color: red;
-  font-weight: bold;
-}
+    .error {
+    color: red;
+    font-weight: bold;
+    }
+
+    a{
+      text-decoration: none;
+    }
+
+    #forgot_pswd a:hover{
+      text-decoration: none;
+      color:black;
+    }
+
+    #forgot_pswd{
+      align-items: center;
+      text-align: center;
+    }
 </style>
