@@ -16,18 +16,22 @@
       </div>
     </section>
 
+        <br>
+
         <div class="about">
             <div class="container">
               <br>
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <!-- <div class="section-header text-left">
-                            <p>About Us</p>
-                        </div> -->
+                        
+                        <div class="section-header text-center">
+                            <p id="ad_title" >About Us</p>
+                        </div>
 
                         <div class="about-img">
                             <img src="../assets/Homepage_images/carousel5.jpg" alt="Image">
                         </div>
+
                     </div>
                     <div class="col-lg-6">
                         <!-- <div class="section-header text-left">
@@ -58,8 +62,8 @@
         <div class="facts" data-parallax="scroll" data-image-src="{{ url_for('static', filename='style/homePage/img/facts.jpg') }}">
             <div class="container">
                 <div class="row">
-                    
-                    <div class="col-lg-4 col-md-6 text-center">
+
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">1.2</h3><h3>k</h3>
@@ -68,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 text-center">
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">0</h3>
@@ -76,7 +80,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center">
+
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">0</h3>
@@ -90,11 +95,12 @@
         </div>
         <!-- Facts End -->
 
+
         <!-- Price Start -->
         <div class="price">
             <div class="container">
                 <div class="section-header text-center">
-                    <!-- <p>Job Seekers' Payment</p> -->
+                    <p id="ad_title">Job Seekers' Payment</p>
                     <h2>Choose Your Plan</h2>
                     <br>
                 </div>
@@ -184,18 +190,18 @@
           </div>
         </div>
 
-            <!-- Location Start -->
-            <div class="location">
+        <!-- Location Start -->
+        <div class="location">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="section-header text-left">
-                            <p>Advertise With Us</p>
+                            <p id="ad_title">Advertise with us</p>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="location-item">
-                                    <i class="fa fa-ad"></i>
+                                    <i class="fa fa-ad" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Access to a Wide and Relevant Audience</h3>
                                         <p>Advertise your job postings or services to thousands of active job seekers from diverse fields, ranging from software development to accounting, ensuring your ads reach the right candidates.</p>
@@ -205,7 +211,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="location-item">
-                                    <i class="fa fa-bullhorn"></i>
+                                    <i class="fa fa-bullhorn" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Enhanced Visibility Through Real-Time Alerts</h3>
                                         <p>Your advertisements will be part of our real-time notifications, directly sent to users based on their selected job categories, providing maximum exposure to a targeted audience</p>
@@ -214,7 +220,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="location-item">
-                                    <i class="fa fa-newspaper"></i>
+                                    <i class="fa fa-newspaper" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Focused Advertising for Specific Professions</h3>
                                         <p>With 0 job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
@@ -223,7 +229,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="location-item">
-                                    <i class="fa fa-ad"></i>
+                                    <i class="fa fa-ad" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Cost-Effective Advertising with Measurable Results</h3>
                                         <p>Showcase your brand or job postings on a platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
@@ -450,7 +456,7 @@ export default {
     .price {
         position: relative;
         width: 100%;
-        padding: 45px 0 15px 0;
+        padding: 5px 0 15px 0;
     }
 
     .price .row {
@@ -562,6 +568,34 @@ export default {
 /******** Location CSS *********/
 /*******************************/
 
+#ad_title{
+    color: #E81C2E;
+    font-size:20px;
+    font-weight: bold;
+}
+
+#ad_title {
+  position: relative;
+  display: inline-block;  /* Ensures the underline is centered relative to the text */
+}
+
+#ad_title::after {
+  content: '';  /* This creates an empty element */
+  position: absolute;
+  bottom: 0;  /* Aligns the underline at the bottom of the text */
+  left: 50%;  /* Centers the underline */
+  transform: translateX(-50%);  /* Adjusts the positioning to truly center the underline */
+  width: 50%;  /* The width of the underline (adjust as needed) */
+  height: 2px;  /* The thickness of the underline */
+  background-color: black;  /* Color of the underline */
+}
+
+@media(max-width:600px){
+    .location{
+        margin-top: -80px;
+    }
+}
+
 .location {
     position: relative;
     width: 100%;
@@ -601,6 +635,10 @@ export default {
     padding: 45px 30px;
     background: #E81C2E;
     border-radius: 5px;
+}
+
+.location-item i{
+    color: #E81C2E;
 }
 
 .location .location-form h3 {

@@ -2,12 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SeekerLayout from '../layouts/SeekerLayout.vue';
+import GuestLayout from '../layouts/GuestLayout.vue';
 import Home from '../views/HomeView.vue';
 import About from '../views/AboutView.vue';
 import Services from '../views/ServicesView.vue';
 import Contact from '../views/ContactView.vue';
 import Login from '../views/Auth/LoginView.vue';
+import SeekerFill_Info from '../views/Auth/SeekerFill_Info.vue';
 import Register from '../views/Auth/RegisterView.vue';
+import CodetoRegister from '../views/Auth/CodeToRegister.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 import SeekerDashboard from '../views/SeekerDashboard.vue';
@@ -79,7 +82,21 @@ const routes = [
     name: 'SeekerDashboard',
     component: SeekerDashboard,
     meta: { layout: SeekerLayout },
-  }
+  },
+
+  {
+    path: '/seeker/code/register',
+    name: 'CodeToRegister',
+    component: CodetoRegister,
+    meta: { layout: GuestLayout },
+  },
+  
+  {
+    path: '/seeker/fill/info',
+    name: 'SeekerFill_Info',
+    component: SeekerFill_Info,
+    meta: { layout: GuestLayout },
+  },
 
   // Add more routes as needed
 ];

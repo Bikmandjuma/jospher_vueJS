@@ -14,8 +14,10 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "core-js": "^3.8.3",
+    "jquery": "^3.7.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
+    "toastr": "^2.1.4",
     "vue": "^3.2.13",
     "vue-router": "^4.5.0"
   },

@@ -21,6 +21,13 @@
             <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
               <i class="fa fa-list-alt"></i>&nbsp;Create account
             </h1>
+
+            <!-- Alert Message -->
+            <div v-if="alertMessage" :class="alertClass" class="p-1 mb-4 rounded-md text-center">
+              <p class="text-sm mt-1">{{ alertMessage }}</p>
+            </div>
+
+            <!-- Username Field -->
             <label class="block text-sm">
               <span class="text-gray-700 dark:text-gray-400"> <i class="fa fa-user"></i>&nbsp;Username</span>
               <input
@@ -28,7 +35,10 @@
                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                 placeholder="Enter username"
               />
+              <p v-if="errors.user_name" class="text-sm text-red-500">{{ errors.user_name[0] }}</p>
             </label>
+
+            <!-- Email Field -->
             <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400"> <i class="fa fa-envelope"></i>&nbsp;Email</span>
               <input
@@ -37,19 +47,28 @@
                 placeholder="Enter email"
                 type="email"
               />
+              <!-- Display Email Error Message -->
+              <p v-if="errors.email" class="text-sm text-red-500">{{ errors.email[0] }}</p>
             </label>
+
+            <!-- Phone Field -->
             <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400">
-                  <i class="fa fa-phone"></i>&nbsp;Phone
+                <i class="fa fa-phone"></i>&nbsp;Phone
               </span>
               <input
                 v-model="formData.phone"
                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="Enter phone"
                 type="tel"
+                placeholder="Enter tel: 0780000000 or 0720000000"
               />
+              <!-- Display Phone Validation Error -->
+              <p v-if="errors.phone" class="text-sm text-red-500">{{ errors.phone[0] }}</p>
+
             </label>
 
+
+            <!-- Submit Button -->
             <a
               @click.prevent="submitForm"
               class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -86,28 +105,39 @@ export default {
         user_name: '',
         email: '',
         phone: ''
-      }
+      },
+      alertMessage: '',
+      alertClass: '',
+      errors: {}
     };
   },
   methods: {
     async submitForm() {
       try {
-        // Send the form data to the Laravel backend API endpoint
         const response = await axios.post('http://127.0.0.1:8000/api/user/initial_registration', this.formData);
 
-        // Handle the successful response, e.g., save token and redirect
         console.log('User created successfully', response.data);
 
         // Save the authentication token in localStorage
-        localStorage.setItem('auth_token', response.data.authorisation.token);
+        // localStorage.setItem('auth_token', response.data.authorisation.token);
 
-        // Redirect to the seeker dashboard or any other route
-        this.$router.push({ name: 'SeekerDashboard' });
+        localStorage.setItem('seeker_email',this.formData.email)
+        this.$router.push({ name: 'CodeToRegister' });
 
       } catch (error) {
-        // Handle errors (e.g., validation or server errors)
         console.error('Error creating user:', error);
-        alert('Error creating user. Please try again.');
+
+        if (error.response && error.response.data.errors) {
+          // Capture the validation errors from the API
+          this.errors = error.response.data.errors;
+
+        } else {
+
+          // Handle other errors
+          this.alertMessage = 'Error creating user. Please try again.';
+          this.alertClass = 'bg-red-500 text-white'; // Red background for error
+
+        }
       }
     }
   }
@@ -115,17 +145,19 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration: none;
-}
+    
+    a {
+      text-decoration: none;
+    }
 
-#forgot_pswd a:hover {
-  text-decoration: none;
-  color: black;
-}
+    #forgot_pswd a:hover {
+      text-decoration: none;
+      color: black;
+    }
 
-#forgot_pswd {
-  align-items: center;
-  text-align: center;
-}
+    #forgot_pswd {
+      align-items: center;
+      text-align: center;
+    }
+
 </style>

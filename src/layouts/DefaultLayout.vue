@@ -7,12 +7,11 @@
           <img
             aria-hidden="true"
             class="object-cover dark:hidden"
-            src="../assets/Homepage_images/logo.png"
-            alt="Office" style="height: 60px;width:60px;"
+            src="../assets/Homepage_images/logo_title.png"
           />
-          <div id="title_name">
+          <!-- <div id="title_name">
             <span class="text-red-400">Job</span>&nbsp;<span class="text-purple-900">Sphere</span>&nbsp;<span style="color: black;">Rwanda</span>
-          </div>
+          </div> -->
         </a>
         <div class="hidden md:flex space-x-6">
           <a
