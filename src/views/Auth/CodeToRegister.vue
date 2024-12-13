@@ -9,20 +9,24 @@
         </div>
     </nav>
 
-    <div class="container">
-       
+    <div class="container mt-5">
+        <!-- <img src="{{ URL::to('/') }}/mainHomePage/img/new_logo.png" alt="cool" style="width:200px;height: 50px;margin-bottom: 20px;"> -->
         
-        <form class="otc" method="POST" action="">
-            <!-- @csrf -->
+        <div v-if="message" class="alert_msg_code_ver">
+            {{ message }}
+        </div>
+
+        <div v-if="message_localSto" class="alert_msg_local">
+            {{ message_localSto }}
+        </div>
+
+
+        <form class="otc" @submit.prevent="verifyCode">
             <fieldset>
-                <legend>Email verification Code</legend>
-                <div>
-                    <input type="number" name="code[]" id="otc-1" required maxlength="1" autofocus>
-                    <input type="number" name="code[]" required maxlength="1">
-                    <input type="number" name="code[]" required maxlength="1">
-                    <input type="number" name="code[]" required maxlength="1">
-                    <input type="number" name="code[]" required maxlength="1">
-                    <input type="number" name="code[]" required maxlength="1">
+                <legend>Email Verification Code</legend>
+                <div class="inputs-container">
+                    <!-- Single input to capture the code with dashes -->
+                    <input v-model="codeString" type="text" maxlength="7" required @input="onInput" autofocus>
                 </div>
             </fieldset>
             <button type="submit">Verify</button>
@@ -31,211 +35,142 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    mounted() {
-        let in1 = document.getElementById('otc-1'),
-            ins = document.querySelectorAll('input[type="number"]'),
-            splitNumber = function(e) {
-                let data = e.data || e.target.value;
-                if (!data) return;
+    data() {
+        return {
+            // Holds the code as a string with dashes
+            codeString: '',
+            message: '', // Message to display
+            message_localSto:'',
+        };
+    },
 
-                // If there's more than one digit entered, split them into the inputs
-                if (data.length > 1) {
-                    popuNext(e.target, data);
-                }
-            },
-            popuNext = function(el, data) {
-                // Set value of current input
-                el.value = data[0];
-                data = data.substring(1);
-                // Move to the next input if there is still data to fill
-                if (el.nextElementSibling && data.length) {
-                    popuNext(el.nextElementSibling, data);
-                }
-            };
+    methods: {
+        // Function to handle code verification
+        async verifyCode() {
+            // Remove dashes and send the plain code
+            const code = this.codeString.replace(/-/g, ''); 
 
-        // Add event listeners to each input
-        ins.forEach(function(input) {
-            input.addEventListener('keyup', function(e) {
-                // Ignore certain keys (Shift, Tab, Command, etc.)
-                // @ts-ignore
-                if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-                    return;
-                }
+            // Get the email from localStorage
+            const email = localStorage.getItem('seeker_email');
 
-                // If backspace or left arrow is pressed, focus on the previous input
-                // @ts-ignore
-                if ((e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT") {
-                    this.previousElementSibling.focus();
-                } 
-                // Move focus to the next input if it exists
-                // @ts-ignore
-                else if (e.keyCode !== 8 && this.nextElementSibling) {
-                    this.nextElementSibling.focus();
-                }
+            if (!email) {
+                this.message = 'Email not found in localStorage.';
+                return;
+            }
 
-                // If input value exceeds 1 character, split the number into subsequent inputs
-                // @ts-ignore
-                if (e.target.value.length > 1) {
-                    splitNumber(e);
-                }
-            });
+            // API request to verify the code
+            try {
+                const response = await axios.post(`http://127.0.0.1:8000/api/user/verify/code_to_register/${email}`, { code });
 
-            // Handle focus behavior on inputs
-            input.addEventListener('focus', function() {
-                // Focus first input if it's empty
-                // @ts-ignore
-                if (this === in1 && in1.value == '') {
-                    in1.focus();
+                // Check if the response contains 'info' or 'error' and display the message
+                if (response.data.info) {
+                    this.message = response.data.info; // For success response
+                    localStorage.setItem('fill_info_message', this.message);
+                    this.$router.push({name: 'SeekerFill_Info'}); // Redirect to the next step
+                } else if (response.data.error) {
+                    this.message = response.data.error; // For error response (invalid/expired code)
                 }
-
-                // If the previous input is empty, move focus there
-                if (this.previousElementSibling && this.previousElementSibling.value == '') {
-                    this.previousElementSibling.focus();
+            } catch (error) {
+                // Handle errors (e.g., network issues or API errors)
+                if (error.response && error.response.data) {
+                    this.message = error.response.data.error || 'An unexpected error occurred.';
                 }
-            });
-        });
+            }
+        },
 
-        // Handle the input event for the first input to split values when typed
-        in1.addEventListener('input', splitNumber);
+        // Function to handle the input and format it
+        onInput() {
+            // Remove any non-numeric characters and split it into a 6-character code
+            let formattedCode = this.codeString.replace(/\D/g, '').slice(0, 6);
+
+            // Add dashes after every 3 digits
+            if (formattedCode.length > 3) {
+                formattedCode = formattedCode.slice(0, 3) + '-' + formattedCode.slice(3);
+            }
+
+            // Update the model with the formatted code
+            this.codeString = formattedCode;
+        }
+    },
+    mounted(){
+
+        this.message_localSto = localStorage.getItem('verificationMessage') || '';
+
+        if (this.message_localSto) {
+            setTimeout(() => {
+                this.message_localSto = '';
+                localStorage.removeItem('verificationMessage');
+            }, 5000);
+        }
     }
-}
+};
 </script>
 
-
 <style scoped>
-        
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            align-items: center;
-            max-height: 100;
-            justify-content: center;
-            color: #333;
-        }
 
-        #title{
-            display: flex;
-            text-align: center;
-            align-items: center;
-            text-align: justify;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+.alert_msg_local{
+    background-color:#007BFF; /* Green background */
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
 
-        #title span{
-            font-size: 20px;
-            font-weight: bold;
-            font-style: italic;
-        }
+.otc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-            margin-top: 10%;
-        }
+input[type="text"] {
+    width: 150px;
+    height: 40px;
+    margin: 5px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    outline: none;
+    transition: border 0.3s ease;
+}
 
-        h3 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+input[type="text"]:focus {
+    border-color: #007BFF;
+}
 
-        .otc {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
 
-        .otc fieldset {
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
+button:hover {
+    background-color: #0056b3;
+}
 
-        .otc legend {
-            color: #333;
-            font-size: 25px;
-            margin-bottom: 20px;
-        }
-
-        /* Style for input fields */
-        input[type="number"] {
-            width: 30px;
-            height: 30px;
-            margin: 5px;
-            font-size: 24px;
-            text-align: center;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            outline: none;
-            transition: border 0.3s ease;
-        }
-
-        input[type="number"]:focus {
-            border-color: #007BFF;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        button {
-            background-color: #007BFF;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Animation for inputs */
-        input[type="number"] {
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Media query for small devices */
-        @media (max-width: 600px) {
-            .otc div {
-                display: flex;
-                justify-content: space-between; /* Align inputs horizontally */
-                flex-wrap: wrap; /* Allow inputs to wrap to next line on very small screens */
-                gap:3px; /* Add some space between inputs */
-            }
-
-            input[type="number"] {
-                width: 30px; /* Slightly smaller width for small devices */
-                height: 30px;
-            }
-
-            button {
-                width: 100%; /* Make the button full-width on small devices */
-            }
-        }
-
+.alert_msg_code_ver {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
 </style>

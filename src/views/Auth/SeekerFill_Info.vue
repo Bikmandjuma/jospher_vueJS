@@ -1,127 +1,126 @@
 <template>
-    <!-- Top Navbar -->
-  <!-- <nav class="bg-white shadow-md p-4">
-    <div class="max-w-7xl mx-auto text-center">
-      <img src="../../assets/Homepage_images/logo.png" alt="cool" style="width:50px;height: 50px;">
-      <h1 class="text-gray-800 text-2xl font-semibold" style="font-family: Times New Roman;"><b><span class="text-red-700">Job</span> <span class="text-purple-900">Sphere</span> <span>Rda</span></b></h1>
-    </div>
-  </nav> -->
-
+  <!-- Top Navbar -->
   <nav class="bg-white shadow-md p-4">
     <div class="max-w-7xl mx-auto flex justify-center items-center text-center">
       <img src="../../assets/Homepage_images/logo_title.png" alt="cool">
-      <!-- <h1 class="text-gray-800 text-2xl font-semibold" style="font-family: Times New Roman;margin-top:10px;">
-        <b><span class="text-red-700">Job</span> <span class="text-purple-900">Sphere</span> <span>Rda</span></b>
-      </h1> -->
     </div>
   </nav>
 
   <!-- Registration Form -->
   <div class="flex justify-center items-center flex-1 mt-4" id="container">
-    <form class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg w-full max-w-md">
+    <form class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg w-full max-w-4xl">
       <h2 class="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-6">Fill missed info</h2>
 
-      <!-- First Name -->
-      <label class="block text-sm mb-4">
-        <span class="text-gray-700 dark:text-gray-400">Email</span>
-        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-          <input
-            type="email"
-            class="block w-full pl-10 mt-1  text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-            v-model="userEmail"
-            disabled
-          />
-          <!-- <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 12c2.667 0 4-1.333 4-4s-1.333-4-4-4-4 1.333-4 4 1.333 4 4 4zM12 14c-3.333 0-10 1.667-10 5v2h20v-2c0-3.333-6.667-5-10-5z"></path>
-            </svg>
-          </div> -->
-          <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M2 3h20a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM2 7l10 6 10-6" />
-            </svg>
-          </div>
+      <!-- Form Fields -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        </div>
-      </label>
-
-      <!-- First Name -->
-      <label class="block text-sm mb-4">
-        <span class="text-gray-700 dark:text-gray-400">First Name</span>
-        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-          <input
-            type="text"
-            class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-            placeholder="Enter firstname"
-            autofocus
-            pattern="[A-Za-z]+"
-            title="Firstname should only contain letters (A-Z, a-z)."
-            required
-          />
-          <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 12c2.667 0 4-1.333 4-4s-1.333-4-4-4-4 1.333-4 4 1.333 4 4 4zM12 14c-3.333 0-10 1.667-10 5v2h20v-2c0-3.333-6.667-5-10-5z"></path>
-            </svg>
+        <!-- First Name -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">First Name</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input
+              type="text"
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Enter firstname"
+              v-model="firstName"
+              autofocus
+              pattern="[A-Za-z]+"
+              title="Firstname should only contain letters (A-Z, a-z)."
+              required
+            />
           </div>
-        </div>
-      </label>
+        </label>
 
-      <!-- First Name -->
-      <label class="block text-sm mb-4">
-        <span class="text-gray-700 dark:text-gray-400">Lastname</span>
-        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-          <input
-            type="text"
-            class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-            placeholder="Enter lastname"
-            pattern="[A-Za-z]+"
-            title="Lastname should only contain letters (A-Z, a-z)."
-            required
-          />
-          <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 12c2.667 0 4-1.333 4-4s-1.333-4-4-4-4 1.333-4 4 1.333 4 4 4zM12 14c-3.333 0-10 1.667-10 5v2h20v-2c0-3.333-6.667-5-10-5z"></path>
-            </svg>
+        <!-- Last Name -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">Last Name</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-user-tie absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input
+              type="text"
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Enter lastname"
+              v-model="lastName"
+              pattern="[A-Za-z]+"
+              title="Lastname should only contain letters (A-Z, a-z)."
+              required
+            />
           </div>
-        </div>
-      </label>
+        </label>
 
-      <!-- Gender -->
-      <label class="block text-sm mb-4">
-        <span class="text-gray-700 dark:text-gray-400">Gender</span>
-        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-          <select
-            class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-            required
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+        <!-- Gender -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">Gender</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-venus-mars absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <select
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              v-model="gender"
+              required
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
           </div>
-        </div>
-      </label>
+        </label>
 
-      <!-- Birthdate -->
-      <label class="block text-sm mb-6">
-        <span class="text-gray-700 dark:text-gray-400">Birthdate</span>
-        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-          <input
-            type="date"
-            class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
-            required
-          />
-          <div class="absolute inset-y-0 flex items-center ml-3 pointer-events-none">
-            <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M5 4h14M7 9h10M7 14h10m-5 5h5"></path>
-            </svg>
+        <!-- Birthdate -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">Birthdate</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-calendar-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input
+              type="date"
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              v-model="birthDate"
+              required
+            />
           </div>
-        </div>
-      </label>
+        </label>
+
+        <!-- Password -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">Password</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input
+              :type="passwordVisible ? 'text' : 'password'"
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Enter password"
+              v-model="password"
+              required
+            />
+            <i
+              @click="togglePasswordVisibility"
+              :class="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+            ></i>
+          </div>
+        </label>
+
+        <!-- Confirm Password -->
+        <label class="block text-sm mb-4">
+          <span class="text-gray-700 dark:text-gray-400">Confirm Password</span>
+          <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+            <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <input
+              :type="confirmPasswordVisible ? 'text' : 'password'"
+              class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+              placeholder="Confirm password"
+              v-model="confirmPassword"
+              required
+            />
+            <i
+              @click="toggleConfirmPasswordVisibility"
+              :class="confirmPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+            ></i>
+          </div>
+        </label>
+
+      </div>
 
       <!-- Submit Button -->
       <div class="flex justify-center mt-6">
@@ -137,29 +136,47 @@
 </template>
 
 <script>
-// import axios from 'axios';
-
-export default{
-
-  data(){
-    return{
-      userEmail:''
-    }
+export default {
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      birthDate: '',
+      password: '',
+      confirmPassword: '',
+      passwordVisible: false, // Track password visibility
+      confirmPasswordVisible: false, // Track confirm password visibility
+    };
   },
-  mounted(){
-    const storedEmail=localStorage.getItem('seeker_email');
-    if(storedEmail){
-      return this.userEmail=storedEmail;
-    }
-  }
-}
+  methods: {
+    // Toggle password visibility
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
+    },
+    // Toggle confirm password visibility
+    toggleConfirmPasswordVisibility() {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    },
+  },
+};
 </script>
 
 <style scoped>
-  @media(max-width:600px){
-    #container{
-      margin-left:20px;
-      margin-right:20px;
+  @media (max-width: 600px) {
+    #container {
+      margin-left: 20px;
+      margin-right: 20px;
     }
+  }
+
+  /* Icon positioning */
+  .fa-user, .fa-user-tie, .fa-venus-mars, .fa-calendar-alt, .fa-lock {
+    font-size: 18px;
+  }
+
+  .fa-eye, .fa-eye-slash {
+    font-size: 18px;
+    cursor: pointer;
   }
 </style>

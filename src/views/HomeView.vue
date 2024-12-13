@@ -3,18 +3,18 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
          <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-      <div class="container mx-auto px-4 py-20 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Your Future</h1>
-        <p class="text-lg md:text-xl mb-6">
-          Discover the tools, resources, and opportunities you need to thrive in today's digital world.
-        </p>
-        <div class="flex justify-center space-x-4">
-          <a href="#" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100">Get Started</a>
-          <a href="#" class="bg-transparent border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-blue-500">Learn More</a>
+        <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+        <div class="container mx-auto px-4 py-20 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Your Future</h1>
+            <p class="text-lg md:text-xl mb-6">
+            Discover the tools, resources, and opportunities you need to thrive in today's digital world.
+            </p>
+            <div class="flex justify-center space-x-4">
+            <a href="#" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100">Get Started</a>
+            <!-- <a href="#" class="bg-transparent border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-blue-500">Learn More</a> -->
+            </div>
         </div>
-      </div>
-    </section>
+        </section>
 
         <br>
 
@@ -24,8 +24,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         
-                        <div class="section-header text-center">
-                            <p id="ad_title" >About Us</p>
+                        <div class="section-header text-center" style="margin-top: -50px;">
+                            <p id="ad_title">About Us</p>
                         </div>
 
                         <div class="about-img">
@@ -328,6 +328,10 @@ export default {
 
 <style scoped>
 /* Style the Modal */
+
+a{
+    text-decoration: none;
+}
 .modal {
   display: none;
   position: fixed;
