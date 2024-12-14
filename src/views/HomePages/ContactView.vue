@@ -33,7 +33,7 @@
           <div class="col-md-7">
             <div class="contact-form">
               <div id="success"></div>
-              <form @submit.prevent="handleSubmit" name="sentMessage" id="contactForm" novalidate="novalidate">
+              <form @submit.prevent="handleSubmit" name="sentMessage" id="contactForm" novalidate>
                 <div class="control-group">
                   <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Your Name" required />
                 </div>
@@ -64,7 +64,7 @@
               width="600" 
               height="450" 
               style="border:0;" 
-              allowfullscreen="" 
+              allowfullscreen
               loading="lazy" 
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>

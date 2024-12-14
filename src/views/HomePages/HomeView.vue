@@ -12,7 +12,7 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover a World of Opportunities</h1>
             <p class="text-lg md:text-xl mb-6">JobSphere consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.</p>
             <div class="flex justify-center space-x-4">
-            <a href="/jobs" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100">All Jobs</a>
+            <a href="/jobs" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100">Search Jobs</a>
             <!-- <a href="/jobs" class="bg-transparent border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-blue-500 text-white">Jobs</a> -->
             </div>
         </div>
