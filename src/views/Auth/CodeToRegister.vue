@@ -36,7 +36,7 @@
 
 <script>
 import axios from 'axios';
-
+import { laravelApiUrl } from '../../api';
 export default {
     data() {
         return {
@@ -63,7 +63,9 @@ export default {
 
             // API request to verify the code
             try {
-                const response = await axios.post(`http://127.0.0.1:8000/api/user/verify/code_to_register/${email}`, { code });
+                const response = await axios.post(`${laravelApiUrl}/user/verify/code_to_register/${email}`, { 
+                    code 
+                });
 
                 // Check if the response contains 'info' or 'error' and display the message
                 if (response.data.info) {

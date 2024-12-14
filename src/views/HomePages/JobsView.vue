@@ -40,23 +40,7 @@
       </div>
     </div>
   
-    <div class="testimonial">
-      <div class="container">
-        <div class="owl-carousel testimonials-carousel">
-          <div v-for="(category, index) in filteredCategorizedJobs" :key="index" class="testimonial-item-job">
-            <div class="testimonial-text">
-              <h3>{{ category.name }} (<i class="text-secondary">{{ category.jobs.length }}</i> jobs)</h3>
-              <ul>
-                <li v-for="(job, jobIndex) in category.jobs.slice(0, 5)" :key="jobIndex">
-                  {{ job.length > 34 ? job.substring(0, 34) + '...' : job }}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Testimonial End -->
+    
   </template>
   
   <script>
