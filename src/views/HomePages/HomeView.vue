@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="about-img">
-                            <img src="../assets/Homepage_images/carousel5.jpg" alt="Image">
+                            <img src="../../assets/Homepage_images/carousel5.jpg" alt="Image">
                         </div>
 
                     </div>
@@ -332,6 +332,7 @@ export default {
 a{
     text-decoration: none;
 }
+
 .modal {
   display: none;
   position: fixed;

@@ -3,17 +3,19 @@ import DefaultLayout from '../layouts/DefaultLayout.vue';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SeekerLayout from '../layouts/SeekerLayout.vue';
 import GuestLayout from '../layouts/GuestLayout.vue';
-import Home from '../views/HomeView.vue';
-import About from '../views/AboutView.vue';
-import Services from '../views/ServicesView.vue';
-import Contact from '../views/ContactView.vue';
+import Home from '../views/HomePages/HomeView.vue';
+import About from '../views/HomePages/AboutView.vue';
+import Services from '../views/HomePages/ServicesView.vue';
+import Jobs from '../views/HomePages/JobsView.vue';
+import Pricing from '../views/HomePages/PricingView.vue';
+import Contact from '../views/HomePages/ContactView.vue';
 import Login from '../views/Auth/LoginView.vue';
 import SeekerFill_Info from '../views/Auth/SeekerFill_Info.vue';
 import Register from '../views/Auth/RegisterView.vue';
 import CodetoRegister from '../views/Auth/CodeToRegister.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
-import AdminDashboard from '../views/AdminDashboard.vue';
-import SeekerDashboard from '../views/SeekerDashboard.vue';
+import AdminDashboard from '../views/Admin/AdminDashboard.vue';
+import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 
 const routes = [
   // {
@@ -42,6 +44,18 @@ const routes = [
     path: '/services',
     name: 'Services',
     component: Services,
+    meta: { layout: DefaultLayout },
+  },
+  {
+    path: '/jobs',
+    name: 'Jobs',
+    component: Jobs,
+    meta: { layout: DefaultLayout },
+  },
+  {
+    path: '/pricing',
+    name: 'Pricing',
+    component: Pricing,
     meta: { layout: DefaultLayout },
   },
   {

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLoading">
+  <div>
     <!-- Navbar -->
     <nav class="bg-white shadow-xl dark:bg-gray-800 sticky top-0 z-50">
       <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -152,7 +152,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <!-- <footer class="bg-gray-800 text-white py-6">
       <div class="container mx-auto px-4 text-center">
         <p>&copy; 2024 Job-sphere-rwanda. All rights reserved.</p>
         <div class="mt-4 space-x-4">
@@ -161,15 +161,66 @@
           <a href="#" class="text-blue-400 hover:underline">Contact</a>
         </div>
       </div>
-    </footer>
-  </div>
+    </footer> -->
 
-   <!-- Loading Screen -->
-  <div v-else class="flex items-center justify-center h-screen bg-gray-100">
-    <!-- <p class="text-lg font-semibold text-gray-500">Loading...</p> -->
-    <img src="../assets/Homepage_images/logo.png" style="width: 160px;height: 200px;">
-  </div>
+    <!-- Footer Start -->
+    <div class="footer" v-if="!hide_footer_authPages">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-contact">
+                            <h2>Welcome</h2>
+                            <p>
+                              <strong>Job Sphere Rwanda</strong>, your one-stop platform for job searching! We gather listings from multiple platforms to help you find opportunities faster. Receive personalized job alerts and never miss an opportunity. Let us help you streamline your job search and focus on landing your dream job.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-link">
+                            <h2>Popular Links</h2>
+                            <a href="">About Us</a>
+                            <a href="">Contact Us</a>
+                            <a href="">Our Service</a>
+                            <a href="">Jobs</a>
+                            <a href="">Pricing Plan</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-link">
+                            <h2>Useful Links</h2>
+                            <a href="">Terms of use</a>
+                            <a href="">Privacy policy</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FQAs</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        
+                        <div class="footer-contact">
+                            <h2>Get In Touch</h2>
+                            <p><i class="fa fa-map-marker-alt"></i>&nbsp;KG 576 St , ave 25</p>
+                            <!-- <p><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
+                            <p><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
+                            <div class="footer-social">
+                                <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn" href=""><i class="fab fa-tiktok"></i></a>
+                                <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn" href=""><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+              <p>Copyright &copy; 2023 - {{ currentYear }} <a href="#">JOB SPHERE RWANDA</a>, All Rights Reserved. <!-- Designed By <a href="#">Savvy coder</a> --></p>
+            </div>
+        </div>
+        <!-- Footer End -->
+  </div>
 </template>
 
 <script>
@@ -177,24 +228,31 @@ export default {
   name: "DefaultLayout",
   data() {
     return {
-      isMenuOpen: false, // Tracks mobile menu state
-      isLoading: true, // Tracks loading state
-
+      isMenuOpen: false,
+      hide_footer_authPages:false,
+      currentYear: new Date().getFullYear(),
     };
   },
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen; // Toggle menu visibility
+      this.isMenuOpen = !this.isMenuOpen;
     },
+    chechFooterVisibility() {
+      const authPages = ['/login', '/register', '/forgot-password'];
+      this.hide_footer_authPages = authPages.includes(this.$route.path);
+    }
   },
 
   mounted() {
-    // Simulate a delay of 3 seconds
-    setTimeout(() => {
-      // @ts-ignore
-      this.isLoading = false; // Stop loading after 3 seconds
-    },1000);
+   
   },
+
+  created(){
+    this.chechFooterVisibility();
+  },
+  watch:{
+    '$route' : 'chechFooterVisibility',
+  }
   
 };
 </script>
@@ -217,4 +275,143 @@ a {
   border-top: 2px solid purple;
   border-bottom: 2px solid blueviolet;
 }
+
+/*******************************/
+/********* Footer CSS **********/
+/*******************************/
+.footer {
+    position: relative;
+    margin-top: 45px;
+    padding-top: 90px;
+    background: #202C45;
+}
+
+.footer .footer-contact,
+.footer .footer-link,
+.footer .footer-newsletter {
+    position: relative;
+    margin-bottom: 45px;
+    color: #ffffff;
+}
+
+.footer .footer-newsletter input[placeholder='email']{
+  color: white;
+}
+
+.footer .footer-contact h2,
+.footer .footer-link h2,
+.footer .footer-newsletter h2 {
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #E81C2E;
+}
+
+.footer .footer-link a {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    transition: .3s;
+}
+
+.footer .footer-link a::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer .footer-link a:hover {
+    color: #E81C2E;
+    letter-spacing: 1px;
+}
+
+.footer .footer-contact p i {
+    width: 25px;
+}
+
+.footer .footer-social {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+}
+
+.footer .footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #202C45;
+    background: #ffffff;
+    border-radius: 40px;
+    margin-right: 5px;
+    transition: .5s;
+}
+
+.footer .footer-social a:last-child {
+    margin: 0;
+}
+
+.footer .footer-social a:hover {
+    color: #ffffff;
+    background: #E81C2E;
+}
+
+.footer .footer-newsletter form {
+    position: relative;
+    width: 100%;
+}
+
+.footer .footer-newsletter input {
+    margin-bottom: 15px;
+    height: 45px;
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+.footer .footer-newsletter label {
+    margin-top: 5px;
+    color: #777777;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.footer .footer-newsletter .btn.btn-custom {
+    width: 100%;
+    color: #202C45;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 0 #E81C2E;
+}
+
+.footer .footer-newsletter .btn:hover {
+    color: #ffffff;
+    background: #E81C2E;
+    box-shadow: inset 200px 0 0 0 #E81C2E;
+}
+
+.footer .copyright {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 45px;
+}
+
+.footer .copyright p {
+    margin: 0;
+    color: #ffffff;
+}
+
+.footer .copyright p a {
+    color: #E81C2E;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.footer .copyright p a:hover {
+    color: #ffffff;
+}
+
 </style>

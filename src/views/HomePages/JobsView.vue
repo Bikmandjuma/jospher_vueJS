@@ -1,12 +1,11 @@
 <template>
     <div>
-      <h1>Our Services</h1>
+      <h1>Jobs page</h1>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'ServicesView',
+    name: 'JobsView',
   };
   </script>
-  
