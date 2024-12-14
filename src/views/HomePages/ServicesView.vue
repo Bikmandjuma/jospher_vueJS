@@ -19,13 +19,14 @@
     <div class="service">
       <div class="container">
         <div class="section-header text-center">
+          <p>Services</p>
           <h2>Our Services</h2>
         </div>
   
         <div class="row">
           <div v-for="(service, index) in services" :key="index" class="col-lg-3 col-md-6">
             <div class="service-item">
-              <h3><i class="fa fa-briefcase" style="width:35px;height:35px;"></i>&nbsp;{{ service.title }}</h3>
+              <h3><i class="fa fa-briefcase" style="width:20px;height:20px;color: #E81C2E;"></i>&nbsp;{{ service.title }}</h3>
               <p>{{ service.description }}</p>
             </div>
           </div>

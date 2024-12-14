@@ -51,7 +51,7 @@
                 </div>
                 <br />
                 <div>
-                  <button class="btn btn-info" type="submit" id="sendMessageButton">Send Message</button>
+                  <button class="btn btn-custom" type="submit" id="sendMessageButton">Send Message</button>
                 </div>
               </form>
             </div>
@@ -86,7 +86,7 @@ export default {
       carouselImageUrl: require('../../assets/Homepage_images/carousel5.jpg'), // Adjust path as needed
       contactInfo: [
         { id: 1, title: 'Opening Hour', detail: 'Mon - Fri, 8:00 - 9:00', icon: 'far fa-clock' },
-        { id: 2, title: 'Call Us', detail: '+012 345 6789', icon: 'fa fa-phone-alt' },
+        // { id: 2, title: 'Call Us', detail: '+012 345 6789', icon: 'fa fa-phone-alt' },
         { id: 3, title: 'Email Us', detail: 'info@example.com', icon: 'far fa-envelope' }
       ],
       form: {
@@ -114,6 +114,17 @@ export default {
 
 <style scoped>
 /* Your scoped styles here */
+.contact-form .btn.btn-custom {
+    color: #ffffff;
+    background: #E81C2E;
+    box-shadow: inset 0 0 0 0 #202C45;
+}
+
+.contact-form .btn.btn-custom:hover {
+    color: white;
+    background: #202C45;
+    box-shadow: inset 200px 0 0 0 #202C45;
+}
 
 /*******************************/
 /******* Page Header CSS *******/

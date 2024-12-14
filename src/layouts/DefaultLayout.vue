@@ -40,7 +40,7 @@
             :class="{'active-link': $route.path === '/jobs'}"
             class="text-gray-600 hover:text-blue-500"
           >
-            <i class="fa fa-wrench mr-2"></i>Jobs
+            <i class="fa fa-briefcase mr-2"></i>Jobs
           </a>
           <a
             href="/pricing"
@@ -116,7 +116,7 @@
           :class="{'active-link': $route.path === '/jobs'}"
           class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
         >
-          <i class="fa fa-wrench mr-2"></i>Jobs
+          <i class="fa fa-briefcase mr-2"></i>Jobs
         </a>
         <a
           href="/pricing"
