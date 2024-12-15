@@ -70,7 +70,6 @@ export default {
                 // Check if the response contains 'info' or 'error' and display the message
                 if (response.data.info) {
                     this.message = response.data.info; // For success response
-                    localStorage.setItem('fill_info_message', this.message);
                     this.$router.push({name: 'SeekerFill_Info'}); // Redirect to the next step
                 } else if (response.data.error) {
                     this.message = response.data.error; // For error response (invalid/expired code)

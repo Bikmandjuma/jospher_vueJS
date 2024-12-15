@@ -13,7 +13,6 @@
 
       <!-- Form Fields -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
         <!-- First Name -->
         <label class="block text-sm mb-4">
           <span class="text-gray-700 dark:text-gray-400">First Name</span>
@@ -94,7 +93,7 @@
             />
             <i
               @click="togglePasswordVisibility"
-              :class="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"
+              :class="passwordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'"
               class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
             ></i>
           </div>
@@ -114,7 +113,7 @@
             />
             <i
               @click="toggleConfirmPasswordVisibility"
-              :class="confirmPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"
+              :class="confirmPasswordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'"
               class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
             ></i>
           </div>
@@ -135,7 +134,7 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   data() {
     return {
@@ -158,6 +157,67 @@ export default {
     toggleConfirmPasswordVisibility() {
       this.confirmPasswordVisible = !this.confirmPasswordVisible;
     },
+  },
+};
+</script> -->
+
+<script>
+import axios from 'axios';
+import { laravelApiUrl } from '../../api';
+export default {
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      birthDate: '',
+      password: '',
+      confirmPassword: '',
+      passwordVisible: false,
+      confirmPasswordVisible: false,
+      errorMessage: '',
+      successMessage: '',
+    };
+  },
+  methods: {
+    // Toggle password visibility
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
+    },
+    // Toggle confirm password visibility
+    toggleConfirmPasswordVisibility() {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    },
+    // Handle form submission
+    async handleSubmit() {
+      if (this.password !== this.confirmPassword) {
+        this.errorMessage = 'Passwords do not match';
+        return;
+      }
+
+      const formData = {
+        firstname: this.firstName,
+        lastname: this.lastName,
+        gender: this.gender,
+        birthdate: this.birthDate,
+        password: this.password,
+        password_confirmation: this.confirmPassword,
+      };
+
+      try {
+        const response = await axios.post(`${laravelApiUrl}/register`, formData);
+        this.successMessage = response.data.message;
+        // Optionally, reset form fields
+        this.firstName = '';
+        this.lastName = '';
+        this.gender = '';
+        this.birthDate = '';
+        this.password = '';
+        this.confirmPassword = '';
+      } catch (error) {
+        this.errorMessage = error.response.data.message || 'Something went wrong. Please try again.';
+      }
+    }
   },
 };
 </script>

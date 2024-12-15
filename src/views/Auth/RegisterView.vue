@@ -129,7 +129,7 @@ export default {
         console.log('User created successfully', response.data);
 
         // Save the authentication token in localStorage
-        localStorage.setItem('auth_token', response.data.authorisation.token);
+        // localStorage.setItem('auth_token', response.data.authorisation.token);
         localStorage.setItem('seeker_email',this.formData.email)
 
         localStorage.setItem('verificationMessage', 'Check your email, we sent you a verification code');
