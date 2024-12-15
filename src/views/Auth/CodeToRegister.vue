@@ -61,6 +61,11 @@ export default {
                 return;
             }
 
+            // if (!email) {
+            //     this.$router.push({name: 'Register'});
+            //     return;
+            // }
+
             // API request to verify the code
             try {
                 const response = await axios.post(`${laravelApiUrl}/user/verify/code_to_register/${email}`, { 
