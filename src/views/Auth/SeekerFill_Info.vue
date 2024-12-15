@@ -123,6 +123,14 @@ export default {
       errors: {},
     };
   },
+  beforeMount() {
+    // Check for seeker_email in localStorage
+    const email = localStorage.getItem('seeker_email');
+    if (!email) {
+      // Redirect to the 'register' route if email is not found
+      this.$router.push({ name: 'Register' });
+    }
+  },
   methods: {
     async submitForm() {
 
@@ -140,7 +148,7 @@ export default {
         setTimeout(() => {
           this.loading = false;
           this.$router.push({name: 'SeekerDashboard'});
-        }, 5000);
+        }, 2000);
 
 
       } catch (error) {

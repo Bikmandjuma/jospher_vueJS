@@ -18,16 +18,6 @@ import AdminDashboard from '../views/Admin/AdminDashboard.vue';
 import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: () => import('../views/HomeView.vue') // Lazy load component
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import('../views/AboutView.vue') // Lazy load component
-  // },
   {
     path: '/',
     name: 'Home',
@@ -95,7 +85,7 @@ const routes = [
     path: '/seeker/dashboard',
     name: 'SeekerDashboard',
     component: SeekerDashboard,
-    meta: { layout: SeekerLayout },
+    meta: { layout: SeekerLayout, requiresAuth: true }, // Protect this route
   },
 
   {
@@ -118,6 +108,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+// Global navigation guard to protect all routes
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token'); // Check if token exists in localStorage
+
+  // If the route requires authentication (requiresAuth is set to true) and the token is not found
+  if (to.matched.some(record => record.meta.requiresAuth) && !token) {
+    // Redirect to the login page
+    next({ name: 'Login' });
+  } else {
+    // Otherwise, proceed to the route
+    next();
+  }
 });
 
 export default router;

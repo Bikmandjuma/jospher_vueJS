@@ -47,6 +47,15 @@ export default {
         };
     },
 
+    beforeMount() {
+        // Check for seeker_email in localStorage
+        const email = localStorage.getItem('seeker_email');
+        if (!email) {
+        // Redirect to the 'register' route if email is not found
+        this.$router.push({ name: 'Register' });
+        }
+    },
+
     methods: {
         // Function to handle code verification
         async verifyCode() {
