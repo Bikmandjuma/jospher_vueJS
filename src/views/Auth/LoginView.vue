@@ -1,141 +1,194 @@
 <template>
-      <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900" id="login_container">
-        <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
-          <div class="flex flex-col overflow-y-auto md:flex-row">
-            <div class="h-32 md:h-auto md:w-1/2">
-              <img
-                aria-hidden="true"
-                class="object-cover w-full h-full dark:hidden"
-                src="../../assets/Homepage_images/login-office.jpeg"
-                alt="Office"
-              />
-              <img
-                aria-hidden="true"
-                class="hidden object-cover w-full h-full dark:block"
-                src="../../assets/Homepage_images/login-office-dark.jpeg"
-                alt="Office"
-              />
+  <div
+    class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900"
+    id="login_container"
+  >
+    <div
+      class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+    >
+      <div class="flex flex-col overflow-y-auto md:flex-row">
+        <div class="h-32 md:h-auto md:w-1/2">
+          <img
+            aria-hidden="true"
+            class="object-cover w-full h-full dark:hidden"
+            src="../../assets/Homepage_images/login-office.jpeg"
+            alt="Office"
+          />
+          <img
+            aria-hidden="true"
+            class="hidden object-cover w-full h-full dark:block"
+            src="../../assets/Homepage_images/login-office-dark.jpeg"
+            alt="Office"
+          />
+        </div>
+        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+          <div class="w-full">
+            <h1
+              class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Login
+            </h1>
+
+            <!-- Error Message -->
+            <div
+              v-if="errorMessage"
+              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
+              role="alert"
+            >
+              <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
             </div>
-            <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-              <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
-                <form id="loginForm">
-                  <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400"><i class="fa fa-envelope"></i>&nbsp;Email</span>
-                    <input
-                      id="email"
-                      name="email"
-                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                      placeholder="Enter email"
-                      required
-                    />
-                  </label>
-                  <label class="block mt-4 text-sm">
-                    <span class="text-gray-700 dark:text-gray-400"><i class="fa fa-key"></i>&nbsp;Password</span>
-                    <input
-                      id="password"
-                      name="password"
-                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                      placeholder="Enter password"
-                      type="password"
-                      required
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    id="loginButton"
-                    class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                  >
-                  <i class="fa fa-lock-open"></i>&nbsp;Log in
-                  </button>
-                </form>
-  
-                <hr class="my-8" />
-                <div id="forgot_pswd">
-                  <!-- <div class="footer-social">
-                    <a class="btn" @click="loginWithGoogle">
-                      <i class="fab fa-google mr-3"></i>
-                    </a>
-                  </div> -->
-                  <p class="mt-4">
-                    <a
-                      class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                      href="/forgot_password"
-                    >
-                    <i class="fa fa-key"></i>&nbsp;Forgot your password?
-                    </a>
-                  </p>
-                  <p class="mt-1">
-                    <a
-                      class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                      href="/register"
-                    >
-                     Don't have an account? Sign up
-                    </a>
-                  </p>
-                </div>
+
+            <form @submit.prevent="handleLogin">
+              <div class="mb-4">
+                <label
+                  for="emailOrPhone"
+                  class="block text-sm font-medium text-gray-700"
+                >
+                  Email or Phone
+                </label>
+                <input
+                  v-model="emailOrPhone"
+                  id="emailOrPhone"
+                  type="text"
+                  placeholder="Enter your email or phone"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  />
               </div>
+              <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  v-model="password"
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+              >
+                Login
+              </button>
+            </form>
+
+            <hr class="my-8" />
+            <div id="forgot_pswd">
+              <p class="mt-4">
+                <a
+                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  href="/forgot_password"
+                >
+                  <i class="fa fa-key"></i>&nbsp;Forgot your password?
+                </a>
+              </p>
+              <p class="mt-1">
+                <a
+                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  href="/register"
+                >
+                  Don't have an account? Sign up
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-  
-      <div v-if="userData">
-        <h2>Welcome, {{ userData.user_name }}!</h2>
-        <p>Email: {{ userData.email }}</p>
-        <p>User Code: {{ userData.user_code }}</p>
-        <p>JWT Token: {{ token }}</p>
-      </div>
-  </template>
-  
-  <script>
-  import axios from "axios";
+    </div>
+  </div>
+</template>
 
-  export default {
-    data() {
-      return {
-        userData: null,
-        token: null,
-      };
-    },
-    methods: {
-        async loginWithGoogle() {
-          try {
-              const response = await axios.get('https://jobsphererdaapi-production.up.railway.app/api/auth/google');
-              if (response.data && response.data.token) {
-                  this.token = response.data.token;
-                  localStorage.setItem("token", this.token);
-              }
-          } catch (error) {
-              console.error("Google Login Error:", error);
-              alert("Failed to log in with Google. Please check the console for details.");
+<script>
+export default {
+  data() {
+    return {
+      emailOrPhone: "",
+      password: "",
+      errorMessage: null,
+    };
+  },
+
+  methods: {
+    async handleLogin() {
+      if (!this.emailOrPhone || !this.password) {
+        this.errorMessage = "Email/Phone and Password are required.";
+        return;
+      }
+
+      try {
+        const loginData = {
+          username: this.emailOrPhone,
+          password: this.password,
+        };
+
+        const response = await fetch("http://127.0.0.1:8000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        });
+
+        const data = await response.json();
+        console.log(data); // Debugging API response
+
+        if (response.ok) {
+          localStorage.setItem("auth_token", data.authorisation.token);
+
+          // Fallback logging for debugging
+          if (data.role === "admin") {
+         
+            console.log("Redirecting to AdminDashboard");
+            this.$router.push({ name: "AdminDashboard" });
+         
+          } else if (data.role === "user") {
+         
+            console.log("Redirecting to SeekerDashboard");
+            this.$router.push({ name: "SeekerDashboard" });
+         
+          } else {
+         
+            console.error("Unknown role:", data.role);
+            this.errorMessage = "Unknown role. Contact support.";
+         
           }
-
+        
+        } else {
+        
+          console.error("Login failed:", data);
+          this.errorMessage = data.message || "Login failed. Please try again.";
+        
         }
 
-    },
-  };
-  </script>
-  
-  <style scoped>
-    @media(max-width:600px){
-      #login_container{
-        
+      } catch (error) {
+        console.error("Login error:", error);
+        this.errorMessage = "An unexpected error occurred. Please try again later.";
       }
-    }
+    },
+  },
 
-    a{
-      text-decoration: none;
-    }
 
-    #forgot_pswd a:hover{
-      text-decoration: none;
-      color:black;
-    }
+};
+</script>
 
-    #forgot_pswd{
-      align-items: center;
-      text-align: center;
-    }
-  </style>
-  
+<style scoped>
+#forgot_pswd {
+  text-align: center;
+}
+a{
+    text-decoration: none;
+}
+
+#forgot_pswd a:hover{
+    text-decoration: none;
+    color:black;
+}
+
+#forgot_pswd{
+    align-items: center;
+    text-align: center;
+}
+
+</style>

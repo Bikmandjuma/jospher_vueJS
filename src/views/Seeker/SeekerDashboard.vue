@@ -8,7 +8,7 @@
   export default {
     name: 'SeekerDashboard',
     beforeMount() {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       if (!token) {
         this.$router.push({ name: 'Login' });
       }

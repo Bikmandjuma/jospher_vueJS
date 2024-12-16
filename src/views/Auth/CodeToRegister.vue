@@ -12,12 +12,21 @@
     <div class="container mt-5">
         <!-- <img src="{{ URL::to('/') }}/mainHomePage/img/new_logo.png" alt="cool" style="width:200px;height: 50px;margin-bottom: 20px;"> -->
         
-        <div v-if="message" class="alert_msg_code_ver">
-            {{ message }}
+        <div v-if="message" class="p-2 mb-2 text-sm text-red-700 bg-red-100 rounded-lg"
+        role="alert">
+        <i class="fa fa-exclamation-circle"></i> {{ message }}
         </div>
 
-        <div v-if="message_localSto" class="alert_msg_local">
+        <!-- <div v-if="message_localSto" class="alert_msg_local">
             {{ message_localSto }}
+        </div> -->
+
+        <div
+              v-if="message_localSto"
+              class="p-4 mb-4 text-sm text-blue-700 bg-red-100 rounded-lg"
+              role="alert"
+        >
+              <i class="fa fa-exclamation-circle"></i>{{ message_localSto }}
         </div>
 
 
@@ -52,7 +61,7 @@ export default {
         const email = localStorage.getItem('seeker_email');
         if (!email) {
         // Redirect to the 'register' route if email is not found
-        this.$router.push({ name: 'Register' });
+        this.$router.push({ name: 'Login' });
         }
     },
 

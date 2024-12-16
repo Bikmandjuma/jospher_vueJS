@@ -128,7 +128,7 @@ export default {
     const email = localStorage.getItem('seeker_email');
     if (!email) {
       // Redirect to the 'register' route if email is not found
-      this.$router.push({ name: 'Register' });
+      this.$router.push({ name: 'Login' });
     }
   },
   methods: {
@@ -142,7 +142,7 @@ export default {
         
         // Store the token in localStorage
         const token = response.data.authorisation.token;
-        localStorage.setItem('token', token);
+        localStorage.setItem('auth_token', token);
         localStorage.removeItem('seeker_email');
 
         setTimeout(() => {

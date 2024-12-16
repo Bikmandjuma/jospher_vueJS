@@ -238,7 +238,7 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     chechFooterVisibility() {
-      const authPages = ['/login', '/register', '/forgot-password'];
+      const authPages = ['/login', '/register', '/forgot_password'];
       this.hide_footer_authPages = authPages.includes(this.$route.path);
     }
   },

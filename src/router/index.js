@@ -79,13 +79,13 @@ const routes = [
     path: '/admin/dashboard',
     name: 'AdminDashboard',
     component: AdminDashboard,
-    meta: { layout: AdminLayout },
+    meta: { layout: AdminLayout , requiresAuth : true},
   },
   {
     path: '/seeker/dashboard',
     name: 'SeekerDashboard',
     component: SeekerDashboard,
-    meta: { layout: SeekerLayout, requiresAuth: true }, // Protect this route
+    meta: { layout: SeekerLayout , requiresAuth : true},
   },
 
   {
@@ -110,17 +110,13 @@ const router = createRouter({
   routes
 });
 
-// Global navigation guard to protect all routes
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token'); // Check if token exists in localStorage
+  const isAuthenticated = !!localStorage.getItem("auth_token");
 
-  // If the route requires authentication (requiresAuth is set to true) and the token is not found
-  if (to.matched.some(record => record.meta.requiresAuth) && !token) {
-    // Redirect to the login page
-    next({ name: 'Login' });
+  if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
+    next({ name: "Login" }); // Redirect to login if not authenticated
   } else {
-    // Otherwise, proceed to the route
-    next();
+    next(); // Proceed to route
   }
 });
 

@@ -85,7 +85,6 @@
               <span v-else><i class="fa fa-save"></i>&nbsp;Create account</span>
             </a>
 
-
             <hr class="my-8" />
 
             <div id="forgot_pswd">
