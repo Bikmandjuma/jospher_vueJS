@@ -132,10 +132,12 @@ export default {
         });
 
         const data = await response.json();
-        console.log(data); // Debugging API response
+        console.log(data);
 
         if (response.ok) {
+
           localStorage.setItem("auth_token", data.authorisation.token);
+          localStorage.setItem("user_info", JSON.stringify(data.user));
 
           // Fallback logging for debugging
           if (data.role === "admin") {
