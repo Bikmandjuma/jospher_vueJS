@@ -16,6 +16,8 @@ import CodetoRegister from '../views/Auth/CodeToRegister.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/Admin/AdminDashboard.vue';
 import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
+import SeekerInformation from '../views/Seeker/SeekerInformation.vue';
+import SeekerProfile from '../views/Seeker/SeekerProfile.vue';
 
 const routes = [
   {
@@ -85,7 +87,7 @@ const routes = [
     path: '/seeker/dashboard',
     name: 'SeekerDashboard',
     component: SeekerDashboard,
-    meta: { layout: SeekerLayout , requiresAuth : true},
+    meta: { layout: SeekerLayout , requiresAuth : true,pageTitle: "Dashboard" },
   },
 
   {
@@ -102,7 +104,27 @@ const routes = [
     meta: { layout: GuestLayout },
   },
 
-  // Add more routes as needed
+  {
+    path: '/seeker/information',
+    name: 'SeekerInformation',
+    component: SeekerInformation,
+    meta: { 
+      layout: SeekerLayout  , 
+      requiresAuth : true
+      ,pageTitle: "Information" },
+  },
+
+  {
+    path: '/seeker/profile',
+    name: 'SeekerProfile',
+    component: SeekerProfile,
+    meta: { 
+      layout: SeekerLayout  ,
+      requiresAuth : true,
+      pageTitle: "Profile" },
+  },
+
+  
 ];
 
 const router = createRouter({

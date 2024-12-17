@@ -8,10 +8,6 @@
           
           <!-- Dashboards links -->
           <div>
-            <a class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-              User_name
-            </a>
-            
             <a
               href="/seeker/dashboard"
               class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
@@ -40,8 +36,8 @@
               <span class="ml-2 text-sm">Components</span>
             </a>
             <div v-show="open.components" class="mt-2 space-y-2 px-7">
-              <a href="#link1" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
-              <a href="#link2" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
+              <a href="#" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
+              <a href="#" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
             </div>
           </div>
         </nav>
@@ -64,7 +60,7 @@
           <!-- User Avatar and Dropdown -->
           <div class="relative">
             <button @click="toggleDropdown" class="transition-opacity duration-200 rounded-full focus:outline-none focus:ring dark:focus:opacity-100">
-              <img class="w-10 h-10 rounded-full" src="../assets/seeker_style/images/user1.jpg" alt="profile_picture" />
+              <img class="w-10 h-10 rounded-full" src="../assets/seeker_style/images/user1.jpg" alt="Ahmed Kamel" />
             </button>
 
             <!-- Dropdown Menu -->
@@ -78,30 +74,24 @@
       </header>
 
       <main class="flex-grow">
-            <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
-              <h1 class="text-2xl font-semibold">{{ pageTitle }}</h1>
-              <a
-                href="#notific"
-                class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
-              >
-                Notification
-              </a>
-            </div>
-
         <slot></slot>
       </main>
+      <!-- <main>
+        <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
+          <h1 class="text-2xl font-semibold">Dashboard</h1>
+        </div>
+      </main> -->
     </div>
 
     <!-- Mobile Menu -->
     <nav v-show="isMobileMainMenuOpen" class="absolute top-16 inset-x-4 md:hidden z-50 flex flex-col items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker">
       <div class="space-y-2">
         <!-- Dashboards Link -->
-         <a class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-          User_name
-         </a>
         <a
           href="/seeker/dashboard"
+          @click.prevent="toggleSubMenu('dashboard')"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+          :class="{'bg-primary-100 dark:bg-primary': isActive.dashboard || open.dashboard}"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -122,8 +112,8 @@
           <span class="ml-2 text-sm">Components</span>
         </a>
         <div v-show="open.components" class="mt-2 space-y-2 px-7">
-            <a href="#link1" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
-            <a href="#link2" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
+            <a href="#test" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
+            <a href="test#" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
         </div>
       </div>
     </nav>
@@ -144,7 +134,6 @@
 
 <script>
 export default {
-  
   data() {
     return {
       dropdownOpen: false,
@@ -158,11 +147,6 @@ export default {
         components: false,
       },
     };
-  },
-  computed:{
-    pageTitle(){
-      return this.$route.meta.pageTitle || "defult pageTitle"
-    }
   },
   methods: {
     logout() {
