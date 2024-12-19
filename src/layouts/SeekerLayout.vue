@@ -102,7 +102,7 @@
       <div class="space-y-2">
         <!-- Dashboards Link -->
          <a class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-          User_name
+          {{ truncatedUserName }}
          </a>
         <a
           href="/seeker/dashboard"
