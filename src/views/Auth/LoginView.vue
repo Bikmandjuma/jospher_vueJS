@@ -101,6 +101,8 @@
 </template>
 
 <script>
+import { laravelApiUrl } from '../../api';
+
 export default {
   data() {
     return {
@@ -123,7 +125,7 @@ export default {
           password: this.password,
         };
 
-        const response = await fetch("http://127.0.0.1:8000/api/login", {
+        const response = await fetch(`${laravelApiUrl}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

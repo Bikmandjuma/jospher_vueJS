@@ -46,6 +46,7 @@
 <script>
 import axios from 'axios';
 import { laravelApiUrl } from '../../api';
+
 export default {
     data() {
         return {

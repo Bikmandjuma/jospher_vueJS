@@ -8,8 +8,8 @@
           
           <!-- Dashboards links -->
           <div>
-            <a class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-              User_name
+            <a class="flex items-center justify-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+              {{ truncatedUserName }}
             </a>
             
             <a
@@ -64,7 +64,12 @@
           <!-- User Avatar and Dropdown -->
           <div class="relative">
             <button @click="toggleDropdown" class="transition-opacity duration-200 rounded-full focus:outline-none focus:ring dark:focus:opacity-100">
-              <img class="w-10 h-10 rounded-full" src="../assets/seeker_style/images/user1.jpg" alt="profile_picture" />
+              <img 
+                  style="border: 2px solid gray;"
+                  class="rounded-full w-10 h-10 mx-auto"
+                  :src="userData.image ? require(`../assets/seeker_style/images/${userData.image}`) : require('../assets/seeker_style/images/user.png')"
+                  alt="User Image"
+                />
             </button>
 
             <!-- Dropdown Menu -->
@@ -143,8 +148,10 @@
 </template>
 
 <script>
+import { laravelApiUrl } from '../api';
+import axios from 'axios';
+
 export default {
-  
   data() {
     return {
       dropdownOpen: false,
@@ -157,24 +164,66 @@ export default {
         dashboard: false,
         components: false,
       },
+      userData: {
+        user_name: '',
+        image: ''
+      }
     };
   },
   computed:{
     pageTitle(){
       return this.$route.meta.pageTitle || "defult pageTitle"
+    },
+    truncatedUserName() {
+      if (!this.userData.user_name) return '.....';
+      return this.userData.user_name.length > 20 
+        ? this.userData.user_name.substring(0, 20) + '...' 
+        : this.userData.user_name;
     }
   },
-  methods: {
-    logout() {
-      // Remove user_info and auth_token from localStorage
-      localStorage.removeItem('user_info');
-      localStorage.removeItem('auth_token');
+  mounted(){
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      this.$route.push({name:'/login'});
+    }else{
+      this.fetchUserData(token);
+    }
 
-      // Redirect to the login page or perform other actions
+  },
+  methods: {
+    fetchUserData(token) {
+      axios
+        .get(`${laravelApiUrl}/user/view_info`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log(response.data); // Log the response data
+          if (response.data && response.data.user_info) {
+            this.userData = response.data.user_info;
+          } else {
+            console.error('User data not found in response');
+          }
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the user data:", error);
+          if (error.response && error.response.status === 401) {
+            this.$router.push({ name: 'Login' });
+          }
+        });
+    },
+    formatDate(dateString) {
+      // Format date if it's provided, else return N/A
+      if (!dateString) return 'N/A';
+      const date = new Date(dateString);
+      return date.toLocaleDateString(); // You can modify this to a custom format
+    },
+    logout() {
+      localStorage.removeItem('auth_token');
       console.log('User logged out.');
       // @ts-ignore
-      // this.closeModal();
-      window.location.href = '/login'; // Change to your login route
+      window.location.href = '/login';
     },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
