@@ -8,7 +8,7 @@
           
           <!-- Dashboards links -->
           <div>
-            <a class="flex items-center justify-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+            <a class="flex items-center justify-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" style="font-style: italic;font-weight: bold;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
               {{ truncatedUserName }}
             </a>
             
@@ -24,26 +24,47 @@
             </a>
           </div>
 
-          <!-- Components links -->
+          <!-- jobs links -->
           <div>
             <a
               href="#"
-              @click.prevent="toggleSubMenu('components')"
+              @click.prevent="toggleSubMenu('jobs')"
               class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-              :class="{'bg-primary-100 dark:bg-primary': isActive.components || open.components}"
+              :class="{'bg-primary-100 dark:bg-primary': isActive.jobs || open.jobs}"
               aria-haspopup="true"
-              :aria-expanded="(open.components || isActive.components) ? 'true' : 'false'"
+              :aria-expanded="(open.jobs || isActive.jobs) ? 'true' : 'false'"
             >
               <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
-              <span class="ml-2 text-sm">Components</span>
+              <span class="ml-2 text-sm">Jobs</span>
             </a>
-            <div v-show="open.components" class="mt-2 space-y-2 px-7">
-              <a href="#link1" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
-              <a href="#link2" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
+            <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
+              <a href="/seeker/job_category" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</a>
+              <a href="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</a>
             </div>
           </div>
+
+          <div>
+            <a
+              href="#"
+              @click.prevent="toggleSubMenu('pricing')"
+              class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+              :class="{'bg-primary-100 dark:bg-primary': isActive.pricing || open.pricing}"
+              aria-haspopup="true"
+              :aria-expanded="(open.pricing || isActive.pricing) ? 'true' : 'false'"
+            >
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+              <span class="ml-2 text-sm">Pricing</span>
+            </a>
+            <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
+              <a href="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
+              <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
+            </div>
+          </div>
+
         </nav>
       </div>
     </aside>
@@ -101,7 +122,7 @@
     <nav v-show="isMobileMainMenuOpen" class="absolute top-16 inset-x-4 md:hidden z-50 flex flex-col items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker">
       <div class="space-y-2">
         <!-- Dashboards Link -->
-         <a class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+         <a class="flex items-center justify-center p-2 text-gray-700 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"  style="font-weight: bold;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
           {{ truncatedUserName }}
          </a>
         <a
@@ -114,21 +135,38 @@
           <span class="ml-2 text-sm">Dashboard</span>
         </a>
 
-        <!-- Components Link -->
+        <!-- job Link -->
         <a
           href="#"
-          @click.prevent="toggleSubMenu('components')"
+          @click.prevent="toggleSubMenu('jobs')"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-          :class="{'bg-primary-100 dark:bg-primary': isActive.components || open.components}"
+          :class="{'bg-primary-100 dark:bg-primary': isActive.jobs || open.jobs}"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
-          <span class="ml-2 text-sm">Components</span>
+          <span class="ml-2 text-sm">Jobs</span>
         </a>
-        <div v-show="open.components" class="mt-2 space-y-2 px-7">
-            <a href="#link1" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 1</a>
-            <a href="#link2" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Link 2</a>
+        <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
+            <a href="#categories" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</a>
+            <a href="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</a>
+        </div>
+
+        <!-- job Link -->
+        <a
+          href="#"
+          @click.prevent="toggleSubMenu('pricing')"
+          class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+          :class="{'bg-primary-100 dark:bg-primary': isActive.pricing || open.pricing}"
+        >
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+          <span class="ml-2 text-sm">Pricing</span>
+        </a>
+        <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
+            <a href="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
+            <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
         </div>
       </div>
     </nav>
@@ -158,11 +196,13 @@ export default {
       isMobileMainMenuOpen: false,
       open: {
         dashboard: false,
-        components: false,
+        jobs: false,
+        pricing: false,
       },
       isActive: {
         dashboard: false,
-        components: false,
+        jobs: false,
+        pricing: false,
       },
       userData: {
         user_name: '',
@@ -184,7 +224,7 @@ export default {
   mounted(){
     const token = localStorage.getItem('auth_token');
     if (!token) {
-      this.$route.push({name:'/login'});
+      this.$router.push({name:'/login'});
     }else{
       this.fetchUserData(token);
     }

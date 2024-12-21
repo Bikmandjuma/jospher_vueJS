@@ -111,7 +111,7 @@
                         <div class="price-item">
                             <div class="price-header">
                                 <h3>1 Month</h3>
-                                <h2><span></span><strong>3,000</strong><span>Frw</span></h2>
+                                <h2><span></span><strong>5,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -132,7 +132,7 @@
                         <div class="price-item featured-item">
                             <div class="price-header">
                                 <h3>6 months</h3>
-                                <h2><strong>12,000</strong><span>Frw</span></h2>
+                                <h2><strong>20,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -153,7 +153,7 @@
                         <div class="price-item">
                             <div class="price-header">
                                 <h3>Yearly</h3>
-                                <h2><strong>20,000</strong><span>Frw</span></h2>
+                                <h2><strong>35,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>

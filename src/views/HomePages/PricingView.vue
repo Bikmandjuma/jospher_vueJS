@@ -65,7 +65,7 @@
         plans: [
           {
             title: '1 Month',
-            price: '3,000',
+            price: '5,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',
@@ -76,7 +76,7 @@
           },
           {
             title: '6 months',
-            price: '12,000',
+            price: '20,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',
@@ -87,7 +87,7 @@
           },
           {
             title: 'Yearly',
-            price: '20,000',
+            price: '35,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',

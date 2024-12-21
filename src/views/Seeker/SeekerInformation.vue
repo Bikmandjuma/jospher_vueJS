@@ -16,6 +16,7 @@
                 />
                 <i class="fa fa-pencil editImage text-primary"></i>
                 <h5 class="font-semibold text-lg mt-4">{{ userData.user_name || 'User name' }}</h5>
+                <p>Software developer | Technician | Teacher | Machine learning</p>
               </div>
             </div>
           </div>
