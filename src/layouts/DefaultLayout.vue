@@ -21,13 +21,21 @@
           >
             <i class="fa fa-home mr-2"></i>Home
           </a>
-          <route-link
+          <!-- <route-link
             to="/about"
             :class="{'active-link': $route.path === '/about'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-list-alt mr-2"></i>About us
-          </route-link>
+          </route-link> -->
+          <router-link
+            to="/about"
+            :class="{'active-link': $route.path === '/about'}"
+            class="text-gray-600 hover:text-blue-500"
+          >
+            About
+          </router-link>
+
           <a
             href="/services"
             :class="{'active-link': $route.path === '/services'}"
