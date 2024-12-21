@@ -22,7 +22,7 @@
             <i class="fa fa-home mr-2"></i>Home
           </a>
           <route-link
-            href="/about"
+            to="/about"
             :class="{'active-link': $route.path === '/about'}"
             class="text-gray-600 hover:text-blue-500"
           >
