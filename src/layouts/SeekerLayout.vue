@@ -12,8 +12,8 @@
               {{ truncatedUserName }}
             </a>
             
-            <a
-              href="/seeker/dashboard"
+            <router-link
+              to="/seeker/dashboard"
               class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
               aria-haspopup="true"
             >
@@ -21,13 +21,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
               <span class="ml-2 text-sm">Dashboard</span>
-            </a>
+            </router-link>
           </div>
 
           <!-- jobs links -->
           <div>
-            <a
-              href="#"
+            <router-link
+              to="#"
               @click.prevent="toggleSubMenu('jobs')"
               class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
               :class="{'bg-primary-100 dark:bg-primary': isActive.jobs || open.jobs}"
@@ -38,16 +38,16 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
               <span class="ml-2 text-sm">Jobs</span>
-            </a>
+            </router-link>
             <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
-              <a href="/seeker/job_category" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</a>
-              <a href="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</a>
+              <router-link to="/seeker/job_category" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</router-link>
+              <router-link to="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</router-link>
             </div>
           </div>
 
           <div>
-            <a
-              href="#"
+            <router-link
+              to="#"
               @click.prevent="toggleSubMenu('pricing')"
               class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
               :class="{'bg-primary-100 dark:bg-primary': isActive.pricing || open.pricing}"
@@ -58,10 +58,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
               <span class="ml-2 text-sm">Pricing</span>
-            </a>
+            </router-link>
             <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
-              <a href="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-              <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
+              <router-link to="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
+              <router-link to="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</router-link>
             </div>
           </div>
 
@@ -80,7 +80,7 @@
             </svg>
           </button>
 
-          <a href="#" class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">Job_sphere</a>
+          <router-link to="#" class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">Job_sphere</router-link>
 
           <!-- User Avatar and Dropdown -->
           <div class="relative">
@@ -95,9 +95,9 @@
 
             <!-- Dropdown Menu -->
             <div v-show="dropdownOpen" class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark">
-              <a href="/seeker/information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</a>
-              <a href="/seeker/profile" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-image"></i>&nbsp;Profile</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary openModal" @click="openModal"><i class="fa fa-lock"></i>&nbsp;Logout</a>
+              <router-link to="/seeker/information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</router-link>
+              <router-link to="/seeker/profile" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-image"></i>&nbsp;Profile</router-link>
+              <router-link to="#" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary openModal" @click="openModal"><i class="fa fa-lock"></i>&nbsp;Logout</router-link>
             </div>
           </div>
         </div>
@@ -106,12 +106,12 @@
       <main class="flex-grow">
             <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
               <h1 class="text-2xl font-semibold">{{ pageTitle }}</h1>
-              <a
-                href="#notific"
+              <router-link
+                to="#notific"
                 class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
               >
                 <i class="fa fa-bell"></i>&nbsp;Notification
-              </a>
+              </router-link>
             </div>
 
         <slot></slot>
@@ -125,19 +125,19 @@
          <a class="flex items-center justify-center p-2 text-gray-700 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"  style="font-weight: bold;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
           {{ truncatedUserName }}
          </a>
-        <a
-          href="/seeker/dashboard"
+         <router-link
+          to="/seeker/dashboard"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
           <span class="ml-2 text-sm">Dashboard</span>
-        </a>
+        </router-link>
 
         <!-- job Link -->
-        <a
-          href="#"
+        <router-link
+          to="#"
           @click.prevent="toggleSubMenu('jobs')"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
           :class="{'bg-primary-100 dark:bg-primary': isActive.jobs || open.jobs}"
@@ -146,15 +146,15 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
           <span class="ml-2 text-sm">Jobs</span>
-        </a>
+        </router-link>
         <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
-            <a href="#categories" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</a>
-            <a href="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</a>
+          <router-link to="#categories" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</router-link>
+          <router-link to="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</router-link>
         </div>
 
         <!-- job Link -->
-        <a
-          href="#"
+        <router-link
+          to="#"
           @click.prevent="toggleSubMenu('pricing')"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
           :class="{'bg-primary-100 dark:bg-primary': isActive.pricing || open.pricing}"
@@ -163,10 +163,10 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
           <span class="ml-2 text-sm">Pricing</span>
-        </a>
+        </router-link>
         <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
-            <a href="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-            <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
+          <router-link to="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
+          <router-link to="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</router-link>
         </div>
       </div>
     </nav>

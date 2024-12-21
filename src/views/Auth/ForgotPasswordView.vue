@@ -32,24 +32,24 @@
                     </label>
 
                     <!-- You should use a button here, as the anchor is only used for the example  -->
-                    <a
+                    <router-link
                     class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                    href="/login"
+                    to="/login"
                     >
                     <i class="fa fa-key"></i>&nbsp;Recover password
-                    </a>
+                    </router-link>
 
                     <hr class="my-8" />
 
                     <div id="forgot_pswd">
 
                         <p class="mt-4">
-                        <a
+                        <router-link
                             class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                            href="/login"
+                            to="/login"
                         >
                         <i class="fa fa-arrow-left"></i>&nbsp;Back to login 
-                        </a>
+                        </router-link>
                         </p>
                     </div>
 

@@ -77,20 +77,20 @@
             <hr class="my-8" />
             <div id="forgot_pswd">
               <p class="mt-4">
-                <a
+                <router-link
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="/forgot_password"
+                  to="/forgot_password"
                 >
                   <i class="fa fa-key"></i>&nbsp;Forgot your password?
-                </a>
+                </router-link>
               </p>
               <p class="mt-1">
-                <a
+                <router-link
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="/register"
+                  to="/register"
                 >
                   Don't have an account? Sign up
-                </a>
+                </router-link>
               </p>
             </div>
           </div>

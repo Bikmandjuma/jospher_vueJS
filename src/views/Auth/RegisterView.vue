@@ -89,12 +89,12 @@
 
             <div id="forgot_pswd">
               <p class="mt-4">
-                <a
+                <router-link
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="/login"
+                  to="/login"
                 >
                   Already have an account? Login
-                </a>
+                </router-link>
               </p>
             </div>
           </div>
