@@ -1,23 +1,34 @@
 <template>
+  <div>
+    <!-- Search Section -->
     <section class="main_search_container">
-      <div class="search-container">
+      <div class="search-container" :class="{'sticky-search': isSticky}">
         <input
+          v-model="searchTerm"
           type="text"
           id="search-input"
-          v-model="searchQuery"
-          :placeholder="`Searching ... ${job_count} jobs found in system`"
+          :placeholder="'Searching ... ' + jobCount + ' jobs found in system'"
+          @input="showSuggestions"
         />
-        <div id="search-icon" class="search-icon" @click="openModal">🔍</div>
-        <div v-if="showSuggestions" id="suggestions" class="suggestions">
-          <div v-for="(suggestion, index) in filteredSuggestions" :key="index" class="suggestion-item">
-            {{ suggestion }}
+        <div class="search-icon" @click="handleSearch">&#128269;</div>
+        <div v-if="suggestionsVisible" id="suggestions" class="suggestions">
+          <div
+            v-for="(suggestion, index) in filteredSuggestions"
+            :key="index"
+            class="suggestion-item"
+            @click="selectSuggestion(suggestion)"
+          >
+            <span v-html="highlightText(suggestion, searchTerm)"></span>
+          </div>
+          <div v-if="filteredSuggestions.length === 0" class="no-match-message">
+            Not matching!
           </div>
         </div>
       </div>
     </section>
-  
+
     <!-- Modal -->
-    <div v-if="isModalOpen" id="search-modal" class="modal">
+    <div v-if="isModalOpen" id="search-modal" class="modal" @click.self="closeModal">
       <div class="modal-content">
         <span id="close-modal" class="close" @click="closeModal">&times;</span>
         <p>
@@ -26,375 +37,372 @@
         </p>
       </div>
     </div>
-  
-    <!-- Testimonial Start -->
-    <div class="price" style="margin-top:-2%;">
-      <div class="container">
-        <div class="section-header text-center" style="font-family: sans-serif; font-style: italic;">
-          <!-- <p>Job Listings by Category</p> -->
-           <br>
-          <h5 style="text-decoration:underline; margin-top: 3px;">
-            Jobs <i class="text-secondary">{{ job_count }}</i> and categories <i class="text-secondary">{{ filteredCategorizedJobs.length }}</i>
-          </h5>
+
+    <!-- Job Listings -->
+    <section>
+      <div class="price" style="margin-top: -1%;">
+        <div class="container">
+          <div class="section-header text-center" style="font-family: sans-serif; font-style: italic;">
+           
+            <div class="section-header text-center justify-center">
+              <p>
+                Jobs <i class="text-secondary">{{ jobCount }}</i> and categories
+                <i class="text-secondary">{{ Object.keys(categorizedJobs).length }}</i>
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  
+      
+      <div class="testimonial">
+        <div class="container">
+          <div class="owl-carousel testimonials-carousel">
+            <!-- Loop through filteredCategories to create the carousel items -->
+            <div v-for="([category, jobs], index) in filteredCategories" :key="index">
+              <div class="testimonial-item-job">
+                <div class="testimonial-text">
+                  <h5>{{ category }} (<i class="text-secondary">{{ jobs.length }}</i> jobs)</h5>
+                  <ul>
+                    <!-- Loop through the jobs in each category and display the first 5 jobs -->
+                    <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" :title="job">
+                      {{ job.length > 34 ? job.slice(0, 34) + '...' : job }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      searchTerm: "",
+      isModalOpen: false,
+      suggestionsVisible: false,
+      suggestions: [],
+      filteredSuggestions: [],
+      jobCount: 0,
+      categorizedJobs: {},
+      isSticky: false, // Track scroll position for sticky effect
+    };
+  },
+  methods: {
+    fetchJobs() {
+      axios
+        .get("http://192.168.0.82:8000/api/job_data")
+        .then((response) => {
+          console.log("API Response:", response.data);
+          this.categorizedJobs = response.data.categorized_jobs;
+          this.jobCount = response.data.job_listings.length;
+          this.suggestions = response.data.job_listings;
+        })
+        .catch((error) => {
+          console.error("Error fetching job data:", error);
+        });
+    },
+    showSuggestions() {
+      const value = this.searchTerm.trim().toLowerCase();
+      if (value) {
+        this.filteredSuggestions = this.suggestions.filter((suggestion) =>
+          suggestion.toLowerCase().includes(value)
+        );
+        this.suggestionsVisible = true;
+      } else {
+        this.suggestionsVisible = false;
+      }
+    },
+    highlightText(suggestion, searchTerm) {
+      const regex = new RegExp(`(${searchTerm})`, "gi");
+      return suggestion.replace(regex, `<span style="color:blue;">$1</span>`);
+    },
+    selectSuggestion(suggestion) {
+      this.searchTerm = suggestion;
+      this.suggestionsVisible = false;
+    },
+    handleSearch() {
+      if (this.searchTerm) {
+        this.isModalOpen = true;
+      }
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    },
+    // Method to handle scroll and add sticky class
+    handleScroll() {
+      this.isSticky = window.scrollY > 100; // Adjust based on your requirement
+    },
+  },
+  mounted() {
+    this.fetchJobs();
+    window.addEventListener('scroll', this.handleScroll); // Listen for scroll events
     
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        searchQuery: '', // Two-way binding for search input
-        job_count: 100, // Example job count
-        categorized_jobs: [
-          { name: "Technology", jobs: ["Developer", "Designer", "Engineer"] },
-          { name: "Marketing", jobs: ["SEO Specialist", "Content Writer"] },
-          { name: "Design", jobs: [] }, // Empty category for testing
-          // Add more categories as needed
-        ],
-        job_listings: [
-          "Developer", "Designer", "Content Writer", "SEO Specialist", "Engineer", // Add jobs
-        ],
-        isModalOpen: false,
-        showSuggestions: false,
-      };
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll); // Clean up listener when component is destroyed
+  },
+  computed: {
+    filteredCategories() {
+      if (!this.categorizedJobs) return [];
+      // Destructure both category and jobs, then return the entries where jobs exist
+      return Object.entries(this.categorizedJobs).filter(([, jobs]) => jobs.length > 0);
     },
-    computed: {
-      // Filtered categorized jobs (exclude empty categories)
-      filteredCategorizedJobs() {
-        return this.categorized_jobs.filter(category => category.jobs.length > 0);
-      },
-      // Filtered suggestions based on search query
-      filteredSuggestions() {
-        if (this.searchQuery === '') {
-          return [];
-        }
-        return this.job_listings.filter(job => job.toLowerCase().includes(this.searchQuery.toLowerCase()));
-      },
-    },
-    methods: {
-      openModal() {
-        if (this.searchQuery) {
-          this.isModalOpen = true;
-        }
-      },
-      closeModal() {
-        this.isModalOpen = false;
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  
-  /* Add your custom styles here */
-  
-  /* Modal styles */
-  /* .modal { */
-    /* display: block; */
-    /* Add styling for the modal */
-  /* } */
-  /* .modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .suggestions {
-    border: 1px solid #ccc;
-    background-color: white;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
-  .suggestion-item {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .suggestion-item:hover {
-    background-color: #f1f1f1;
-  } */
-  .main_search_container {
-/*            background-color: #f3f4f6;*/
-            display: flex;
-            flex-direction: column; /* Stack children vertically */
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-/*            height: 100vh;*/
-            margin-top:4%;
-            margin-bottom:20px;
-        }
+  },
+};
+</script>
 
-        #top_nav_bar {
-            display: flex;
-            justify-content: space-between; /* Align items with space between */
-            width: 100%; /* Full width */
-            padding: 10px 20px; /* Add padding */
-            background-color: #ffffff; /* Background color for visibility */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-            position: absolute; /* Position absolutely to float above main content */
-            top: 0; /* Align to top */
-            z-index: 1000; /* Ensure it appears above other content */
-        }
+<style>
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        #top_nav_bar h2 {
-            text-align: center; /* Center the text */
-            width: 100%; /* Make it full width */
-            font-family: cursive;
-            font-style: italic;
-            margin: 0; /* Remove any default margins */
-            padding: 5px 0px 5px 0px; /* Add some vertical padding for spacing */
-        }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
 
-        #top_nav_bar h2 img {
-            vertical-align: middle;
-        }
+/* Search Section */
+.main_search_container {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #fff;
+}
 
-        #top_nav_bar img{
-            position: relative;
-            margin-top: -5px;
-        }
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
+#search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;  /* Space between input and suggestions */
+}
 
-        /* Account button style */
-        .account-button {
-            background-color: #007bff; /* Button color */
-            color: white; /* Text color */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 5px 10px; /* Padding around the text */
-            cursor: pointer; /* Pointer cursor on hover */
-            display: inline-flex; /* Flexbox for alignment */
-            align-items: center; /* Center icon and text vertically */
-            margin-left: 10px; /* Space between title and button */
-        }
+.search-icon {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+  color: #007bff;
+  cursor: pointer; /* Change cursor to pointer */
+}
 
-        .account-button i {
-            margin-right: 5px; /* Space between icon and text */
-        }
+.suggestions {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  z-index: 10;
+}
 
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
 
-        /* Search Container */
-        .search-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            align-items: center;
-        }
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
 
-        #search-input {
-            width: 100%;
-            padding: 20px 50px 20px 20px; /* Padding for icon space */
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 23px;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-        }
+.no-match-message {
+  padding: 10px;
+  color: red;
+  font-style: italic;
+}
 
-        #search-input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-        }
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-        /* Search Icon */
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            font-size: 40px;
-            color: #007bff;
-            cursor: pointer; /* Change cursor to pointer */
-        }
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+}
 
-        /* Suggestions Container */
-        .suggestions {
-            position: absolute;
-            top: 100%; /* Position below the input field */
-            left: 0;
-            right: 0;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 0 0 10px 10px;
-            z-index: 10;
-            max-height: 250px; /* Max height for the suggestions */
-            overflow-y: auto; /* Scroll if necessary */
-            display: none; /* Hide initially */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-        }
+#close-modal:hover {
+  color: red;
+}
 
-        .suggestion-item {
-            padding: 10px;
-            cursor: pointer;
-        }
+.testimonial {
+  position: relative;
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
 
-        .suggestion-item:hover {
-            background-color: #f0f0f0; /* Highlight on hover */
-        }
+.testimonial-item-job {
+  background-color: white;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 95%;
+  margin-left: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-        .highlight {
-            color: blue; /* Highlight text color */
-        }
+.testimonial-text {
+  padding: 10px 10px 10px 10px;
+  width: 220px;
+}
+
+.testimonial-text li{
+  list-style-type: square;
+}
+
+.testimonial .owl-carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.testimonial .owl-item {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial .owl-item.center .testimonial-item-job {
+  transform: scale(1);
+}
+
+.testimonial .owl-item .testimonial-item-job i {
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+  transform: scale(0.8);
+  transition: transform 2s;
+}
+
+.testimonial .owl-item.center .testimonial-item-job i {
+  transform: scale(1);
+}
+
+.testimonial .owl-item .testimonial-item-job ul {
+  list-style-type:circle;
+  padding: 0;
+}
+
+.testimonial .owl-item .testimonial-item-job li {
+  padding: 5px 0;
+  list-style-type: circle;
+}
+
+.testimonial .owl-item .testimonial-item-job li a {
+  text-decoration: none;
+  color: #007bff;
+}
 
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #search-input {
-                margin-top: 20px;
-                font-size: 16px;
-                padding: 20px 45px 25px 10px;
-            }
+/*******************************/
+/******* Section Header ********/
+/*******************************/
+.section-header {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 45px auto;
+}
 
-            .section-header{
-                margin-top: -30px;
-            }
+.section-header p {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #E81C2E;
+}
 
-            .search-icon {
-                font-size: 30px;
-                margin-top:4%;
-            }
+.section-header p::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 2px;
+    left: 25%;
+    bottom: 0;
+    background: #E81C2E;
+}
 
+.section-header.text-left p::after {
+    left: 0;
+}
 
-            .suggestions{
-                overflow-y: auto;
-                max-height: 300px;
-            }
+.section-header.text-right p::after {
+    left: 50%;
+}
 
-            #top_nav_bar {
-                display: flex; /* Ensure it is displayed on small screens */
-            }
-        }
+.section-header h2 {
+    margin: 0;
+    font-size: 45px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
 
-        @media (max-width: 480px) {
-            #search-input {
-                font-size: 14px;
-                padding: 16px 40px 16px 12px; /* Adjust padding for small screens */
-            }
+@media (max-width: 991.98px) {
+    .section-header h2 {
+        font-size: 45px;
+    }
+}
 
+@media (max-width: 767.98px) {
+    .section-header h2 {
+        font-size: 40px;
+    }
+}
 
-            .suggestions{
-                overflow-y: auto;
-                max-height: 300px;
-            }
+@media (max-width: 575.98px) {
+    .section-header h2 {
+        font-size: 35px;
+    }
+}
 
-            .search-icon {
-                font-size: 28px;
-            }
-        }
-
-        .no-match-message {
-            color: red; /* Change color as needed */
-            padding: 10px;
-            font-style: italic;
-            text-align: center;
-        }
-
-        .testimonial-item-job{
-            background-color:white;
-            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
-            position: relative;
-            width: 95%;
-            margin-left: 5px;
-            padding: 0 15px;
-            display: flex;
-        }
-
-
-        .testimonial{
-            position: relative;
-            width: 100%;
-            padding: 0 15px;
-            display: flex;
-        }
-
-        /*.testimonial .testimonial-item-job i {
-            width: 150px;
-            height: 150px;
-            border-radius: 80px;
-            transform: scale(.8);
-            transition: 2s;
-        }*/
-
-        .testimonial .owl-item.center .testimonial-item-job i {
-            transform: scale(1);
-        }
-
-        .view_btn{
-            margin: 0;
-            padding: 0;
-        }
-
-
-
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed in place */
-            z-index: 1000; /* Sit on top of other content */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full screen width */
-            height: 100%; /* Full screen height */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 5px;
-            width: 80%; /* Or any size you prefer */
-            max-width: 500px;
-        }
-
-        .modal-content p{
-            text-align: center;
-            justify-content: center;
-            font-family: sans-serif;
-            font-size:20px;
-        }
-
-        #close-modal{
-            display: flex;
-            position: relative;
-            float: right;
-            margin-right: 10px;
-        }
-
-        /* Close Button */
-        .close {
-            position: relative;
-            float: right;
-            margin-right: 5px;
-            color: red;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
 </style>
-  
