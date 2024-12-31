@@ -134,7 +134,7 @@ li {
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up" v-if="jobCount > 0">{{ jobCount }}</h3>
+                                <h3 data-toggle="counter-up" v-if="jobCount.length > 0">{{ jobCount }}</h3>
                                 <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
                                 <p>Job positions</p>
                             </div>

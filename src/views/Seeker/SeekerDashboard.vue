@@ -49,7 +49,7 @@
                     >
                       My job categories
                     </h6>
-                    <span class="text-xl font-semibold">0</span>
+                    <span class="text-xl font-semibold">{{ myJob_categoryCount }}</span>
                     <!-- <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
                       +3.1%
                     </span> -->
@@ -82,19 +82,31 @@
   
   <script>
 import axios from 'axios';
+import { flaskApiUrl, laravelApiUrl } from '../../api';
 
   export default {
     name: 'SeekerDashboard',
     data(){
       return{
-        categoryJobCount:'loading...',
-        positionJobCount:'loading...',
+        categoryJobCount:'...',
+        positionJobCount:'...',
+        myJob_categoryCount:'...',
       }
+    },
+    mounted(){
+
+      const token = localStorage.getItem('auth_token');
+      this.fetchjobscount();
+      
+      if (token) {
+        this.fetchMyJobsCategoryCount(token);
+      }
+
     },
     methods:{
       fetchjobscount(){
         axios
-        .get("http://192.168.0.82:8000/api/count_position_category")
+        .get(`${flaskApiUrl}/count_position_category`)
         .then((response)=>{
           console.log("api response : ",response.data);
           this.categoryJobCount = response.data.total_job_categories;
@@ -103,11 +115,26 @@ import axios from 'axios';
         .catch((error)=>{
           console.log("error fetching data : ",error);
         })
+      },
+
+      fetchMyJobsCategoryCount(token){
+        axios
+        .get(`${laravelApiUrl}/user/UserCount_job_category`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response)=>{
+          console.log("api response : ",response.data);
+          this.myJob_categoryCount = response.data.count_categories;
+        })
+        .catch((error)=>{
+          console.log("error fetching data : ",error);
+        })
       }
+
     },
-    mounted(){
-      this.fetchjobscount();
-    },
+    
     beforeMount() {
       const token = localStorage.getItem('auth_token');
       if (!token) {
