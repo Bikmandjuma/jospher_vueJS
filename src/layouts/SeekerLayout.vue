@@ -81,7 +81,14 @@
           </button>
 
           <router-link to="#" class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">Job_sphere</router-link>
-
+          <!-- <div>
+            <form action="#">
+              <label :data-state="state" for="search">
+                <input type="text" placeholder="Search job category ...." @click="state = 'opan'" @blur="state='close'"/>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </label>
+            </form>
+          </div> -->
           <!-- User Avatar and Dropdown -->
           <div class="relative">
             <button @click="toggleDropdown" class="transition-opacity duration-200 rounded-full focus:outline-none focus:ring dark:focus:opacity-100">
@@ -192,6 +199,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      state: "close",
       dropdownOpen: false,
       isMobileMainMenuOpen: false,
       open: {
@@ -369,4 +377,71 @@ export default {
     text-decoration: none;
     cursor: pointer;
   }
+
+  /*=======================
+  Search form css
+  =========================*/
+
+  /* @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"); */
+/* body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #F0AD4E;
+} */
+label{
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  padding: 5px 12px;
+  transition: all 1s ease;
+  border-radius: 0;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  &::after{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 80%;
+    background-color: #F0AD4E;
+    transition: all 1s ease 0.5s;
+  }
+  input{
+    transition: width 1s ease, opacity 0.5s ease 0.5s;
+    opacity: 1;
+    width: 250px;
+    height: 25px;
+    border: 0;
+    outline: none;
+    color: darken(#F0AD4E, 25)
+  }
+  i{
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    color: #333;
+    cursor: pointer;
+  }
+  &[data-state="close"]{
+    border-radius: 30px;
+    padding: 5px 5px;
+     transition: all 1s ease;
+    &::after{
+      width: 0%;
+      transition: all 0.3s ease;
+    }
+    i{
+      pointer-events: none;
+    }
+    input{
+      width: 28px;
+      height: 25px;
+      opacity:0;
+      cursor: pointer;
+      transition: opacity 0.5s ease, width 1s ease;
+      -webkit-appearance:none
+    } 
+  }
+}
+
 </style>

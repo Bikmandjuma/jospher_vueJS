@@ -13,7 +13,7 @@
                     >
                       All jobs categories
                     </h6>
-                    <span class="text-xl font-semibold">0</span>
+                    <span class="text-xl font-semibold">{{ categoryJobCount }}</span>
                     <!-- <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
                       +4.4%
                     </span> -->
@@ -31,7 +31,7 @@
                     >
                       All jobs positions
                     </h6>
-                    <span class="text-xl font-semibold">0</span>
+                    <span class="text-xl font-semibold">{{ positionJobCount }}</span>
                     <!-- <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
                       +2.6%
                     </span> -->
@@ -81,8 +81,33 @@
   </template>
   
   <script>
+import axios from 'axios';
+
   export default {
     name: 'SeekerDashboard',
+    data(){
+      return{
+        categoryJobCount:'loading...',
+        positionJobCount:'loading...',
+      }
+    },
+    methods:{
+      fetchjobscount(){
+        axios
+        .get("http://192.168.0.82:8000/api/count_position_category")
+        .then((response)=>{
+          console.log("api response : ",response.data);
+          this.categoryJobCount = response.data.total_job_categories;
+          this.positionJobCount = response.data.total_job_positions;
+        })
+        .catch((error)=>{
+          console.log("error fetching data : ",error);
+        })
+      }
+    },
+    mounted(){
+      this.fetchjobscount();
+    },
     beforeMount() {
       const token = localStorage.getItem('auth_token');
       if (!token) {

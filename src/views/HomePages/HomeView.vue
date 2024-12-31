@@ -44,7 +44,7 @@
                                 Welcome to <strong>Job sphere Rwanda</strong>, your one-stop platform for streamlined job searching! We understand how time-consuming it can be to browse multiple job sites, so we bring together listings from a variety of platforms to help job seekers find opportunities faster and easier. Our mission is to make job hunting more accessible, giving you more time to focus on preparing for your dream job.
                                 </p>
                                 <p>
-                                At <strong>Job sphere Rwanda</strong>, we proudly offer <strong>0 job categories</strong> and <strong>0 job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
+                                At <strong>Job sphere Rwanda</strong>, we proudly offer <strong><span v-if="job_category_count > 0">{{ job_category_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job categories</strong> and <strong><span v-if="job_position_count.length > 0">{{  job_position_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
                                 </p>
                                 <p>
                                 When new job postings appear on any of sourced platforms, you’ll receive a personalized email notification that matches your unique skills and chosen job categories. Whether you're a software developer, accountant, technician, secretary, or lawyer, we’ll make sure you’re alerted about roles relevant to your field, such as openings in Java development, accounting, technical support, and more.
@@ -77,7 +77,8 @@
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">0</h3>
+                                <h3 data-toggle="counter-up" v-if = "job_category_count > 0">{{ job_category_count }}</h3>
+                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
                                 <p>Job categories</p>
                             </div>
                         </div>
@@ -86,7 +87,8 @@
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">0</h3>
+                                <h3 data-toggle="counter-up" v-if=" job_position_count.length > 0 ">{{ job_position_count }}</h3>
+                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
                                 <p>Job positions</p>
                             </div>
                         </div>
@@ -264,29 +266,6 @@
             </div>
         </div>
         <!-- Location End -->
-
-
-
-     <!-- Features Section -->
-    <!-- <section class="py-12 bg-gray-100">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-8">Our Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white shadow-lg p-6 rounded-lg">
-            <h3 class="text-xl font-semibold text-blue-500 mb-2">Feature One</h3>
-            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-          </div>
-          <div class="bg-white shadow-lg p-6 rounded-lg">
-            <h3 class="text-xl font-semibold text-blue-500 mb-2">Feature Two</h3>
-            <p class="text-gray-600">Suspendisse potenti. Morbi fringilla convallis sapien, id pulvinar odio volutpat.</p>
-          </div>
-          <div class="bg-white shadow-lg p-6 rounded-lg">
-            <h3 class="text-xl font-semibold text-blue-500 mb-2">Feature Three</h3>
-            <p class="text-gray-600">Donec mattis, nisi id euismod ullamcorper, odio ligula ultricies risus, eu scelerisque urna justo id magna.</p>
-          </div>
-        </div>
-      </div>
-    </section> -->
     
   </div>
 </template>
@@ -294,10 +273,31 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import { flaskApiUrl } from '../../api';
+import axios from 'axios';
 
 export default {
   name: 'HomeView',
+  data(){
+    return {
+        job_position_count : 0,
+        job_category_count : 0,
+    }
+  },
   methods: {
+    fetchjob_Pos_Cat_Count(){
+      axios
+        .get(`${flaskApiUrl}/count_position_category`)
+        .then((response) => {
+          console.log("Api response counts :",response.data)
+          this.job_position_count = response.data.total_job_positions
+          this.job_category_count = response.data.total_job_categories
+        })
+        .catch((error)  => {
+          console.log("error fetching data :",error)
+        });
+    },
+
     openModal() {
       const modal = this.$refs.modal; // Reference to the modal <div>
       const closeModalButton = this.$refs.closeModal; // Reference to the close button <span>
@@ -325,6 +325,9 @@ export default {
       }
     },
   },
+  mounted(){
+    this.fetchjob_Pos_Cat_Count();
+  }
 };
 </script>
 

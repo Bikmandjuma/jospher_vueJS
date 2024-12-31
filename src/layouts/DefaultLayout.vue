@@ -43,13 +43,25 @@
           >
             <i class="fas fa-cogs mr-2"></i>Services
           </router-link>
+          
           <router-link
+            v-if = " job_position_count.length > 0 "
             to="/jobs"
             :class="{'active-link': $route.path === '/jobs'}"
             class="text-gray-600 hover:text-blue-500"
           >
-            <i class="fa fa-briefcase mr-2"></i>Jobs
+            <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span>
           </router-link>
+
+          <router-link
+            v-else
+            to="/jobs"
+            :class="{'active-link': $route.path === '/jobs'}"
+            class="text-gray-600 hover:text-blue-500"
+          >
+            <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
+          </router-link>
+
           <router-link
             to="/pricing"
             :class="{'active-link': $route.path === '/pricing'}"
@@ -159,18 +171,6 @@
       <slot></slot>
     </main>
 
-    <!-- Footer -->
-    <!-- <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto px-4 text-center">
-        <p>&copy; 2024 Job-sphere-rwanda. All rights reserved.</p>
-        <div class="mt-4 space-x-4">
-          <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>
-          <a href="#" class="text-blue-400 hover:underline">Terms of Service</a>
-          <a href="#" class="text-blue-400 hover:underline">Contact</a>
-        </div>
-      </div>
-    </footer> -->
-
     <!-- Footer Start -->
     <div class="footer" v-if="!hide_footer_authPages">
             <div class="container">
@@ -232,16 +232,34 @@
 </template>
 
 <script>
+import { flaskApiUrl } from "../api";
+import axios from "axios";
+
 export default {
   name: "DefaultLayout",
   data() {
     return {
+      job_position_count : 0,
+      job_category_count : 0,
       isMenuOpen: false,
       hide_footer_authPages:false,
       currentYear: new Date().getFullYear(),
     };
   },
   methods: {
+    fetchjob_Pos_Cat_Count(){
+      axios
+        .get(`${flaskApiUrl}/count_position_category`)
+        .then((response) => {
+          console.log("Api response counts :",response.data)
+          this.job_position_count = response.data.total_job_positions
+          this.job_category_count = response.data.total_job_categories
+        })
+        .catch((error)  => {
+          console.log("error fetching data :",error)
+        });
+    },
+
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
@@ -252,7 +270,7 @@ export default {
   },
 
   mounted() {
-   
+    this.fetchjob_Pos_Cat_Count();
   },
 
   created(){

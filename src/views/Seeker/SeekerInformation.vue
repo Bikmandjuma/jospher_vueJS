@@ -14,9 +14,35 @@
                   :src="userData.image ? require(`../../assets/seeker_style/images/${userData.image}`) : require('../../assets/seeker_style/images/user.png')"
                   alt="User Image"
                 />
-                <i class="fa fa-pencil editImage text-primary"></i>
+                <router-link to="/seeker/profile"> 
+                  <i class="fa fa-pencil editImage text-primary"></i>
+                </router-link>
                 <h5 class="font-semibold text-lg mt-4">{{ userData.user_name || 'User name' }}</h5>
-                <p>Software developer | Technician | Teacher | Machine learning</p>
+
+                <router-link
+                  v-if="noCategoriesMessage"
+                  to="/seeker/job_category"
+                  class="px-4 py-2 text-sm text-primary rounded-md focus:outline-none focus:ring focus:ring-primary"
+                >
+                  {{ noCategoriesMessage }}
+                </router-link>
+
+                <!-- Job Data Categories with More/Less Toggle -->
+                <p v-else style="max-height: 160px;overflow: auto;">
+                  <span v-if="jobDataCategories.length > 80">
+                    {{ isExpanded ? jobDataCategories : jobDataCategories.slice(0, 80) }}...
+                    <button 
+                      @click="toggleExpand" 
+                      class="text-primary font-semibold"
+                    >
+                      {{ isExpanded ? 'Less' : 'More' }}
+                    </button>
+                  </span>
+                  <span v-else>
+                    {{ jobDataCategories }}
+                  </span>
+                </p>
+
               </div>
             </div>
           </div>
@@ -27,45 +53,34 @@
           <div class="card border rounded-lg shadow-md">
             <div class="card-body pt-3">
               <div class="space-y-4">
-                <!-- User Details Rows -->
-                <!-- <div class="flex justify-between">
-                  <span class="font-medium">User Code</span>
-                  <span>{{ userData.user_code || 'N/A' }}</span>
-                </div> -->
-                <!-- <div class="flex justify-between">
-                  <span class="font-medium">User Name</span>
-                  <span>{{ userData.user_name || 'N/A' }}</span>
-                </div> -->
                 <div class="flex justify-between">
                   <span class="font-medium">First Name</span>
-                  <span>{{ userData.firstname || 'N/A' }}</span>
+                  <span>{{ userData.firstname || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Last Name</span>
-                  <span>{{ userData.lastname || 'N/A' }}</span>
+                  <span>{{ userData.lastname || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Gender</span>
-                  <span>{{ userData.gender || 'N/A' }}</span>
+                  <span>{{ userData.gender || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Email</span>
-                  <span>{{ userData.email || 'N/A' }}</span>
+                  <span>{{ userData.email || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Phone</span>
-                  <span>{{ userData.phone || 'N/A' }}</span>
+                  <span>{{ userData.phone || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Birthdate</span>
-                  <span>{{ formatDate(userData.birthdate) || 'N/A' }}</span>
+                  <span>{{ formatDate(userData.birthdate) || 'loading...' }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Joined</span>
-                  <!-- Display days ago since the user joined -->
-                  <span>{{ getDaysAgo(userData.created_at) || 'N/A' }}</span>
+                  <span>{{ getDaysAgo(userData.created_at) || 'loading...' }}</span>
                 </div>
-                <!-- Add a horizontal line -->
                 <div class="my-4 border-t border-gray-300"></div>
                 <div class="flex items-center justify-between px-2 py-2 border-b lg:py-6 dark:border-primary-darker">
                   <h1 class="text-2xl font-semibold"></h1>
@@ -93,12 +108,13 @@ import relativeTime from 'dayjs/plugin/relativeTime'; // Import relative time pl
 
 dayjs.extend(relativeTime); // Extend dayjs with the relative time plugin
 
-
 export default {
   name: 'SeekerInformation',
   data() {
     return {
-      editImage:'',
+      noCategoriesMessage: 'loading...',
+      jobDataCategories: 'loading...',
+      isExpanded: false,  // This tracks whether the text is expanded or truncated
       userData: {
         user_code: '',
         user_name: '',
@@ -119,9 +135,32 @@ export default {
       this.$router.push({ name: 'Login' });
     } else {
       this.fetchUserData(token);
+      this.fetchUserCategory(token);
     }
   },
   methods: {
+    fetchUserCategory(token) {
+      axios
+        .get(`${laravelApiUrl}/user/fetch_user_job_categories`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          console.log("API job categories", response.data);
+          if (response.data && response.data.categories && response.data.categories.length > 0) {
+            this.jobDataCategories = response.data.categories.join(' | ');
+            this.noCategoriesMessage = '';
+          } else {
+            this.jobDataCategories = '';
+            this.noCategoriesMessage = 'Add category';
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching job categories:", error);
+          this.noCategoriesMessage = 'Error fetching job categories. Please try again.';
+        });
+    },
     fetchUserData(token) {
       axios
         .get(`${laravelApiUrl}/user/view_info`, {
@@ -130,91 +169,36 @@ export default {
           }
         })
         .then((response) => {
-          console.log(response.data); // Log the response data
+          console.log(response.data);
           if (response.data && response.data.user_info) {
             this.userData = response.data.user_info;
           } else {
-            console.error('User data not found in response');
+            console.error('User data not found');
           }
         })
         .catch((error) => {
-          console.error("There was an error fetching the user data:", error);
+          console.error("Error fetching user data:", error);
           if (error.response && error.response.status === 401) {
             this.$router.push({ name: 'Login' });
           }
         });
     },
     formatDate(dateString) {
-      // Format date if it's provided, else return N/A
-      if (!dateString) return 'N/A';
+      if (!dateString) return 'loading...';
       const date = new Date(dateString);
-      return date.toLocaleDateString(); // You can modify this to a custom format
+      return date.toLocaleDateString();
     },
     getDaysAgo(date) {
-      // If date is not valid, return 'N/A'
-      if (!dayjs(date).isValid()) {
-        return 'N/A';
-      }
-      // Otherwise, return the difference in a human-readable format
-      // @ts-ignore
-      return dayjs(date).fromNow(); // This will return the difference in a human-readable format
+      if (!dayjs(date).isValid()) return 'loading...';
+      return dayjs(date).fromNow(); // Display days ago since the user joined
+    },
+    toggleExpand() {
+      this.isExpanded = !this.isExpanded;  // Toggle between showing full or truncated text
     }
   }
 };
 </script>
 
 <style scoped>
-/* Styling for the 'Edit Info' button */
-.edit-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Floating 'Edit Info' button to the right */
-.edit-btn {
-  float: right;
-}
-
-/* Style for the horizontal line separating sections */
-.border-t {
-  border-top-width: 2px;
-  border-top-color: #E2E8F0; /* Light gray */
-}
-
-/* Optional: Styling for the card body content */
-.card-body {
-  padding: 1.5rem;
-}
-
-a {
-  text-decoration: none;
-}
-
-.card-body .editImage {
-  position: relative;
-  padding: 4px;
-  background-color: white;
-  border: 2px solid white;
-  margin-top: -20px;
-  border-radius: 50%;
-}
-
-.editImage {
-  position: relative !important;
-  padding: 4px !important;
-  background-color: white !important;
-  border: 4px solid #eee !important;
-  margin-top: -20px !important;
-  border-radius: 50% !important;
-}
-
-.editImage:hover {
-  cursor: pointer;
-}
-
+/* Additional styling for buttons or components can go here */
 </style>

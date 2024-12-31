@@ -124,7 +124,8 @@ li {
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">0</h3>
+                                <h3 data-toggle="counter-up" v-if="categoryCounts > 0">{{ categoryCounts }}</h3>
+                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
                                 <p>Job categories</p>
                             </div>
                         </div>
@@ -133,7 +134,8 @@ li {
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">0</h3>
+                                <h3 data-toggle="counter-up" v-if="jobCount > 0">{{ jobCount }}</h3>
+                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
                                 <p>Job positions</p>
                             </div>
                         </div>
@@ -147,10 +149,12 @@ li {
 </template>
 
 <script>
+import axios from 'axios';
+import { flaskApiUrl } from '../../api';
+
 export default {
   data() {
     return {
-      // Dynamically load the background and other images
       // @ts-ignore
       headerImageUrl: require('@/assets/Homepage_images/carousel5.jpg'), // Path to header image
       // @ts-ignore
@@ -158,11 +162,28 @@ export default {
       // @ts-ignore
       factsImageUrl: require('@/assets/Homepage_images/carousel6.png'), // Path to facts image
 
-      // Example dynamic data (replace with real data)
       appName: 'Job Sphere Rda',  // Example app name
       categoryCounts: 10,        // Example number of job categories
       jobCount: 150              // Example number of job positions
     };
+  },
+
+  methods:{
+    fetchjob_Pos_Cat_Count(){
+      axios
+        .get(`${flaskApiUrl}/count_position_category`)
+        .then((response) => {
+          console.log("Api response counts :",response.data)
+          this.jobCount = response.data.total_job_positions
+          this.categoryCounts = response.data.total_job_categories
+        })
+        .catch((error)  => {
+          console.log("error fetching data :",error)
+        });
+    },
+  },
+  mounted (){
+    this.fetchjob_Pos_Cat_Count();
   }
 };
 </script>

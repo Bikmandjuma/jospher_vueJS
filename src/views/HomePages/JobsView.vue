@@ -1,13 +1,12 @@
 <template>
   <div>
-    <!-- Search Section -->
     <section class="main_search_container">
       <div class="search-container" :class="{'sticky-search': isSticky}">
         <input
           v-model="searchTerm"
           type="text"
           id="search-input"
-          :placeholder="'Searching ... ' + jobCount + ' jobs found in system'"
+          :placeholder="'Searching ... ' + job_position_count + ' jobs found in system'"
           @input="showSuggestions"
         />
         <div class="search-icon" @click="handleSearch">&#128269;</div>
@@ -28,9 +27,9 @@
     </section>
 
     <!-- Modal -->
-    <div v-if="isModalOpen" id="search-modal" class="modal" @click.self="closeModal">
+    <div v-if="isModalOpen" class="modal" @click.self="closeModal">
       <div class="modal-content">
-        <span id="close-modal" class="close" @click="closeModal">&times;</span>
+        <span class="close" @click="closeModal">&times;</span>
         <p>
           You have to create an account first, &nbsp;
           <a href="/register" style="color:blue;">Sign up</a>
@@ -38,33 +37,28 @@
       </div>
     </div>
 
-    <!-- Job Listings -->
     <section>
       <div class="price" style="margin-top: -1%;">
         <div class="container">
           <div class="section-header text-center" style="font-family: sans-serif; font-style: italic;">
-           
             <div class="section-header text-center justify-center">
               <p>
-                Jobs <i class="text-secondary">{{ jobCount }}</i> and categories
-                <i class="text-secondary">{{ Object.keys(categorizedJobs).length }}</i>
+                Jobs <i class="text-secondary">{{ job_position_count }}</i> and categories
+                <i class="text-secondary">{{ job_category_count }}</i>
               </p>
             </div>
-
           </div>
         </div>
       </div>
       
-      <div class="testimonial">
+      <div class="testimonial" v-if="filteredCategories.length > 0">
         <div class="container">
           <div class="owl-carousel testimonials-carousel">
-            <!-- Loop through filteredCategories to create the carousel items -->
             <div v-for="([category, jobs], index) in filteredCategories" :key="index">
               <div class="testimonial-item-job">
                 <div class="testimonial-text">
                   <h5>{{ category }} (<i class="text-secondary">{{ jobs.length }}</i> jobs)</h5>
                   <ul>
-                    <!-- Loop through the jobs in each category and display the first 5 jobs -->
                     <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" :title="job">
                       {{ job.length > 34 ? job.slice(0, 34) + '...' : job }}
                     </li>
@@ -76,18 +70,28 @@
         </div>
       </div>
 
+      <!-- Replace the previous static loading dots with the Font Awesome spinner -->
+      <div v-else class="text-center justify-content items-center align-center" style="font-size:25px;">
+        <span class="loading-icon"><i class="fas fa-spinner fa-spin"></i></span>
+        jobs
+      </div>
+
+    
     </section>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { flaskApiUrl } from "../../api";
 
 export default {
   data() {
     return {
+      job_position_count:0,
+      job_category_count:0,
       searchTerm: "",
-      isModalOpen: false,
+      isModalOpen: false,  // Modal control flag
       suggestionsVisible: false,
       suggestions: [],
       filteredSuggestions: [],
@@ -97,9 +101,21 @@ export default {
     };
   },
   methods: {
+    fetchjob_Pos_Cat_Count(){
+      axios
+        .get(`${flaskApiUrl}/count_position_category`)
+        .then((response) => {
+          console.log("Api response counts :",response.data)
+          this.job_position_count = response.data.total_job_positions
+          this.job_category_count = response.data.total_job_categories
+        })
+        .catch((error)  => {
+          console.log("error fetching data :",error)
+        });
+    },
     fetchJobs() {
       axios
-        .get("http://192.168.0.82:8000/api/job_data")
+        .get(`${flaskApiUrl}/job_data`)
         .then((response) => {
           console.log("API Response:", response.data);
           this.categorizedJobs = response.data.categorized_jobs;
@@ -130,10 +146,20 @@ export default {
       this.suggestionsVisible = false;
     },
     handleSearch() {
-      if (this.searchTerm) {
+      if (this.filteredSuggestions.length > 0) {
+        // If suggestions are found, open the modal
         this.isModalOpen = true;
+
+        // Wait for Vue to update the DOM and then log the status of the modal
+        this.$nextTick(() => {
+          console.log('Modal is open:', this.isModalOpen);
+        });
+      } else {
+        // If no suggestions, show no results message
+        alert("No matching jobs found!");
       }
     },
+
     closeModal() {
       this.isModalOpen = false;
     },
@@ -144,8 +170,8 @@ export default {
   },
   mounted() {
     this.fetchJobs();
+    this.fetchjob_Pos_Cat_Count();
     window.addEventListener('scroll', this.handleScroll); // Listen for scroll events
-    
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll); // Clean up listener when component is destroyed
@@ -160,8 +186,8 @@ export default {
 };
 </script>
 
-<style>
-/* Global Styles */
+<style scoped>
+
 * {
   margin: 0;
   padding: 0;
@@ -233,37 +259,52 @@ body {
   font-style: italic;
 }
 
-/* Modal Styles */
 .modal {
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 9999;
 }
 
 .modal-content {
-  background-color: #fff;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 15% auto;
+  max-width: 500px;
+}
+
+.modal-content p{
+    text-align: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size:20px;
 }
 
 .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
+    position: relative;
+    float: right;
+    margin-right: 5px;
+    color: red;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-#close-modal:hover {
-  color: red;
+.close:hover , .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .testimonial {
@@ -339,6 +380,10 @@ body {
   color: #007bff;
 }
 
+a{
+  text-decoration: none;
+}
+
 
 /*******************************/
 /******* Section Header ********/
@@ -404,5 +449,13 @@ body {
         font-size: 35px;
     }
 }
+
+/*Jobs loading ----*/
+.loading-icon {
+  font-size: 30px; /* Adjust size as needed */
+  color: #007bff;  /* Optional: Change the color of the spinner */
+  margin-right: 10px; /* Optional: Space between spinner and text */
+}
+
 
 </style>
