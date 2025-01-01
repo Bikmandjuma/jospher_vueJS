@@ -227,7 +227,7 @@
                                     <i class="fa fa-newspaper" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Focused Advertising for Specific Professions</h3>
-                                        <p>With 0 job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
+                                        <p>With {{ job_category_count }} job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                                     <i class="fa fa-ad" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Cost-Effective Advertising with Measurable Results</h3>
-                                        <p>Showcase your brand or job postings on a platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
+                                        <p>Showcase your brand or job postings on the platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
                                     </div>
                                 </div>
                             </div>

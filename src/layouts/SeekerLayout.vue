@@ -41,7 +41,7 @@
             </router-link>
             <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
               <router-link to="/seeker/job_category" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</router-link>
-              <router-link to="#positions" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</router-link>
+              <router-link to="/seeker/job_position" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Positions</router-link>
             </div>
           </div>
 

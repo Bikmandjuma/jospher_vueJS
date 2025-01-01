@@ -19,6 +19,7 @@ import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 import SeekerInformation from '../views/Seeker/SeekerInformation.vue';
 import SeekerProfile from '../views/Seeker/SeekerProfile.vue';
 import JobCategory from '../views/Seeker/JobCategory.vue';
+import JobPosition from '../views/Seeker/JobPosition.vue';
 
 const routes = [
   {
@@ -133,6 +134,16 @@ const routes = [
       layout: SeekerLayout  ,
       requiresAuth : true,
       pageTitle: "Job_category" },
+  },
+
+  {
+    path: '/seeker/job_position',
+    name: 'JobPosition',
+    component: JobPosition,
+    meta: { 
+      layout: SeekerLayout  ,
+      requiresAuth : true,
+      pageTitle: "Job_position" },
   },
 
   
