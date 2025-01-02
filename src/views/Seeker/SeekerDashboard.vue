@@ -82,7 +82,7 @@
   
   <script>
 import axios from 'axios';
-import { flaskApiUrl, laravelApiUrl } from '../../api';
+import { laravelApiUrl } from '../../api';
 
   export default {
     name: 'SeekerDashboard',
@@ -96,7 +96,9 @@ import { flaskApiUrl, laravelApiUrl } from '../../api';
     mounted(){
 
       const token = localStorage.getItem('auth_token');
-      this.fetchjobscount();
+      this.categoryJobCount = localStorage.getItem('job_Category_count');
+      this.positionJobCount = localStorage.getItem('job_Position_count');
+      // this.fetchjobscount();
       
       if (token) {
         this.fetchMyJobsCategoryCount(token);
@@ -104,18 +106,18 @@ import { flaskApiUrl, laravelApiUrl } from '../../api';
 
     },
     methods:{
-      fetchjobscount(){
-        axios
-        .get(`${flaskApiUrl}/count_position_category`)
-        .then((response)=>{
-          console.log("api response : ",response.data);
-          this.categoryJobCount = response.data.total_job_categories;
-          this.positionJobCount = response.data.total_job_positions;
-        })
-        .catch((error)=>{
-          console.log("error fetching data : ",error);
-        })
-      },
+      // fetchjobscount(){
+      //   axios
+      //   .get(`${flaskApiUrl}/count_position_category`)
+      //   .then((response)=>{
+      //     console.log("api response : ",response.data);
+      //     this.categoryJobCount = response.data.total_job_categories;
+      //     this.positionJobCount = response.data.total_job_positions;
+      //   })
+      //   .catch((error)=>{
+      //     console.log("error fetching data : ",error);
+      //   })
+      // },
 
       fetchMyJobsCategoryCount(token){
         axios

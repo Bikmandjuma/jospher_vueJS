@@ -80,6 +80,9 @@
 </template>
 
 <script>
+import { flaskApiUrl,laravelApiUrl } from '../../api';
+
+flaskApiUrl
 export default {
   data() {
     return {
@@ -96,7 +99,7 @@ export default {
       if (!this.results.length) {
         try {
         
-          const response = await fetch("http://192.168.0.82:8000/api/fetch_job_categories");
+          const response = await fetch(`${flaskApiUrl}/fetch_job_categories`);
           const data = await response.json();
           this.results = data.fetch_all_categories || [];
         
@@ -146,7 +149,7 @@ export default {
 
         console.log('Submitting selected categories:', this.selectedItems);
 
-        fetch("http://127.0.0.1:8000/api/user/submit_job_category", {
+        fetch(`${laravelApiUrl}/user/submit_job_category`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

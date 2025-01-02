@@ -18,8 +18,8 @@ import AdminDashboard from '../views/Admin/AdminDashboard.vue';
 import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 import SeekerInformation from '../views/Seeker/SeekerInformation.vue';
 import SeekerProfile from '../views/Seeker/SeekerProfile.vue';
-import JobCategory from '../views/Seeker/JobCategory.vue';
-import JobPosition from '../views/Seeker/JobPosition.vue';
+import JobCategory from '../views/Seeker/SeekerJobCategory.vue';
+import JobPosition from '../views/Seeker/SeekerJobPosition.vue';
 
 const routes = [
   {
@@ -158,9 +158,9 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem("auth_token");
 
   if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
-    next({ name: "Login" }); // Redirect to login if not authenticated
+    next({ name: "Login" });
   } else {
-    next(); // Proceed to route
+    next();
   }
 });
 

@@ -254,6 +254,9 @@ export default {
           console.log("Api response counts :",response.data)
           this.job_position_count = response.data.total_job_positions
           this.job_category_count = response.data.total_job_categories
+
+          localStorage.setItem('job_Position_count', response.data.total_job_positions);
+          localStorage.setItem('job_Category_count', response.data.total_job_categories);
         })
         .catch((error)  => {
           console.log("error fetching data :",error)

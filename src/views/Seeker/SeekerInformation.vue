@@ -83,13 +83,19 @@
                 </div>
                 <div class="my-4 border-t border-gray-300"></div>
                 <div class="flex items-center justify-between px-2 py-2 border-b lg:py-6 dark:border-primary-darker">
-                  <h1 class="text-2xl font-semibold"></h1>
-                  <a
-                    href="#notific"
+                  <!-- <h1 class="text-2xl font-semibold"></h1> -->
+                  <router-link
+                    to="#password"
+                    class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
+                  >
+                    <i class="fa fa-key"></i>&nbsp;Password
+                  </router-link>
+                  <router-link
+                    to="#notific"
                     class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
                   >
                     <i class="fa fa-pen"></i>&nbsp;Edit Info
-                  </a>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -201,4 +207,7 @@ export default {
 
 <style scoped>
 /* Additional styling for buttons or components can go here */
+a{
+  text-decoration: none;
+}
 </style>

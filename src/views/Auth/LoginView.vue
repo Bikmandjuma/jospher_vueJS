@@ -139,8 +139,8 @@ export default {
         if (response.ok) {
 
           localStorage.setItem("auth_token", data.authorisation.token);
-          localStorage.setItem("user_id", JSON.stringify(data.user.id));
-          localStorage.setItem("user_email", JSON.stringify(data.user.email));
+          // localStorage.setItem("user_id", JSON.stringify(data.user.id));
+          // localStorage.setItem("user_email", JSON.stringify(data.user.email));
 
           // Fallback logging for debugging
           if (data.role === "admin") {
