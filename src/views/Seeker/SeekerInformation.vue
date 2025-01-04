@@ -154,8 +154,8 @@ export default {
         })
         .then((response) => {
           console.log("API job categories", response.data);
-          if (response.data && response.data.skills && response.data.skills.length > 0) {
-            this.jobDataCategories = response.data.skills.join(' | ');
+          if (response.data && response.data.category_names && response.data.category_names.length > 0) {
+            this.jobDataCategories = response.data.category_names.map(category => category.skills).join(' | ');
             this.noCategoriesMessage = '';
           } else {
             this.jobDataCategories = '';
