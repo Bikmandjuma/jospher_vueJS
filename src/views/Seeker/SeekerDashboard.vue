@@ -90,7 +90,7 @@ import { laravelApiUrl } from '../../api';
       return{
         categoryJobCount:'...',
         positionJobCount:'...',
-        myJob_categoryCount:'0',
+        myJob_categoryCount:'...',
       }
     },
     mounted(){

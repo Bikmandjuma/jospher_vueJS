@@ -164,7 +164,7 @@ import { flaskApiUrl, laravelApiUrl } from '../../api';
 export default {
   data() {
     return {
-      noCategoriesMessage: 'loading...',
+      noCategoriesMessage: '',
       jobDataCategories: [],
       successMessage: '',
       removedMessage: '',

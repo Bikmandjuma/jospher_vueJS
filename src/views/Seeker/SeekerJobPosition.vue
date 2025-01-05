@@ -72,7 +72,7 @@ export default {
           }
         });
         const laravelData = await laravelResponse.json();
-        this.categories = laravelData.skills;
+        this.categories = laravelData.category_names.map(skills =>skills.skills);
 
         const flaskResponse = await fetch(`${flaskApiUrl}/fetch_job_position`, {
           method: 'GET',
