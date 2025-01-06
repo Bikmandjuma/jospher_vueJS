@@ -33,7 +33,7 @@
             :class="{'active-link': $route.path === '/about'}"
             class="text-gray-600 hover:text-blue-500"
           >
-            About
+          <i class="fas fa-list-alt mr-2"></i>About
           </router-link>
 
           <router-link

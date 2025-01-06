@@ -112,7 +112,7 @@
                     <div class="col-md-4">
                         <div class="price-item">
                             <div class="price-header">
-                                <h3>1 Month</h3>
+                                <h3>2 Months</h3>
                                 <h2><span></span><strong>5,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
@@ -120,7 +120,7 @@
                                     <li><i class="far fa-check-circle"></i>Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i> Actively for 30 days</li>
+                                    <li><i class="far fa-check-circle"></i> Actively for 60 days</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
@@ -134,7 +134,7 @@
                         <div class="price-item featured-item">
                             <div class="price-header">
                                 <h3>6 months</h3>
-                                <h2><strong>20,000</strong><span>Frw</span></h2>
+                                <h2><strong>12,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -155,7 +155,7 @@
                         <div class="price-item">
                             <div class="price-header">
                                 <h3>Yearly</h3>
-                                <h2><strong>35,000</strong><span>Frw</span></h2>
+                                <h2><strong>20,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
