@@ -64,19 +64,19 @@
         // headerImageUrl: '../../assets/Homepage_images/carousel5.jpg',
         plans: [
           {
-            title: '1 Month',
+            title: '2 Months',
             price: '5,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',
               'New opportunity notification',
-              'Actively for 30 days'
+              'Actively for 60 days'
             ],
             featured: false
           },
           {
             title: '6 months',
-            price: '20,000',
+            price: '12,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',
@@ -87,7 +87,7 @@
           },
           {
             title: 'Yearly',
-            price: '35,000',
+            price: '20,000',
             features: [
               'Job categories depend on skills',
               'Job positions depend on skills',

@@ -60,7 +60,7 @@
               <span class="ml-2 text-sm">Pricing</span>
             </router-link>
             <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
-              <router-link to="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
+              <router-link to="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
               <router-link to="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</router-link>
             </div>
           </div>
@@ -172,7 +172,7 @@
           <span class="ml-2 text-sm">Pricing</span>
         </router-link>
         <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
-          <router-link to="#payment" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
+          <router-link to="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</router-link>
           <router-link to="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</router-link>
         </div>
       </div>

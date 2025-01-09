@@ -7,7 +7,7 @@
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
-                <h4>Job Categories</h4>
+                <h4 class="text-center items-center justify-center">Job Categories&nbsp; <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span></h4>
 
                 <ul id="category_id">
                   <li

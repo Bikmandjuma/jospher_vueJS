@@ -18,7 +18,7 @@
           <div class="card border rounded-lg shadow-md mt-4">
             <div class="card-body p-1">
               <div  style="max-height: 400px;overflow: auto;">
-                <h4 class="text-center">Job Categories</h4>
+                <h4 class="text-center sticky top-0 z-50 p-2 bg-white">Job Categories&nbsp;<span class="badge bg-primary" style='border-radius: 50%;'>{{ jobDataCategories.length }}</span></h4>
     
                 <router-link
                   v-if="noCategoriesMessage"
