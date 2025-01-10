@@ -3,7 +3,7 @@
     <section class="section profile">
       <div class="flex flex-wrap xl:flex-nowrap m-2">
         <!-- Left Column -->
-        <div class="w-full xl:w-1/4 mb-4">
+        <div class="w-full xl:w-2/4 mb-4">
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
@@ -17,20 +17,21 @@
                     class="category p-1"
                   >
                     <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{ category }}
-                    <span class="float-right text-sm text-gray-900">({{ getCategoryCount(category) }})</span>
+                    <span class="float-right text-sm text-gray-900" style="width: auto; white-space: nowrap;">({{ getCategoryCount(category) }})</span>
                   </li>
                 </ul>
+
               </div>
             </div>
           </div>
         </div>
 
         <!-- Right Column -->
-        <div class="w-full xl:w-3/4 mb-4">
+        <div class="w-full xl:w-2/4 mb-4">
           <div class="card border rounded-lg shadow-md" style="max-height: 400px; overflow: auto;">
             <div class="card-body p-1">
               <div class="space-y-4">
-                <h4 v-if="selectedCategory">Jobs for <span class="text-primary">{{ selectedCategory }}</span></h4>
+                <h4 v-if="selectedCategory">Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }} </h4>
                 <ul v-if="jobPositions.length > 0" class="pb-3">
                   <li v-for="(job, index) in jobPositions" :key="index">
                     {{ job }}

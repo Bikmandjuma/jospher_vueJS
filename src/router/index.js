@@ -22,6 +22,7 @@ import JobCategory from '../views/Seeker/SeekerJobCategory.vue';
 import JobPosition from '../views/Seeker/SeekerJobPosition.vue';
 import RecommendationJob from '../views/Seeker/SeekerRecommendation.vue';
 import SeekerPaymentPlan from '../views/Seeker/SeekerPaymentPlan.vue';
+import SeekerPayment from '../views/Seeker/SeekerPayment.vue';
 
 const routes = [
   {
@@ -166,6 +167,16 @@ const routes = [
       layout: SeekerLayout  ,
       requiresAuth : true,
       pageTitle: "Payment plan" },
+  },
+
+  {
+    path: '/seeker/payment',
+    name: 'Payment',
+    component: SeekerPayment,
+    meta: { 
+      layout: SeekerLayout  ,
+      requiresAuth : true,
+      pageTitle: "Payment" },
   },
 
   

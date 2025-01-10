@@ -71,7 +71,7 @@
 
     <!-- Main Content -->
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-      <header class="relative bg-white dark:bg-darker">
+      <header class="relative bg-white dark:bg-darker sticky top-0 z-50">
         <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
           <button @click="toggleMobileMenu" class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
             <span class="sr-only">Open main menu</span>

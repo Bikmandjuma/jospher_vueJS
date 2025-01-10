@@ -1,194 +1,112 @@
-<template>   
-
-<!-- Price Start -->
-        <div class="price">
-            <div class="container">
-                <div class="section-header text-center">
-                    <p id="ad_title">Job Seekers' Payment</p>
-                    <h2>Choose Your Plan</h2>
-                    <br>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>2 Months</h3>
-                                <h2><span></span><strong>5,000</strong><span>Frw</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i> Actively for 60 days</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <!-- <a  id="openModal" href="#"></a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <h3>6 months</h3>
-                                <h2><strong>12,000</strong><span>Frw</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>Actively for 183 days</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <!-- <a class="btn btn-custom" id="openModal" href="#">Book Now</a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Yearly</h3>
-                                <h2><strong>20,000</strong><span>Frw</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>Actively for 365 days </li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <!-- <a class="btn btn-custom" id="openModal" href="#">Book Now</a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<template>
+    <!-- Price Start -->
+    <div class="price">
+      <div class="container">
+        <div class="section-header text-center">
+          <p id="ad_title">Job Seekers' Payment</p>
         </div>
-        <!-- Price End -->
-
-</template>
+        <div class="row">
+          <!-- 2 Months Plan -->
+          <div class="col-md-4">
+            <div class="price-item">
+              <div class="price-header">
+                <h3>2 Months</h3>
+                <h2><strong>5,000</strong><span> Frw</span></h2>
+              </div>
+              <div class="price-body">
+                <ul>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 60 days</li>
+                </ul>
+              </div>
+              <div class="price-footer">
+                <button class="btn btn-custom" @click="redirectToPayment('5000', '2', '60')">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 6 Months Plan -->
+          <div class="col-md-4">
+            <div class="price-item featured-item">
+              <div class="price-header">
+                <h3>6 Months</h3>
+                <h2><strong>12,000</strong><span> Frw</span></h2>
+              </div>
+              <div class="price-body">
+                <ul>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 183 days</li>
+                </ul>
+              </div>
+              <div class="price-footer">
+                <button class="btn btn-custom" @click="redirectToPayment('12000', '6', '183')">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Yearly Plan -->
+          <div class="col-md-4">
+            <div class="price-item">
+              <div class="price-header">
+                <h3>Yearly</h3>
+                <h2><strong>20,000</strong><span> Frw</span></h2>
+              </div>
+              <div class="price-body">
+                <ul>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 365 days</li>
+                </ul>
+              </div>
+              <div class="price-footer">
+                <button class="btn btn-custom" @click="redirectToPayment('20000', '12', '365')">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Price End -->
+  </template>
   
   <script>
   export default {
-    name: 'PricingView',
-    data() {
-      return {
-     
-        
-      };
-    },
+    name: "SeekerPaymentPlan",
     methods: {
-        openModal() {
-            const modal = this.$refs.modal;
-            const closeModalButton = this.$refs.closeModal;
+      redirectToPayment(amount, duration, days) {
 
-            if (modal && closeModalButton) {
-
-                // @ts-ignore
-                modal.style.display = 'flex';
-
-                // @ts-ignore
-                closeModalButton.addEventListener('click', () => {
-                // @ts-ignore
-                modal.style.display = 'none';
-                });
-
-                window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    // @ts-ignore
-                    modal.style.display = 'none';
-                }
-                });
-            }
-        },
-
-
-    }
+        localStorage.setItem("pay_amount", amount);
+        localStorage.setItem("pay_duration", duration);
+        localStorage.setItem("pay_days", days);
+  
+        this.$router.push({name:"Payment"} );
+      },
+    },
   };
   </script>
   
+  
     <style scoped>
-        .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        }
 
-        .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 10px;
-        border: 1px solid #888;
-        width: 50%;
-        height: 45%;
-        }
-
-        @media(max-width:600px){
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0, 0, 0);
-                background-color: rgba(0, 0, 0, 0.4);
-            }
-
-            .modal-content {
-                background-color: #fefefe;
-                margin: 0% auto;
-                width: 90%;
-                margin-top:30% ;
-                height: 50%;
-                margin-bottom:5% ;
-                border: 1px solid #888;
-            }   
-        }
-
-        .close {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-        }
-        /*******end of model price***/
-
-        
-        /*******************************/
+       /*******************************/
         /******* Section Header ********/
         /*******************************/
         .section-header {
             position: relative;
             width: 100%;
             max-width: 700px;
-            margin: 0 auto 45px auto;
+            margin: 0 auto 20px auto;
         }
 
         .section-header p {
