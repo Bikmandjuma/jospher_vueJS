@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "serve -s dist"
+    "start": "npx serve -s dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.1",
@@ -21,6 +21,7 @@
     "jquery": "^3.7.1",
     "owl.carousel": "^2.3.4",
     "postcss": "^8.4.49",
+    "serve": "^14.2.4",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^3.4.16",
     "toastr": "^2.1.4",
