@@ -136,7 +136,7 @@
           :class="{'active-link': $route.path === '/jobs'}"
           class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
         >
-          <i class="fa fa-briefcase mr-2"></i>Jobs
+          <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span>
         </router-link>
         <router-link
           to="/pricing"
