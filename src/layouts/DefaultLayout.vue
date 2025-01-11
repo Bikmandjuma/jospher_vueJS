@@ -21,7 +21,7 @@
           >
             <i class="fa fa-home mr-2"></i>Home
           </router-link-->
-          <a href="/" :class="{'active-link': $route.path === '/'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home x</a>
+          <a href="/" :class="{'active-link': $route.path === '/'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
           <!-- <route-link
             to="/about"
             :class="{'active-link': $route.path === '/about'}"
@@ -36,49 +36,74 @@
           >
           
           </router-link-->
-          <a href="/about" :class="{'active-link': $route.path === '/about'}" class="text-gray-600 hover:text-blue-500"><i class="fas fa-list-alt mr-2"></i>About x</a>
+          <a href="/about" :class="{'active-link': $route.path === '/about'}" class="text-gray-600 hover:text-blue-500"><i class="fas fa-list-alt mr-2"></i>About us</a>
 
-          <router-link
+          <!-- <router-link
             to="/services"
             :class="{'active-link': $route.path === '/services'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fas fa-cogs mr-2"></i>Services
-          </router-link>
+          </router-link> -->
+          <a href="/services" :class="{'active-link': $route.path === '/services'}" class="text-gray-600 hover:text-blue-500"><i class="fas fa-cogs mr-2"></i>Services</a>
           
-          <router-link
+          <!--router-link
             v-if = " job_position_count.length > 0 "
             to="/jobs"
             :class="{'active-link': $route.path === '/jobs'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span>
-          </router-link>
+          </router-link-->
+          <a href="/jobs" v-if = " job_position_count.length > 0 " :class="{'active-link': $route.path === '/jobs'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span></a>
 
-          <router-link
+          <!--router-link
             v-else
             to="/jobs"
             :class="{'active-link': $route.path === '/jobs'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
-          </router-link>
+          </router-link-->
 
-          <router-link
+          <a v-else href="/jobs" :class="{'active-link': $route.path === '/jobs'}"
+          class="text-gray-600 hover:text-blue-500"
+          >
+            <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
+          </a>
+
+          <!--router-link
             to="/pricing"
             :class="{'active-link': $route.path === '/pricing'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-dollar mr-2"></i>Pricing
-          </router-link>
+          </router-link-->
+          <a
+            href="/pricing"
+            :class="{'active-link': $route.path === '/pricing'}"
+            class="text-gray-600 hover:text-blue-500"
+          >
+            <i class="fa fa-dollar mr-2"></i>Pricing
+          </a>
+<!-- 
           <router-link
             to="/contact"
             :class="{'active-link': $route.path === '/contact'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-phone mr-2"></i>Contact
-          </router-link>
-          <router-link
+          </router-link> -->
+
+          <a
+            href="/contact"
+            :class="{'active-link': $route.path === '/contact'}"
+            class="text-gray-600 hover:text-blue-500"
+          >
+            <i class="fa fa-phone mr-2"></i>Contact
+          </a>
+
+          <!--router-link
             to="/login"
             :class="{
               'active-link': $route.path === '/login' || $route.path === '/register' || $route.path === '/forgot_password',
@@ -86,7 +111,14 @@
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-user mr-2"></i>Login
-          </router-link>
+          </router-link-->
+          <a
+            href="/login"
+            :class="{'active-link': $route.path === '/login'}"
+            class="text-gray-600 hover:text-blue-500"
+          >
+            <i class="fa fa-user mr-2"></i>Login
+          </a>
          
         </div>
         <button
