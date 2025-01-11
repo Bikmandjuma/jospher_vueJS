@@ -14,13 +14,14 @@
           </div> -->
         </a>
         <div class="hidden md:flex space-x-6">
-          <router-link
+          <!--router-link
             to="/"
             :class="{'active-link': $route.path === '/'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-home mr-2"></i>Home
-          </router-link>
+          </router-link-->
+          <a href="/" :class="{'active-link': $route.path === '/'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
           <!-- <route-link
             to="/about"
             :class="{'active-link': $route.path === '/about'}"
