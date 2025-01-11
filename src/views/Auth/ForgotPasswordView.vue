@@ -61,7 +61,6 @@
     </div>
 
 </template>
-
   
 <style scoped>
     /* Optional styling */
