@@ -333,6 +333,14 @@ body {
   width: 220px;
 }
 
+.testimonial-text h5{
+  color: black;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-style: italic;
+}
+
 .testimonial-text li{
   list-style-type: square;
 }
