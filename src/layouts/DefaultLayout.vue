@@ -21,7 +21,7 @@
           >
             <i class="fa fa-home mr-2"></i>Home
           </router-link-->
-          <a href="/" :class="{'active-link': $route.path === '/'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
+          <a href="/" :class="{'active-link': $route.path === '/'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home x</a>
           <!-- <route-link
             to="/about"
             :class="{'active-link': $route.path === '/about'}"
@@ -29,13 +29,14 @@
           >
             <i class="fa fa-list-alt mr-2"></i>About us
           </route-link> -->
-          <router-link
+          <!--router-link
             to="/about"
             :class="{'active-link': $route.path === '/about'}"
             class="text-gray-600 hover:text-blue-500"
           >
-          <i class="fas fa-list-alt mr-2"></i>About
-          </router-link>
+          
+          </router-link-->
+          <a href="/about" :class="{'active-link': $route.path === '/about'}" class="text-gray-600 hover:text-blue-500"><i class="fas fa-list-alt mr-2"></i>About x</a>
 
           <router-link
             to="/services"
