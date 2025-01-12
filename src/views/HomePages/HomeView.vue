@@ -273,7 +273,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import { flaskApiUrl.laravelApiUrl } from '../../api';
+import { flaskApiUrl,laravelApiUrl } from '../../api';
 import axios from 'axios';
 
 export default {
