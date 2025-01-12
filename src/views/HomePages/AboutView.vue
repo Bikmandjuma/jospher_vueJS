@@ -112,16 +112,16 @@ li {
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <!-- <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">1.2</h3><h3>k</h3>
                                 <p>Visits</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up" v-if="categoryCounts > 0">{{ categoryCounts }}</h3>
@@ -131,7 +131,7 @@ li {
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up" v-if="jobCount.length > 0">{{ jobCount }}</h3>
