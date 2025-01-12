@@ -282,9 +282,25 @@ export default {
     return {
         job_position_count : 0,
         job_category_count : 0,
+        visitCount: 0,
     }
   },
   methods: {
+    async fetchVisitCount() {
+      try {
+        const response = await axios.get('/api/getVisitCount');
+        this.visitCount = response.data.count;
+      } catch (error) {
+        console.error('Error fetching visit count:', error);
+      }
+    },
+    async incrementVisitCount() {
+      try {
+        await axios.post('/api/incrementVisitCount');
+      } catch (error) {
+        console.error('Error incrementing visit count:', error);
+      }
+    },
     fetchjob_Pos_Cat_Count(){
       axios
         .get(`${flaskApiUrl}/count_position_category`)
@@ -325,9 +341,16 @@ export default {
       }
     },
   },
+  
   mounted(){
     this.fetchjob_Pos_Cat_Count();
-  }
+  },
+
+  created() {
+    this.fetchVisitCount();
+    this.incrementVisitCount();
+  },
+
 };
 </script>
 
