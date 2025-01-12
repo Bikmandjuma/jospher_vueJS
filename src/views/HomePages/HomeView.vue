@@ -65,16 +65,16 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <!-- <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">{{ visitCount }}</h3>
                                 <p>Today's visits</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up" v-if = "job_category_count > 0">{{ job_category_count }}</h3>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up" v-if=" job_position_count.length > 0 ">{{ job_position_count }}</h3>
