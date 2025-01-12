@@ -68,7 +68,7 @@
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
                         <div class="facts-item">
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">{{ visitCount }}</h3><h3>k</h3>
+                                <h3 data-toggle="counter-up">{{ visitCount }}</h3>
                                 <p>Visits</p>
                             </div>
                         </div>
