@@ -273,7 +273,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import { flaskApiUrl } from '../../api';
+import { flaskApiUrl.laravelApiUrl } from '../../api';
 import axios from 'axios';
 
 export default {
@@ -288,7 +288,7 @@ export default {
   methods: {
     async fetchVisitCount() {
       try {
-        const response = await axios.get('/api/getVisitCount');
+        const response = await axios.get(`'${laravelApiUrl}/getVisitCount'`);
         this.visitCount = response.data.count;
       } catch (error) {
         console.error('Error fetching visit count:', error);
@@ -296,7 +296,7 @@ export default {
     },
     async incrementVisitCount() {
       try {
-        await axios.post('/api/incrementVisitCount');
+        await axios.post(`'${laravelApiUrl}/incrementVisitCount'`);
       } catch (error) {
         console.error('Error incrementing visit count:', error);
       }
