@@ -288,7 +288,7 @@ export default {
   methods: {
     async fetchVisitCount() {
       try {
-        const response = await axios.get(`'${laravelApiUrl}/getVisitCount'`);
+        const response = await axios.get(`${laravelApiUrl}/getVisitCount`);
         this.visitCount = response.data.count;
       } catch (error) {
         console.error('Error fetching visit count:', error);
@@ -296,7 +296,7 @@ export default {
     },
     async incrementVisitCount() {
       try {
-        await axios.post(`'${laravelApiUrl}/incrementVisitCount'`);
+        await axios.post(`${laravelApiUrl}/incrementVisitCount`);
       } catch (error) {
         console.error('Error incrementing visit count:', error);
       }
