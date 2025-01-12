@@ -69,7 +69,7 @@
                         <div class="facts-item">
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">{{ visitCount }}</h3>
-                                <p>Visits</p>
+                                <p>Today's visits</p>
                             </div>
                         </div>
                     </div>
