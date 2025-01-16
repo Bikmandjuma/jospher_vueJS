@@ -12,7 +12,7 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover a World of Opportunities</h1>
             <p class="text-lg md:text-xl mb-6">JobSphere consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.</p>
             <div class="flex justify-center space-x-4">
-            <a href="/jobs" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100">Search Jobs</a>
+            <a href="/jobs" class="bg-white text-blue-500 px-6 py-2 rounded-lg shadow hover:bg-gray-100"><i class="fa fa-search"></i> Search Jobs</a>
             <!-- <a href="/jobs" class="bg-transparent border border-white px-6 py-2 rounded-lg hover:bg-white hover:text-blue-500 text-white">Jobs</a> -->
             </div>
         </div>
@@ -112,63 +112,59 @@
                     <div class="col-md-4">
                         <div class="price-item">
                             <div class="price-header">
-                                <h3>2 Months</h3>
+                                <h3>2 Months + 1 Month Bonus</h3>
                                 <h2><span></span><strong>5,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i> Actively for 60 days</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 90 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
-                                <!-- <a  id="openModal" href="#"></a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
+                                <button class="btn btn-custom openModal" @click="openModal">Choose plan</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="price-item featured-item">
                             <div class="price-header">
-                                <h3>6 months</h3>
+                                <h3>6 Months + 1 Month Bonus</h3>
                                 <h2><strong>12,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>Actively for 183 days</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 214 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
-                                <!-- <a class="btn btn-custom" id="openModal" href="#">Book Now</a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
+                                <button class="btn btn-custom openModal" @click="openModal">Choose plan</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="price-item">
                             <div class="price-header">
-                                <h3>Yearly</h3>
+                                <h3>Yearly + 1 Month Bonus</h3>
                                 <h2><strong>20,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
-                                    <li><i class="far fa-check-circle"></i>Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>Actively for 365 days </li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 376 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
-                                <!-- <a class="btn btn-custom" id="openModal" href="#">Book Now</a> -->
-                                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
-
+                                <button class="btn btn-custom openModal" @click="openModal">Choose plan</button>
                             </div>
                         </div>
                     </div>

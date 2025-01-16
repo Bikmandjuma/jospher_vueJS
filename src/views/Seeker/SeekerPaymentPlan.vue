@@ -5,76 +5,78 @@
         <div class="section-header text-center">
           <p id="ad_title">Job Seekers' Payment</p>
         </div>
+        
         <div class="row">
           <!-- 2 Months Plan -->
           <div class="col-md-4">
-            <div class="price-item">
-              <div class="price-header">
-                <h3>2 Months</h3>
-                <h2><strong>5,000</strong><span> Frw</span></h2>
+              <div class="price-item">
+                  <div class="price-header">
+                      <h3>2 Months + 1 Month Bonus</h3>
+                      <h2><strong>5,000</strong><span> Frw</span></h2>
+                  </div>
+                  <div class="price-body">
+                      <ul>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
+                      </ul>
+                  </div>
+                  <div class="price-footer">
+                      <button class="btn btn-custom" @click="redirectToPayment('5000', '2', '91')">
+                          Choose plan
+                      </button>
+                  </div>
               </div>
-              <div class="price-body">
-                <ul>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 60 days</li>
-                </ul>
-              </div>
-              <div class="price-footer">
-                <button class="btn btn-custom" @click="redirectToPayment('5000', '2', '60')">
-                  Book Now
-                </button>
-              </div>
-            </div>
           </div>
-  
+
           <!-- 6 Months Plan -->
           <div class="col-md-4">
-            <div class="price-item featured-item">
-              <div class="price-header">
-                <h3>6 Months</h3>
-                <h2><strong>12,000</strong><span> Frw</span></h2>
+              <div class="price-item featured-item">
+                  <div class="price-header">
+                      <h3>6 Months + 2 Months Bonus</h3>
+                      <h2><strong>12,000</strong><span> Frw</span></h2>
+                  </div>
+                  <div class="price-body">
+                      <ul>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 243 days (including bonus)</li>
+                      </ul>
+                  </div>
+                  <div class="price-footer">
+                      <button class="btn btn-custom" @click="redirectToPayment('12000', '6', '243')">
+                          Choose plan
+                      </button>
+                  </div>
               </div>
-              <div class="price-body">
-                <ul>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 183 days</li>
-                </ul>
-              </div>
-              <div class="price-footer">
-                <button class="btn btn-custom" @click="redirectToPayment('12000', '6', '183')">
-                  Book Now
-                </button>
-              </div>
-            </div>
           </div>
-  
+
           <!-- Yearly Plan -->
           <div class="col-md-4">
-            <div class="price-item">
-              <div class="price-header">
-                <h3>Yearly</h3>
-                <h2><strong>20,000</strong><span> Frw</span></h2>
+              <div class="price-item">
+                  <div class="price-header">
+                      <h3>Yearly + 3 Months Bonus</h3>
+                      <h2><strong>20,000</strong><span> Frw</span></h2>
+                  </div>
+                  <div class="price-body">
+                      <ul>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 456 days (including bonus)</li>
+                      </ul>
+                  </div>
+                  <div class="price-footer">
+                      <button class="btn btn-custom" @click="redirectToPayment('20000', '12', '456')">
+                          Choose plan
+                      </button>
+                  </div>
               </div>
-              <div class="price-body">
-                <ul>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                  <li><i class="far fa-check-circle"></i>&nbsp;Actively for 365 days</li>
-                </ul>
-              </div>
-              <div class="price-footer">
-                <button class="btn btn-custom" @click="redirectToPayment('20000', '12', '365')">
-                  Book Now
-                </button>
-              </div>
-            </div>
           </div>
         </div>
+
       </div>
     </div>
     <!-- Price End -->
