@@ -3,7 +3,7 @@
     <section class="section profile">
       <div class="flex flex-wrap xl:flex-nowrap m-2">
         <!-- Left Column -->
-        <div class="w-full xl:w-2/4 mb-4">
+        <div class="w-full xl:w-1/4 mb-4">
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
@@ -27,14 +27,14 @@
         </div>
 
         <!-- Right Column -->
-        <div class="w-full xl:w-2/4 mb-4">
+        <div class="w-full xl:w-3/4 mb-4">
           <div class="card border rounded-lg shadow-md" style="max-height: 400px; overflow: auto;">
             <div class="card-body p-1">
               <div class="space-y-4">
-                <h4 v-if="selectedCategory">Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }} </h4>
+                <h4 v-if="selectedCategory" class="sticky top-0 z-50 bg-white p-2 text-center justify-center items-center">Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }} </h4>
                 <ul v-if="jobPositions.length > 0" class="pb-3">
-                  <li v-for="(job, index) in jobPositions" :key="index">
-                    {{ job }}
+                  <li v-for="(job, index) in jobPositions" :key="index" class="mt-2">
+                    <i class="fa fa-briefcase"></i>&nbsp;{{ job }}
                   </li>
                 </ul>
                 <p v-else>No jobs found for this category.</p>

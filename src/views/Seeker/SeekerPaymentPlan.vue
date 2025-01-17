@@ -11,19 +11,20 @@
           <div class="col-md-4">
               <div class="price-item">
                   <div class="price-header">
-                      <h3>2 Months + 1 Month Bonus</h3>
+                      <h3>2 Months</h3>
                       <h2><strong>5,000</strong><span> Frw</span></h2>
                   </div>
                   <div class="price-body">
                       <ul>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp; + 1 Month Bonus</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories depend on skills</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('5000', '2', '91')">
+                      <button class="btn btn-custom" @click="redirectToPayment('5000', '3', '91')">
                           Choose plan
                       </button>
                   </div>
@@ -34,19 +35,20 @@
           <div class="col-md-4">
               <div class="price-item featured-item">
                   <div class="price-header">
-                      <h3>6 Months + 2 Months Bonus</h3>
+                      <h3>6 Months</h3>
                       <h2><strong>12,000</strong><span> Frw</span></h2>
                   </div>
                   <div class="price-body">
                       <ul>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp; + 2 Months Bonus</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories depend on skills</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;Actively for 243 days (including bonus)</li>
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('12000', '6', '243')">
+                      <button class="btn btn-custom" @click="redirectToPayment('12000', '8', '243')">
                           Choose plan
                       </button>
                   </div>
@@ -57,19 +59,20 @@
           <div class="col-md-4">
               <div class="price-item">
                   <div class="price-header">
-                      <h3>Yearly + 3 Months Bonus</h3>
+                      <h3>Yearly</h3>
                       <h2><strong>20,000</strong><span> Frw</span></h2>
                   </div>
                   <div class="price-body">
                       <ul>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp; + 3 Months Bonus</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories depend on skills</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;Actively for 456 days (including bonus)</li>
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('20000', '12', '456')">
+                      <button class="btn btn-custom" @click="redirectToPayment('20000', '15', '456')">
                           Choose plan
                       </button>
                   </div>

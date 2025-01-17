@@ -112,19 +112,20 @@
                     <div class="col-md-4">
                         <div class="price-item">
                             <div class="price-header">
-                                <h3>2 Months + 1 Month Bonus</h3>
+                                <h3>2 Months</h3>
                                 <h2><span></span><strong>5,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 1 Month of Bonus</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 90 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
-                                <button class="btn btn-custom openModal" @click="openModal">Choose plan</button>
+                                <button class="btn btn-custom openModal text-white" @click="openModal">Choose plan</button>
                             </div>
                         </div>
                     </div>
@@ -137,10 +138,11 @@
                             </div>
                             <div class="price-body">
                                 <ul>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 2 Months of Bonus</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 214 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 243 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
@@ -157,14 +159,15 @@
                             </div>
                             <div class="price-body">
                                 <ul>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 3 Months of Bonus</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 376 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 456 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
-                                <button class="btn btn-custom openModal" @click="openModal">Choose plan</button>
+                                <button class="btn btn-custom openModal text-white" @click="openModal">Choose plan</button>
                             </div>
                         </div>
                     </div>

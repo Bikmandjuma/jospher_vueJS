@@ -26,7 +26,7 @@
                 </ul>
               </div>
               <div class="price-footer">
-                <button class="btn btn-custom openModal" @click="openModal">Book Now</button>
+                <button class="btn btn-custom openModal text-white" @click="openModal">Choose plan</button>
               </div>
             </div>
           </div>
@@ -67,10 +67,11 @@
             title: '2 Months',
             price: '5,000',
             features: [
-              'Job categories depend on skills',
-              'Job positions depend on skills',
+              '+ 1 Month Bonus',
+              'Access on job categories',
+              'Access on job positions',
               'New opportunity notification',
-              'Actively for 60 days'
+              'Actively for 91 days (including bonus)'
             ],
             featured: false
           },
@@ -78,10 +79,11 @@
             title: '6 months',
             price: '12,000',
             features: [
-              'Job categories depend on skills',
-              'Job positions depend on skills',
+              '+ 2 Months Bonus',
+              'Access on job categories',
+              'Access on job positions',
               'New opportunity notification',
-              'Actively for 183 days'
+              'Actively for 243 days (including bonus)'
             ],
             featured: true
           },
@@ -89,10 +91,11 @@
             title: 'Yearly',
             price: '20,000',
             features: [
-              'Job categories depend on skills',
-              'Job positions depend on skills',
+              '+ 3 Months Bonus',
+              'Access on job categories',
+              'Access on job positions',
               'New opportunity notification',
-              'Actively for 365 days'
+              'Actively for 456 days (including bonus)'
             ],
             featured: false
           }

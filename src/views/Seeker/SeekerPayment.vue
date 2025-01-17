@@ -15,11 +15,12 @@
               <h3 class="flex pb-4">Pay by using momo :&nbsp;<img src="https://images.africanfinancials.com/f41c3ca9-rw-mtn-logo.png" width="30" height="30" style="border-radius: 50%;"></h3>
               <ul class="space-y-4 text-gray-700">
                 <li>
-                  <span class="font-semibold">Amount:</span> {{ pay_amount }} Frw
+                  <span class="font-semibold">Amount:</span>
+                  {{ pay_amount == '5000' ? '5,000' : pay_amount == '12000' ? '12,000' : pay_amount == '20000' ? '20,000' : pay_amount }} Frw
                 </li>
                 <li>
                   <span class="font-semibold">Duration:</span> 
-                  {{ pay_duration == 12 ? 'Yearly' : pay_duration + ' Months' }}
+                  {{ pay_duration == 15 ? 'Yearly + 3 Months' : pay_duration + ' Months' }}
                 </li>
                 <li>
                   <span class="font-semibold">Days:</span> {{ pay_days }} days actively
