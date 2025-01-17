@@ -77,13 +77,17 @@
                   <span class="font-medium">Birthdate</span>
                   <span>{{ formatDate(userData.birthdate) || 'loading...' }}</span>
                 </div>
+                <!-- Age Field -->
+                <div class="flex justify-between">
+                  <span class="font-medium">Age</span>
+                  <span>{{ age || 'loading...' }}</span>
+                </div>
                 <div class="flex justify-between">
                   <span class="font-medium">Joined</span>
                   <span>{{ getDaysAgo(userData.created_at) || 'loading...' }}</span>
                 </div>
                 <div class="my-4 border-t border-gray-300"></div>
                 <div class="flex items-center justify-between px-2 py-2 border-b lg:py-6 dark:border-primary-darker">
-                  <!-- <h1 class="text-2xl font-semibold"></h1> -->
                   <router-link
                     to="#password"
                     class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
@@ -120,7 +124,7 @@ export default {
     return {
       noCategoriesMessage: 'loading...',
       jobDataCategories: 'loading...',
-      isExpanded: false,  // This tracks whether the text is expanded or truncated
+      isExpanded: false,  // Tracks whether the text is expanded or truncated
       userData: {
         user_code: '',
         user_name: '',
@@ -134,6 +138,14 @@ export default {
         image: ''
       }
     };
+  },
+  computed: {
+    age() {
+      if (!this.userData.birthdate) return null;
+      const birthDate = dayjs(this.userData.birthdate);
+      const today = dayjs();
+      return today.diff(birthDate, 'year') + " years old"; // Calculate the age in years
+    }
   },
   mounted() {
     const token = localStorage.getItem('auth_token');
@@ -153,8 +165,7 @@ export default {
           }
         })
         .then((response) => {
-          console.log("API job categories", response.data);
-          if (response.data && response.data.category_names && response.data.category_names.length > 0) {
+          if (response.data && response.data.category_names?.length > 0) {
             this.jobDataCategories = response.data.category_names.map(category => category.skills).join(' | ');
             this.noCategoriesMessage = '';
           } else {
@@ -175,8 +186,7 @@ export default {
           }
         })
         .then((response) => {
-          console.log(response.data);
-          if (response.data && response.data.user_info) {
+          if (response.data?.user_info) {
             this.userData = response.data.user_info;
           } else {
             console.error('User data not found');
@@ -184,15 +194,14 @@ export default {
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
-          if (error.response && error.response.status === 401) {
+          if (error.response?.status === 401) {
             this.$router.push({ name: 'Login' });
           }
         });
     },
     formatDate(dateString) {
       if (!dateString) return 'loading...';
-      const date = new Date(dateString);
-      return date.toLocaleDateString();
+      return new Date(dateString).toLocaleDateString();
     },
     getDaysAgo(date) {
       if (!dayjs(date).isValid()) return 'loading...';
@@ -207,7 +216,7 @@ export default {
 
 <style scoped>
 /* Additional styling for buttons or components can go here */
-a{
+a {
   text-decoration: none;
 }
 </style>

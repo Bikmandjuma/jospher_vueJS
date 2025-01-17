@@ -24,7 +24,7 @@
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('5000', '3', '91')">
+                      <button class="btn btn-custom text-white" @click="redirectToPayment('5000', '3', '91')">
                           Choose plan
                       </button>
                   </div>
@@ -48,7 +48,7 @@
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('12000', '8', '243')">
+                      <button class="btn btn-custom text-white" @click="redirectToPayment('12000', '8', '243')">
                           Choose plan
                       </button>
                   </div>
@@ -72,7 +72,7 @@
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom" @click="redirectToPayment('20000', '15', '456')">
+                      <button class="btn btn-custom text-white" @click="redirectToPayment('20000', '15', '456')">
                           Choose plan
                       </button>
                   </div>
