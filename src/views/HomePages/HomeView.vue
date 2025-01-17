@@ -133,7 +133,7 @@
                     <div class="col-md-4">
                         <div class="price-item featured-item">
                             <div class="price-header">
-                                <h3>6 Months + 1 Month Bonus</h3>
+                                <h3>6 Months</h3>
                                 <h2><strong>12,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
@@ -154,7 +154,7 @@
                     <div class="col-md-4">
                         <div class="price-item">
                             <div class="price-header">
-                                <h3>Yearly + 1 Month Bonus</h3>
+                                <h3>Yearly</h3>
                                 <h2><strong>20,000</strong><span>Frw</span></h2>
                             </div>
                             <div class="price-body">
