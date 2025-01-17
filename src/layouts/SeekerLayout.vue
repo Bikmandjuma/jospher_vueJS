@@ -181,9 +181,9 @@
 
     <div ref="modal" class="modal">
       <div class="modal-content text-center">
-        <h3><u>Confirm Logout</u></h3>
+        <h3 class="mt-2"><u>Confirm Logout</u></h3>
         <p class="mt-2">Are you sure you want to log out of the system?</p>
-        <div class="modal-actions text-center">
+        <div class="modal-actions text-center mt-3">
           <button class="btn btn-primary" @click="logout"><i class="fa fa-check"></i>&nbsp;Yes</button>&nbsp;&nbsp;
           <button class="btn btn-danger text-right" ref="closeModal"><i class="fa fa-exclamation-circle"></i>&nbsp;Not now</button>
         </div>
