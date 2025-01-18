@@ -17,7 +17,7 @@
                 <router-link to="/seeker/profile"> 
                   <i class="fa fa-pencil editImage text-primary"></i>
                 </router-link>
-                <h5 class="font-semibold text-lg mt-4">{{ userData.user_name || 'User name' }}</h5>
+                <h5 class="font-semibold text-lg mt-4">{{ userData.user_code || '....' }} , {{ userData.user_name || '....' }}</h5>
 
                 <router-link
                   v-if="noCategoriesMessage"
@@ -95,7 +95,7 @@
                     <i class="fa fa-key"></i>&nbsp;Password
                   </router-link>
                   <router-link
-                    to="#notific"
+                    to="/seeker/password"
                     class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
                   >
                     <i class="fa fa-pen"></i>&nbsp;Edit Info
