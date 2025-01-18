@@ -230,6 +230,22 @@ export default {
         });
     },
 
+    // fetchUserData(token) {
+    //   axios
+    //     .get(`${laravelApiUrl}/user/view_info`, {
+    //       headers: { Authorization: `Bearer ${token}` },
+    //     })
+    //     .then((response) => {
+    //       if (response.data?.user_info) {
+    //         this.editForm = { ...response.data.user_info };
+    //         this.userData = response.data.user_info;
+    //       } else {
+    //         console.error('User data not found');
+    //       }
+    //     })
+    //     .catch((error) => console.error('Error fetching user data:', error));
+    // },
+
     fetchUserData(token) {
       axios
         .get(`${laravelApiUrl}/user/view_info`, {
@@ -237,14 +253,23 @@ export default {
         })
         .then((response) => {
           if (response.data?.user_info) {
-            this.editForm = { ...response.data.user_info };
-            this.userData = response.data.user_info;
+            const userInfo = response.data.user_info;
+
+            // Ensure the birthdate is formatted correctly
+            if (userInfo.birthdate) {
+              const date = new Date(userInfo.birthdate);
+              userInfo.birthdate = date.toISOString().split('T')[0]; // Format to 'YYYY-MM-DD'
+            }
+
+            this.editForm = { ...userInfo };
+            this.userData = userInfo;
           } else {
             console.error('User data not found');
           }
         })
         .catch((error) => console.error('Error fetching user data:', error));
     },
+
 
     updateUserInfo() {
       const token = localStorage.getItem('auth_token');
@@ -304,8 +329,6 @@ export default {
         }, 5000);
     }
 
-    //remove error message
-    
   },
 };
 </script>

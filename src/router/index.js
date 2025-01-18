@@ -23,7 +23,7 @@ import JobPosition from '../views/Seeker/SeekerJobPosition.vue';
 import RecommendationJob from '../views/Seeker/SeekerRecommendation.vue';
 import SeekerPaymentPlan from '../views/Seeker/SeekerPaymentPlan.vue';
 import SeekerPayment from '../views/Seeker/SeekerPayment.vue';
-import SeekerPassword from '../views/Seeker/SeekerPassword.vue';
+import SeekerPassword from '../views/Seeker/SeekerUpdateInfo.vue';
 
 const routes = [
   {
