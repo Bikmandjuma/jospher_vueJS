@@ -49,7 +49,7 @@
         </div>
 
         <!-- Right Section (User Details) -->
-        <div class="w-full xl:w-3/4 mb-4">
+        <div class="w-full xl:w-1/2 mb-4">
           <div class="card border rounded-lg shadow-md">
             <div class="card-body pt-3">
               <div class="space-y-4">

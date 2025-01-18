@@ -48,95 +48,116 @@
             </div>
           </div>
             
-          <div class="w-full xl:w-3/4 mb-4">
-            <div class="card border rounded-lg shadow-md">
-              <div class="card-body pt-3">
+          <div class="card border rounded-lg shadow-md">
+            <div class="card-body pt-3">
+                
+                <div
+                    v-if="msg_update_info"
+                    class="p-2 mb-4 text-sm text-white bg-blue-500 rounded-lg text-center justify-center items-center"
+                    role="alert"
+                >
+                    <i class="fa fa-exclamation-circle"></i>&nbsp;{{ msg_update_info }}
+                </div>
+
                 <form @submit.prevent="updateUserInfo">
-                  <div class="space-y-4">
-                    <div>
-                      <label class="block font-medium" for="user_name">User Name</label>
-                      <input
-                        v-model="editForm.user_name"
-                        id="user_name"
-                        type="text"
-                        class="w-full border rounded p-2"
-                        placeholder="Enter user name"
-                      />
+                    <!-- Flex container to split left and right -->
+                    <div class="flex flex-wrap">
+                        <!-- Left Column -->
+                        <div class="w-full xl:w-2/4 px-4">
+                            <div class="space-y-4">
+                                <div>
+                                <label class="block font-medium" for="user_name">User Name</label>
+                                <input
+                                    v-model="editForm.user_name"
+                                    id="user_name"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter user name"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="firstname">First Name</label>
+                                <input
+                                    v-model="editForm.firstname"
+                                    id="firstname"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter first name"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="lastname">Last Name</label>
+                                <input
+                                    v-model="editForm.lastname"
+                                    id="lastname"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter last name"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="gender">Gender</label>
+                                <select
+                                    v-model="editForm.gender"
+                                    id="gender"
+                                    class="w-full border rounded p-2"
+                                >
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Column -->
+                        <div class="w-full xl:w-2/4 px-4">
+                            <div class="space-y-4">
+                                <div>
+                                <label class="block font-medium" for="phone">Phone</label>
+                                <input
+                                    v-model="editForm.phone"
+                                    id="phone"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter phone number"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="email">Email</label>
+                                <input
+                                    v-model="editForm.email"
+                                    id="email"
+                                    type="email"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter email"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="birthdate">Birthdate</label>
+                                <input
+                                    v-model="editForm.birthdate"
+                                    id="birthdate"
+                                    type="date"
+                                    class="w-full border rounded p-2"
+                                />
+                                </div>
+
+                                <div class="mt-4">
+                                    <button
+                                    type="submit"
+                                    class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
+                                    >
+                                    Save Info
+                                    </button>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <label class="block font-medium" for="firstname">First Name</label>
-                      <input
-                        v-model="editForm.firstname"
-                        id="firstname"
-                        type="text"
-                        class="w-full border rounded p-2"
-                        placeholder="Enter first name"
-                      />
-                    </div>
-                    <div>
-                      <label class="block font-medium" for="lastname">Last Name</label>
-                      <input
-                        v-model="editForm.lastname"
-                        id="lastname"
-                        type="text"
-                        class="w-full border rounded p-2"
-                        placeholder="Enter last name"
-                      />
-                    </div>
-                    <div>
-                      <label class="block font-medium" for="gender">Gender</label>
-                      <select
-                        v-model="editForm.gender"
-                        id="gender"
-                        class="w-full border rounded p-2"
-                      >
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label class="block font-medium" for="phone">Phone</label>
-                      <input
-                        v-model="editForm.phone"
-                        id="phone"
-                        type="text"
-                        class="w-full border rounded p-2"
-                        placeholder="Enter phone number"
-                      />
-                    </div>
-                    <div>
-                      <label class="block font-medium" for="email">Email</label>
-                      <input
-                        v-model="editForm.email"
-                        id="email"
-                        type="email"
-                        class="w-full border rounded p-2"
-                        placeholder="Enter email"
-                      />
-                    </div>
-                    <div>
-                      <label class="block font-medium" for="birthdate">Birthdate</label>
-                      <input
-                        v-model="editForm.birthdate"
-                        id="birthdate"
-                        type="date"
-                        class="w-full border rounded p-2"
-                      />
-                    </div>
-                  </div>
-                  <div class="mt-4">
-                    <button
-                      type="submit"
-                      class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
-                    >
-                      Save Info
-                    </button>
-                  </div>
+                    
                 </form>
-              </div>
             </div>
           </div>
+            
         </div>
       </section>
     </div>
@@ -167,6 +188,7 @@ export default {
         email: '',
         birthdate: '',
       },
+      msg_update_info:'',
     };
   },
   methods: {
@@ -216,7 +238,8 @@ export default {
         })
         .then((response) => {
           if (response.data.status === 'success') {
-            alert('Info updated successfully');
+            localStorage.setItem('info_updated','Info updated successfully')
+            window.location.reload();
           } else {
             alert('Failed to update info');
           }
@@ -242,6 +265,16 @@ export default {
     } else {
       this.fetchUserData(token);
       this.fetchUserCategory(token);
+    }
+
+    this.msg_update_info = localStorage.getItem('info_updated') || '';
+
+    if (this.msg_update_info) {
+        setTimeout(() => {
+            this.msg_update_info = '';
+            localStorage.removeItem('info_updated');
+            this.$router.push({ name: 'SeekerInformation' });
+        }, 5000);
     }
   },
 };
