@@ -59,6 +59,21 @@
                     <i class="fa fa-exclamation-circle"></i>&nbsp;{{ msg_update_info }}
                 </div>
 
+                <!-- <div
+                    v-if="errorMessages"
+                    class="p-2 mb-4 text-sm text-white bg-red-500 rounded-lg text-center justify-center items-center"
+                    role="alert"
+                >
+
+                    <i class="fa fa-exclamation-circle"></i>&nbsp;{{ errorMessages }}
+
+                </div> -->
+                <div v-if="errorMessages.length" class="error-container">
+                    <ul class="p-2 mb-4 text-sm text-white bg-red-500 rounded-lg text-center justify-center items-center">
+                        <li v-for="(message, index) in errorMessages" :key="index"><i class="fa fa-exclamation-circle"></i>&nbsp;{{ message }}</li>
+                    </ul>
+                </div>
+
                 <form @submit.prevent="updateUserInfo">
                     <!-- Flex container to split left and right -->
                     <div class="flex flex-wrap">
@@ -189,6 +204,7 @@ export default {
         birthdate: '',
       },
       msg_update_info:'',
+      errorMessages:[]
     };
   },
   methods: {
@@ -243,14 +259,25 @@ export default {
           } else {
             alert('Failed to update info');
           }
-        })
+        })      
+
         .catch((error) => {
-          console.error('Error updating user info:', error);
-          if (error.response?.data?.errors) {
-            alert(JSON.stringify(error.response.data.errors));
-          } else {
-            alert('An unexpected error occurred.');
-          }
+            console.error('Error updating user info:', error);
+            if (error.response?.data?.errors) {
+
+                const errorMessages = Object.values(error.response.data.errors).flat();
+                
+                this.errorMessages = errorMessages;
+
+                if (this.errorMessages) {
+                    setTimeout(() => {
+                        this.errorMessages =[];
+                    }, 5000);
+                }
+
+            } else {
+                alert('An unexpected error occurred.try again');
+            }
         });
     },
 
@@ -276,6 +303,9 @@ export default {
             this.$router.push({ name: 'SeekerInformation' });
         }, 5000);
     }
+
+    //remove error message
+    
   },
 };
 </script>
