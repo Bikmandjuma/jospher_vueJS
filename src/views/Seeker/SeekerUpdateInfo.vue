@@ -156,12 +156,14 @@
                                 />
                                 </div>
 
-                                <div class="mt-4">
+                                <div class="mt-4 pt-3 text-center justify-center items-center">
+                                    <label class="block font-medium"></label>
+
                                     <button
                                     type="submit"
                                     class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
                                     >
-                                    Save Info
+                                    Save Info <i class="fa fa-save"></i>
                                     </button>
                                 </div>
                                 
