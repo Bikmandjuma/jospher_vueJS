@@ -89,13 +89,13 @@
                 <div class="my-4 border-t border-gray-300"></div>
                 <div class="flex items-center justify-between px-2 py-2 border-b lg:py-6 dark:border-primary-darker">
                   <router-link
-                    to="#password"
+                    to="/seeker/password"
                     class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
                   >
                     <i class="fa fa-key"></i>&nbsp;Password
                   </router-link>
                   <router-link
-                    to="/seeker/password"
+                    to="/seeker/updateInfo"
                     class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
                   >
                     <i class="fa fa-pen"></i>&nbsp;Edit Info
