@@ -2,7 +2,7 @@
     <div>
   
       <main>
-        <slot></slot>  <!-- This will inject content from child components -->
+        <slot></slot>
       </main>
   
     </div>

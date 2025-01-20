@@ -19,9 +19,9 @@
       <!-- Form for verification code -->
       <form class="otc" @submit.prevent="verifyCode">
         <fieldset>
-          <legend>Email Verification Code</legend>
+          <legend>Verify Code before reset</legend>
           <div class="inputs-container">
-            <input v-model="codeString" type="text" maxlength="7" required @input="onInput" autofocus>
+            <input v-model="code" type="text" maxlength="7" required @input="onInput" autofocus>
           </div>
         </fieldset>
         <button type="submit">Verify</button>
@@ -42,48 +42,56 @@
       };
     },
   
+    beforeMount() {
+      const email = localStorage.getItem('pswd_resettor_mail');
+      if (!email) {
+        this.$router.push({ name: 'ForgotPassword' });
+      }
+    },
+  
     methods: {
-      async verifyCode() {
-        const code = this.code.replace(/-/g, ''); // Format code properly
-        const email = localStorage.getItem('pswd_resettor_mail');
-  
-        if (!email) {
-          this.message = 'Email not found in localStorage.';
-          return;
-        }
-  
-        try {
-          // Send request to Laravel API
-          const response = await axios.post(`${laravelApiUrl}/user/verify/code_to_reset_pswd/${email}`, { code });
-  
-          // Handle response messages
-          if (response.data.info) {
-            this.message = response.data.message;
-            // this.$router.push({ name: 'SeekerFill_Info' });
-            alert(response.data.message);
+      
+        async verifyCode() {
+          const code = this.code.replace(/-/g, ''); // Ensure no hyphen is passed
+          const email = localStorage.getItem('pswd_resettor_mail');
 
-          } else if (response.data.error) {
-            this.message = response.data.error;
+          if (!email) {
+              this.message = 'Email not found in localStorage.';
+              return;
           }
-        } catch (error) {
-          // Handle API or network errors
-          if (error.response && error.response.data) {
-            this.message = error.response.data.error || 'An unexpected error occurred.';
-          } else {
-            this.message = 'An error occurred while processing your request.';
+
+          console.log('Code:', code);
+          console.log('Email:', email);
+
+          try {
+              const response = await axios.post(`${laravelApiUrl}/code_to_reset_pswd/${email}`, { code });
+
+              if (response.data.message) {
+                  this.message = response.data.message;
+                  alert(response.data.message);
+              } else if (response.data.error) {
+                  this.message = response.data.error;
+              }
+
+          } catch (error) {
+              if (error.response && error.response.data) {
+                  this.message = error.response.data.error || 'An unexpected error occurred.';
+              } else {
+                  this.message = 'An error occurred while processing your request.';
+              }
           }
-        }
+
       },
-  
-      onInput() {
-        let formattedCode = this.code.replace(/\D/g, '').slice(0, 6); // Only allow digits
-  
-        if (formattedCode.length > 3) {
-          formattedCode = formattedCode.slice(0, 3) + '-' + formattedCode.slice(3); // Add hyphen
-        }
-  
-        this.code = formattedCode;
-      },
+
+        onInput() {
+          let formattedCode = this.code.replace(/\D/g, '').slice(0, 6); // Only allow digits
+    
+          if (formattedCode.length > 3) {
+            formattedCode = formattedCode.slice(0, 3) + '-' + formattedCode.slice(3); // Add hyphen
+          }
+    
+          this.code = formattedCode;
+        },
     },
   
     mounted() {
