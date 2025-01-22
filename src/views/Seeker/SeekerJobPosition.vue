@@ -53,8 +53,9 @@
                       class="text-blue-600 hover:text-black"
                     >
                       <i class="fa fa-briefcase"></i>&nbsp;{{ job.title }}
-                    </a>
+                    </a><hr>
                   </li>
+                  
                 </ul>
 
                 <p v-else class="text-center justify-center items-center">No jobs found for this category.</p>
