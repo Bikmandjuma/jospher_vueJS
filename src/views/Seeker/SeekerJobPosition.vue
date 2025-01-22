@@ -44,7 +44,7 @@
                 >
                   Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }}
                 </h4>
-                <ul v-if="jobPositions.length > 0" class="pb-3">
+                <ul v-if="jobPositions.length > 0" class="pb-3 p-2">
                   <li v-for="(job, index) in jobPositions" :key="index" class="mt-2">
                     <a
                       :href="getJobUrl(job)"
