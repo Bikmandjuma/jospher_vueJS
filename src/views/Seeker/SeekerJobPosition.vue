@@ -7,7 +7,10 @@
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
-                <h4 class="text-center items-center justify-center">Job Categories&nbsp; <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span></h4>
+                <h4 class="text-center items-center justify-center">
+                  Job Categories&nbsp;
+                  <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span>
+                </h4>
 
                 <ul id="category_id">
                   <li
@@ -17,10 +20,14 @@
                     class="category p-1"
                   >
                     <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{ category }}
-                    <span class="float-right text-sm text-gray-900" style="width: auto; white-space: nowrap;">({{ getCategoryCount(category) }})</span>
+                    <span
+                      class="float-right text-sm text-gray-900"
+                      style="width: auto; white-space: nowrap;"
+                    >
+                      ({{ getCategoryCount(category) }})
+                    </span>
                   </li>
                 </ul>
-
               </div>
             </div>
           </div>
@@ -31,13 +38,26 @@
           <div class="card border rounded-lg shadow-md" style="max-height: 400px; overflow: auto;">
             <div class="card-body p-1">
               <div class="space-y-4">
-                <h4 v-if="selectedCategory" class="sticky top-0 z-50 bg-white p-2 text-center justify-center items-center">Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }} </h4>
+                <h4
+                  v-if="selectedCategory"
+                  class="sticky top-0 z-50 bg-white p-2 text-center justify-center items-center"
+                >
+                  Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }}
+                </h4>
                 <ul v-if="jobPositions.length > 0" class="pb-3">
                   <li v-for="(job, index) in jobPositions" :key="index" class="mt-2">
-                    <i class="fa fa-briefcase"></i>&nbsp;{{ job }}
+                    <a
+                      :href="getJobUrl(job)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-black"
+                    >
+                      <i class="fa fa-briefcase"></i>&nbsp;{{ job.title }}
+                    </a>
                   </li>
                 </ul>
-                <p v-else>No jobs found for this category.</p>
+
+                <p v-else class="text-center justify-center items-center">No jobs found for this category.</p>
               </div>
             </div>
           </div>
@@ -98,7 +118,6 @@ export default {
       this.jobPositions = this.flaskData[category] || [];
 
       // Store job count for the selected category
-      // @ts-ignore
       localStorage.setItem('count_job_position', this.jobPositions.length);
     },
 
@@ -115,9 +134,49 @@ export default {
       });
 
       // Store the total job count in localStorage
-      // @ts-ignore
       localStorage.setItem('total_job_positions', totalJobs);
     },
+
+      getJobUrl(job) {
+        
+        if (job.origin === "https://www.rwandajob.com/job-vacancies-search-rwanda") {
+          const truncatedTitle = job.title.substring(0, 100);
+
+          const sanitizedTitle = encodeURIComponent(truncatedTitle)
+          
+            .replace(/%20/g, '-')
+            .replace(/%2F/g, '/');
+
+          return `${job.origin}/${sanitizedTitle}`;
+        
+        }else if (job.origin === "https://www.jobinrwanda.com/") {
+
+          const truncatedTitle = job.title.substring(0, 100);
+
+          const sanitizedTitle = encodeURIComponent(truncatedTitle)
+            .replace(/%20/g, '+');
+          
+          const url_origin = 'https://www.jobinrwanda.com/jobs/search-result?filter_titles_field';
+
+          return `${url_origin}=${sanitizedTitle}`;
+        
+        }else if (job.origin === "https://jobportal.kora.rw/service/service-job") {
+
+          const truncatedTitle = job.title.substring(0, 100);
+          const sanitizedTitle = encodeURIComponent(truncatedTitle)
+            .replace(/%20/g, '+');
+          
+          const url_origin ='https://jobportal.kora.rw/service/service-job?title';
+
+          return `${url_origin}=${sanitizedTitle}`;
+
+        }
+
+        return job.origin;
+      
+      }
+
+
   },
 
   mounted() {
@@ -139,5 +198,13 @@ export default {
   float: right;
   font-size: 0.9rem;
   color: gray;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
 }
 </style>

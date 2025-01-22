@@ -24,7 +24,7 @@
             <input v-model="code" type="text" maxlength="7" required @input="onInput" autofocus>
           </div>
         </fieldset>
-        <button type="submit">Verify</button>
+        <button type="submit"><i class="fa fa-check"></i>&nbsp;Verify</button>
       </form>
     </div>
   </template>
@@ -52,7 +52,7 @@
     methods: {
       
         async verifyCode() {
-          const code = this.code.replace(/-/g, ''); // Ensure no hyphen is passed
+          const code = this.code.replace(/-/g, '');
           const email = localStorage.getItem('pswd_resettor_mail');
 
           if (!email) {
@@ -64,6 +64,7 @@
           console.log('Email:', email);
 
           try {
+
               const response = await axios.post(`${laravelApiUrl}/code_to_reset_pswd/${email}`, { code });
 
               if (response.data.message) {
@@ -95,6 +96,7 @@
     },
   
     mounted() {
+      
       this.message_localSto = localStorage.getItem('reset_pswd_success_msg') || '';
   
       // Clear localStorage message after 5 seconds
