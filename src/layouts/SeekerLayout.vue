@@ -73,7 +73,10 @@
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
       <header class="relative bg-white dark:bg-darker sticky top-0 z-50">
         <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
-          <button @click="toggleMobileMenu" class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
+          <button 
+            @click="toggleMobileMenu"
+            ref="dropdownButtonMobileMainMenu"
+            class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
             <span class="sr-only">Open main menu</span>
             <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -90,24 +93,36 @@
             </form>
           </div> -->
           <!-- User Avatar and Dropdown -->
-          <div class="relative">
-            <button @click="toggleDropdown" class="transition-opacity duration-200 rounded-full focus:outline-none focus:ring dark:focus:opacity-100">
-              <img 
+           
+            <div class="relative">
+              
+              <button 
+                @click="toggleDropdown" 
+                ref="dropdownButton" 
+                class="transition-opacity duration-200 rounded-full focus:outline-none focus:ring dark:focus:opacity-100"
+              >
+                <img 
                   style="border: 2px solid gray;"
                   class="rounded-full w-10 h-10 mx-auto"
                   :src="userData.image ? require(`../assets/seeker_style/images/${userData.image}`) : require('../assets/seeker_style/images/user.png')"
                   alt="User Image"
                 />
-            </button>
+              </button>
 
-            <!-- Dropdown Menu -->
-            <div v-show="dropdownOpen" class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark">
-              <a href="/seeker/information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</a>
-              <a href="/seeker/password" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-key"></i>&nbsp;Password</a>
-              <a href="/seeker/profile" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-image"></i>&nbsp;Profile</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary openModal" @click="openModal"><i class="fa fa-lock"></i>&nbsp;Logout</a>
+              <!-- Dropdown Menu -->
+              <div 
+                v-show="dropdownOpen" 
+                class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark z-50"
+                ref="dropdownMenu"
+              >
+                <a href="/seeker/information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</a>
+                <a href="/seeker/password" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-key"></i>&nbsp;Password</a>
+                <a href="/seeker/profile" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-image"></i>&nbsp;Profile</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary openModal" @click="openModal"><i class="fa fa-lock"></i>&nbsp;Logout</a>
+              </div>
+            
             </div>
-          </div>
+
         </div>
       </header>
 
@@ -127,7 +142,11 @@
     </div>
 
     <!-- Mobile Menu -->
-    <nav v-show="isMobileMainMenuOpen" class="absolute top-16 inset-x-4 md:hidden z-50 flex flex-col items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker">
+    <nav 
+      v-show="isMobileMainMenuOpen"
+      class="absolute top-16 inset-x-4 md:hidden z-50 flex flex-col items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker"
+      ref="dropdownMobileMainMenu"
+    >
       <div class="space-y-2">
         <!-- Dashboards Link -->
          <a class="flex items-center justify-center p-2 text-gray-700 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"  style="font-weight: bold;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
@@ -230,15 +249,6 @@ export default {
         : this.userData.user_name;
     }
   },
-  mounted(){
-    const token = localStorage.getItem('auth_token');
-    if (!token) {
-      this.$router.push({name:'/login'});
-    }else{
-      this.fetchUserData(token);
-    }
-
-  },
   methods: {
     fetchUserData(token) {
       axios
@@ -282,6 +292,19 @@ export default {
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
     },
+    
+    closeDropdown(event) {
+      if (this.$refs.dropdownMenu && !this.$refs.dropdownMenu.contains(event.target) && !this.$refs.dropdownButton.contains(event.target)) {
+        this.dropdownOpen = false;
+      }
+    },
+
+    closeDropdownMobileMenu(event) {
+      if (this.$refs.dropdownMobileMainMenu && !this.$refs.dropdownMobileMainMenu.contains(event.target) && !this.$refs.dropdownButtonMobileMainMenu.contains(event.target)) {
+        this.isMobileMainMenuOpen = false;
+      }
+    },
+
     toggleMobileMenu() {
       this.isMobileMainMenuOpen = !this.isMobileMainMenuOpen;
     },
@@ -312,6 +335,24 @@ export default {
       }
     },
   },
+
+  mounted(){
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      this.$router.push({name:'/login'});
+    }else{
+      this.fetchUserData(token);
+    }
+
+    document.addEventListener("click", this.closeDropdown);
+    document.addEventListener("click", this.closeDropdownMobileMenu);
+  },
+
+  beforeUnmount() {
+    document.removeEventListener("click", this.closeDropdown);
+    document.removeEventListener("click", this.closeDropdownMobileMenu);
+  }
+  
   
 };
 </script>
