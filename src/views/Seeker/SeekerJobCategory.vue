@@ -141,7 +141,7 @@
     </section>  
 
     <!-- Confirmation Modal -->
-    <div v-if="showConfirmation" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+    <div v-if="showConfirmation" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-10">
       <div class="bg-white p-6 rounded-md shadow-lg">
         <p class="text-lg">Are you sure you want to remove this category?</p>
         <div class="mt-4 flex justify-around">
