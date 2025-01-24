@@ -168,4 +168,10 @@ a {
   align-items: center;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  #login_container{
+    margin-top: -50px;
+  }
+}
 </style>
