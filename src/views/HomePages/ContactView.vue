@@ -17,6 +17,7 @@
           <div class="col-md-4">
             <div class="contact-info">
               <h2>Quick Contact Info</h2>
+              <div  class="text-center justify-center items-center text-gray-300 mb-3">Support 24/7</div>
               <div class="contact-info-item" v-for="item in contactInfo" :key="item.id">
                 <div class="contact-info-icon">
                   <i :class="item.icon"></i>
@@ -47,7 +48,7 @@
                 </div>
                 <br />
                 <div class="control-group">
-                  <textarea v-model="form.message" class="form-control" id="message" placeholder="Message" required></textarea>
+                  <textarea v-model="form.message" class="form-control" id="message" placeholder="Typing message ......" required></textarea>
                 </div>
                 <br />
                 <div>
@@ -85,9 +86,9 @@ export default {
       // @ts-ignore
       carouselImageUrl: require('../../assets/Homepage_images/carousel5.jpg'), // Adjust path as needed
       contactInfo: [
-        { id: 1, title: 'Opening Hour', detail: 'Mon - Fri, 8:00 - 9:00', icon: 'far fa-clock' },
-        // { id: 2, title: 'Call Us', detail: '+012 345 6789', icon: 'fa fa-phone-alt' },
-        { id: 3, title: 'Email Us', detail: 'info@example.com', icon: 'far fa-envelope' }
+        { id: 1, title: 'Location', detail: 'KG 567 St , ave 25', icon: 'far fa-map' },
+        { id: 2, title: 'Opening Hour', detail: 'Mon - Sun, 00:00 - 23:59', icon: 'far fa-clock' },
+        { id: 3, title: 'Email Us', detail: 'jobsphererwanda@gmail.com', icon: 'far fa-envelope' }   
       ],
       form: {
         name: '',
