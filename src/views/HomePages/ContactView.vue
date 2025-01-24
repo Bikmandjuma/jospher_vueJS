@@ -17,7 +17,7 @@
           <div class="col-md-4">
             <div class="contact-info">
               <h2>Quick Contact Info</h2>
-              <div  class="text-center justify-center items-center text-gray-300 mb-3">Support 24/7</div>
+              <div  class="text-center justify-center items-center text-gray-300 mb-3">We are available 24/7</div>
               <div class="contact-info-item" v-for="item in contactInfo" :key="item.id">
                 <div class="contact-info-icon">
                   <i :class="item.icon"></i>
@@ -51,8 +51,8 @@
                   <textarea v-model="form.message" class="form-control" id="message" placeholder="Typing message ......" required></textarea>
                 </div>
                 <br />
-                <div>
-                  <button class="btn btn-custom" type="submit" id="sendMessageButton">Send Message</button>
+                <div class="text-center items-center justify-center">
+                  <button class="btn btn-custom" type="submit" id="sendMessageButton">Send Message <i class="fa fa-paper-plane"></i> </button>
                 </div>
               </form>
             </div>
