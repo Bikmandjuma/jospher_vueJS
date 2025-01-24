@@ -8,7 +8,7 @@
         </div>
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
           <div class="w-full">
-            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
+            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 text-center justify-center items-center">Login</h1>
 
             <!-- Error Message -->
             <div v-if="errorMessage" class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
