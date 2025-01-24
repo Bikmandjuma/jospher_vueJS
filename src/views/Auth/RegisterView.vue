@@ -123,18 +123,17 @@ export default {
   },
   methods: {
     async submitForm() {
+      
+      this.loading = true;
+
       try {
         const response = await axios.post(`${laravelApiUrl}/user/initial_registration`, this.formData);
         console.log('User created successfully', response.data);
-
-        // Save the authentication token in localStorage
-        // localStorage.setItem('auth_token', response.data.authorisation.token);
+        
         localStorage.setItem('seeker_email',this.formData.email)
 
         localStorage.setItem('verificationMessage', 'Check your email, we sent you a verification code');
 
-        // this.$router.push({ name: 'CodeToRegister' });
-        this.loading = true;
         setTimeout(() => {
           this.loading = false;
           this.$router.push({ name: 'CodeToRegister' });
@@ -154,7 +153,10 @@ export default {
           this.alertClass = 'bg-red-500 text-white'; // Red background for error
 
         }
+      }finally {
+        this.loading = false;
       }
+      
     }
   }
 };

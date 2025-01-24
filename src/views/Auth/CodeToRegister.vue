@@ -59,18 +59,27 @@
           // Handle response messages
           if (response.data.info) {
             this.message = response.data.message;
-            // this.$router.push({ name: 'SeekerFill_Info' });
-            alert(response.data.message);
+            this.$router.push({ name: 'SeekerFill_Info' });
+            // alert(response.data.message);
 
           } else if (response.data.error) {
             this.message = response.data.error;
+            setTimeout(() => {
+              this.message = '';
+            }, 5000);
           }
         } catch (error) {
           // Handle API or network errors
           if (error.response && error.response.data) {
             this.message = error.response.data.error || 'An unexpected error occurred.';
+            setTimeout(() => {
+              this.message = '';
+            }, 5000);
           } else {
             this.message = 'An error occurred while processing your request.';
+            setTimeout(() => {
+              this.message = '';
+            }, 5000);
           }
         }
       },
@@ -87,13 +96,13 @@
     },
   
     mounted() {
-      this.message_localSto = localStorage.getItem('reset_pswd_success_msg') || '';
+      this.message_localSto = localStorage.getItem('verificationMessage') || '';
   
       // Clear localStorage message after 5 seconds
       if (this.message_localSto) {
         setTimeout(() => {
           this.message_localSto = '';
-          localStorage.removeItem('reset_pswd_success_msg');
+          localStorage.removeItem('verificationMessage');
         }, 5000);
       }
     },
