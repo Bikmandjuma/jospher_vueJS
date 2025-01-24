@@ -21,7 +21,7 @@
         <fieldset>
           <legend>Email Verification Code</legend>
           <div class="inputs-container">
-            <input v-model="codeString" type="text" maxlength="7" required @input="onInput" autofocus>
+            <input v-model="code" type="text" maxlength="7" required @input="onInput" autofocus>
           </div>
         </fieldset>
         <button type="submit">Verify</button>
@@ -45,7 +45,7 @@
     methods: {
       async verifyCode() {
         const code = this.code.replace(/-/g, ''); // Format code properly
-        const email = localStorage.getItem('pswd_resettor_mail');
+        const email = localStorage.getItem('seeker_email');
   
         if (!email) {
           this.message = 'Email not found in localStorage.';
