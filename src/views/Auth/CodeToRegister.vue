@@ -54,7 +54,7 @@
   
         try {
           // Send request to Laravel API
-          const response = await axios.post(`${laravelApiUrl}/user/verify/code_to_reset_pswd/${email}`, { code });
+          const response = await axios.post(`${laravelApiUrl}/user/verify/code_to_register/${email}`, { code });
   
           // Handle response messages
           if (response.data.info) {
