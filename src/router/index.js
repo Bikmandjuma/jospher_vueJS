@@ -25,7 +25,8 @@ import SeekerPaymentPlan from '../views/Seeker/SeekerPaymentPlan.vue';
 import SeekerPayment from '../views/Seeker/SeekerPayment.vue';
 import SeekerPassword from '../views/Seeker/SeekerPassword.vue';
 import SeekerUpdateInfo from '../views/Seeker/SeekerUpdateInfo.vue';
-import SeekerReset_Password from '../views/Auth/CodeToResetPassword.vue';
+import SeekerResetCodePassword from '../views/Auth/CodeToResetPassword.vue';
+import SeekerResetPassword from '../views/Auth/ResetPassword.vue';
 
 const routes = [
   {
@@ -203,9 +204,16 @@ const routes = [
   },
 
   {
+    path: '/seeker/reset/code/password',
+    name: 'ResetCodePassword',
+    component: SeekerResetCodePassword,
+    meta: { layout: GuestLayout },
+  },
+
+  {
     path: '/seeker/reset/password',
     name: 'ResetPassword',
-    component: SeekerReset_Password,
+    component: SeekerResetPassword,
     meta: { layout: GuestLayout },
   },
   

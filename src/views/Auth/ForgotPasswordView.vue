@@ -41,6 +41,16 @@
                 type="submit"
                 class="w-full px-4 mt-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                 @click="recoverPassword"
+                v-if="loading"
+              >
+                <i class="fa fa-spinner fa-spin"></i>&nbsp;Recovering...
+              </button>
+
+              <button
+                type="submit"
+                class="w-full px-4 mt-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                @click="recoverPassword"
+                v-else
               >
                 <i class="fa fa-key"></i>&nbsp;Recover password
               </button>
@@ -74,12 +84,14 @@
         email: "",
         error: null,
         success: null,
+        loading:false,
       };
     },
     methods: {
       async recoverPassword() {
         this.error = null;
         this.success = null;
+        this.loading = true;
         
         try {
             const response = await axios.post(`${laravelApiUrl}/user/forgot-password`, {
@@ -91,9 +103,12 @@
                 this.success = response.data.message;
                 localStorage.setItem('pswd_resettor_mail', this.email);
                 localStorage.setItem('reset_pswd_success_msg', response.data.message);
-                this.$router.push({name: "ResetPassword"});
+                setTimeout( ()=>{
+                  this.loading = false;
+                  this.$router.push({name: "ResetCodePassword"});
+                });
             }
-            } catch (err) {
+        } catch (err) {
             console.log(err);  // Log the error to check the response structure
             if (err.response && err.response.data && err.response.data.errors) {
                 this.error = err.response.data.errors.email 
@@ -106,6 +121,8 @@
                 this.error = err.response.data ? err.response.data.message : "Unable to connect to the server. Please try later.";
             }
         
+        }finally{
+          this.loading=false;
         }
         
       },

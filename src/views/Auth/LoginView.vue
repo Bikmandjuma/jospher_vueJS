@@ -29,11 +29,11 @@
 
               <!-- Loading Button or Login Button -->
               <button v-if="loading" type="submit" class="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                Logging......
+                <i class="fa fa-spinner fa-spin"></i>&nbsp;Logging......
               </button>
 
               <button v-else type="submit" class="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                Login
+                <i class="fa fa-lock-open"></i>&nbsp;Login
               </button>
             </form>
 
@@ -74,73 +74,77 @@ export default {
     async handleLogin() {
       this.loading = true;
       this.errorMessage = null;  // Clear previous error message
-
-      if (!this.emailOrPhone || !this.password) {
-        this.errorMessage = "Email/Phone and Password are required.";
-        setTimeout(() => {
-          this.errorMessage = null;
-        }, 3000);
-        this.loading = false;
-        return;
-      }
-
+    
       try {
-        const loginData = {
-          username: this.emailOrPhone,
-          password: this.password,
-        };
-
-        const response = await fetch(`${laravelApiUrl}/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginData),
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (response.ok) {
-          localStorage.setItem("auth_token", data.authorisation.token);
-
-          if (data.role === "admin") {
-            console.log("Redirecting to AdminDashboard");
+          if (!this.emailOrPhone || !this.password) {
+            this.errorMessage = "Email/Phone and Password are required.";
             setTimeout(() => {
-              this.loading = false;
-              this.$router.push({ name: "AdminDashboard" });
-            }, 2000);
-          } else if (data.role === "user") {
-            console.log("Redirecting to SeekerDashboard");
-            setTimeout(() => {
-              this.loading = false;
-              this.$router.push({ name: "SeekerDashboard" });
-            }, 2000);
-          } else {
-            console.error("Unknown role:", data.role);
-            this.errorMessage = "Unknown role. Contact support.";
-            setTimeout(() => {
-              this.loading = false;
-              this.errorMessage = null; // Clear error message after 3 seconds
+              this.errorMessage = null;
             }, 3000);
+            this.loading = false;
+            return;
           }
 
-        } else {
-          console.error("Login failed:", data);
-          this.errorMessage = data.message || "Login failed. Please try again.";
-          setTimeout(() => {
-            this.loading = false;
-            this.errorMessage = null; // Clear error message after 3 seconds
-          }, 3000);
-        }
+        
+          const loginData = {
+            username: this.emailOrPhone,
+            password: this.password,
+          };
+
+          const response = await fetch(`${laravelApiUrl}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          });
+
+          const data = await response.json();
+          console.log(data);
+
+          if (response.ok) {
+            localStorage.setItem("auth_token", data.authorisation.token);
+
+            if (data.role === "admin") {
+              console.log("Redirecting to AdminDashboard");
+              // setTimeout(() => {
+              //   this.loading = false;
+                this.$router.push({ name: "AdminDashboard" });
+              // }, 2000);
+            } else if (data.role === "user") {
+              console.log("Redirecting to SeekerDashboard");
+              // setTimeout(() => {
+              //   this.loading = false;
+                this.$router.push({ name: "SeekerDashboard" });
+              // }, 2000);
+            } else {
+              console.error("Unknown role:", data.role);
+              this.errorMessage = "Unknown role. Contact support.";
+              // setTimeout(() => {
+              //   this.loading = false;
+              //   this.errorMessage = null; // Clear error message after 3 seconds
+              // }, 3000);
+            }
+
+          } else {
+            console.error("Login failed:", data);
+            this.errorMessage = data.message || "Login failed. Please try again.";
+            // setTimeout(() => {
+            //   this.loading = false;
+            //   this.errorMessage = null; // Clear error message after 3 seconds
+            // }, 3000);
+          }
 
       } catch (error) {
-        console.error("Login error:", error);
-        this.errorMessage = "An unexpected error occurred. Please try again later.";
-        setTimeout(() => {
-          this.loading = false;
-          this.errorMessage = null; // Clear error message after 3 seconds
-        }, 3000);
+          console.error("Login error:", error);
+          this.errorMessage = "An unexpected error occurred. Please try again later.";
+          // setTimeout(() => {
+          //   this.loading = false;
+          //   this.errorMessage = null; // Clear error message after 3 seconds
+          // }, 3000);
+      }
+      finally{
+        this.loading = false;
       }
     },
   },
