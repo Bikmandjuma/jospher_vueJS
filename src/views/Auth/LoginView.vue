@@ -11,7 +11,7 @@
             <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 text-center justify-center items-center">Login</h1>
 
             <!-- Error Message -->
-            <div v-if="errorMessage" class="p-2 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+            <div v-if="errorMessage" class="p-2 mb-4 text-sm text-red-700 bg-red-100 rounded-lg text-center justify-center items-center" role="alert">
               <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
             </div>
 
