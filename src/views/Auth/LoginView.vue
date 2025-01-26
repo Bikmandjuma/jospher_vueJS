@@ -28,11 +28,11 @@
               </div>
 
               <!-- Loading Button or Login Button -->
-              <button v-if="loading" type="submit" class="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+              <button v-if="loading" type="submit" class="w-full px-4 py-2 text-white bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
                 <i class="fa fa-spinner fa-spin"></i>&nbsp;Logging......
               </button>
 
-              <button v-else type="submit" class="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+              <button v-else type="submit" class="w-full px-4 py-2 text-white rounded-lg bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 focus:ring-2 focus:ring-purple-500 focus:outline-none">
                 <i class="fa fa-lock-open"></i>&nbsp;Login
               </button>
             </form>

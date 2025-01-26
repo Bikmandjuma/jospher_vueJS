@@ -58,18 +58,25 @@
         </div>
       </div>
 
-      <!-- Charts -->
-      <div class="flex justify-center gap-8 mt-8">
+     <!-- Charts -->
+      <div class="flex justify-center gap-8 mt-4 flex-wrap md:flex-nowrap">
         <!-- Pie Chart -->
         <div>
-          <canvas id="jobChart" width="300" height="300"></canvas>
+          <h3 class="text-center justify-center items-center bg-gradient-to-b from-black to-sky-300 bg-clip-text text-transparent">
+            Pie Chart
+          </h3>
+          <canvas id="jobChart" class="w-full sm:w-2/4 mt-3" width="300" height="300"></canvas>
         </div>
 
         <!-- Bar Chart -->
         <div>
-          <canvas id="jobBarChart" width="400" height="300"></canvas>
+          <h3 class="text-center justify-center items-center bg-gradient-to-b from-black to-sky-400 bg-clip-text text-transparent">
+            Bar Chart
+          </h3>
+          <canvas id="jobBarChart" class="w-full sm:w-2/4" width="400" height="300"></canvas>
         </div>
       </div>
+
     </div>
   </div>
 </template>

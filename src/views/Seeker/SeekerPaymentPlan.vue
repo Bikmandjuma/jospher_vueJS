@@ -23,11 +23,14 @@
                           <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
                       </ul>
                   </div>
-                  <div class="price-footer">
-                      <button class="btn btn-custom text-white" @click="redirectToPayment('5000', '3', '91')">
+                  <!-- <div class="price-footer"> -->
+                      <button
+                        class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary"
+                        @click="redirectToPayment('5000', '3', '91')"
+                      >
                           Choose plan
                       </button>
-                  </div>
+                  <!-- </div> -->
               </div>
           </div>
 
@@ -47,11 +50,13 @@
                           <li><i class="far fa-check-circle"></i>&nbsp;Actively for 243 days (including bonus)</li>
                       </ul>
                   </div>
-                  <div class="price-footer">
-                      <button class="btn btn-custom text-white" @click="redirectToPayment('12000', '8', '243')">
+                  <!-- <div class="price-footer"> -->
+                      <button 
+                         class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-red-700 to-red-200 hover:bg-gradient-to-l hover:from-red-700 hover:to-red-200 focus:outline-none focus:ring focus:ring-primary"
+                         @click="redirectToPayment('12000', '8', '243')">
                           Choose plan
                       </button>
-                  </div>
+                  <!-- </div> -->
               </div>
           </div>
 
@@ -72,7 +77,9 @@
                       </ul>
                   </div>
                   <div class="price-footer">
-                      <button class="btn btn-custom text-white" @click="redirectToPayment('20000', '15', '456')">
+                      <button 
+                          class="px-4 py-2 text-sm text-white rounded-md mb-3 bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary"
+                          @click="redirectToPayment('20000', '15', '456')">
                           Choose plan
                       </button>
                   </div>
@@ -255,34 +262,6 @@
 
             .price .price-body ul li i.fa-times-circle {
                 color: #cccccc;
-            }
-
-            .price .price-item .price-footer {
-                padding-bottom: 45px;
-            }
-
-            .price .price-item .price-footer .btn.btn-custom {
-                color: #E81C2E;
-                background: #202C45;
-                box-shadow: inset 0 0 0 0 #E81C2E;
-            }
-
-            .price .price-item .price-footer .btn.btn-custom:hover {
-                color: #ffffff;
-                background: #E81C2E;
-                box-shadow: inset 200px 0 0 0 #E81C2E;
-            }
-
-            .price .price-item.featured-item .price-footer .btn.btn-custom {
-                color: #ffffff;
-                background: #E81C2E;
-                box-shadow: inset 0 0 0 0 #202C45;
-            }
-
-            .price .price-item.featured-item .price-footer .btn.btn-custom:hover {
-                color: #E81C2E;
-                background: #202C45;
-                box-shadow: inset 200px 0 0 0 #202C45;
             }
 
 

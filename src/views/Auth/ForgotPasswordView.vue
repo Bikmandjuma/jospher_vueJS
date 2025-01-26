@@ -39,7 +39,7 @@
   
               <button
                 type="submit"
-                class="w-full px-4 mt-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                class="w-full px-4 mt-4 py-2 text-white rounded-lg bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                 @click="recoverPassword"
                 v-if="loading"
               >
@@ -48,7 +48,7 @@
 
               <button
                 type="submit"
-                class="w-full px-4 mt-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                class="w-full px-4 mt-4 py-2 text-white bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none"
                 @click="recoverPassword"
                 v-else
               >

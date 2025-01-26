@@ -79,7 +79,7 @@
             <a
               @click.prevent="submitForm"
               :disabled="loading"
-              class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150  border border-transparent rounded-lg bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 focus:outline-none focus:shadow-outline-purple"
             >
               <span v-if="loading"><i class="fa fa-spinner fa-spin"></i>&nbsp;creating...</span>
               <span v-else><i class="fa fa-save"></i>&nbsp;Create account</span>

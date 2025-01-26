@@ -119,6 +119,7 @@ export default {
       this.jobPositions = this.flaskData[category] || [];
 
       // Store job count for the selected category
+      // @ts-ignore
       localStorage.setItem('count_job_position', this.jobPositions.length);
     },
 
@@ -135,6 +136,7 @@ export default {
       });
 
       // Store the total job count in localStorage
+      // @ts-ignore
       localStorage.setItem('total_job_positions', totalJobs);
     },
 

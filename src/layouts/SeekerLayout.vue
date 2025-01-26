@@ -129,12 +129,20 @@
       <main class="flex-grow">
             <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
               <h1 class="text-2xl font-semibold">{{ pageTitle }}</h1>
-              <a
+              <!-- <a
                 href="/seeker/recommendation_job"
-                class="px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
+                class="px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-blue-700 to-blue-200 bg-clip-text text-transparent group-hover:bg-gradient-to-l group-hover:from-sky-400 group-hover:to focus:outline-none focus:ring focus:ring-primary focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
               >
                 <i class="fa fa-bell"></i>&nbsp;Notification
+              </a> -->
+
+              <a
+                href="/seeker/recommendation_job"
+                class="px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-teal-600 hover:to-teal-100 focus:outline-none focus:ring focus:ring-primary"
+              >
+                <i class="fa fa-bell text-white hover:text-teal-400"></i>&nbsp;Notification
               </a>
+
             </div>
 
         <slot></slot>
