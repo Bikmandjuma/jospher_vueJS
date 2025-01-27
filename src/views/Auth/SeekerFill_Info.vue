@@ -87,7 +87,7 @@
             type="submit"
             @click.prevent="submitForm"
             :disabled="loading"
-            class="block w-full px-6 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 disabled:opacity-50"
+            class="block w-full text-white mx-4 pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"
         >
             <span v-if="loading">
               <i class="fa fa-spinner fa-spin"></i>&nbsp;Creating...

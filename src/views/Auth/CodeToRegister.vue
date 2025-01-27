@@ -21,10 +21,11 @@
         <fieldset>
           <legend>Email Verification Code</legend>
           <div class="inputs-container">
-            <input v-model="code" type="text" maxlength="7" required @input="onInput" autofocus>
+            <input v-model="code" type="text" maxlength="7"  @input="onInput" autofocus>
           </div>
         </fieldset>
-        <button type="submit">Verify</button>
+        <button type="submit" v-if="loading" class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"><i class="fa fa-spinner fa-spin"></i>&nbsp;Verifying...</button>
+        <button type="submit" v-else class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"><i class="fa fa-check"></i>&nbsp;Verify</button>
       </form>
     </div>
   </template>
@@ -39,11 +40,13 @@
         code: '',
         message: '',
         message_localSto: '',
+        loading:false,
       };
     },
   
     methods: {
       async verifyCode() {
+        this.loading = true;
         const code = this.code.replace(/-/g, ''); // Format code properly
         const email = localStorage.getItem('seeker_email');
   
@@ -69,18 +72,26 @@
             }, 5000);
           }
         } catch (error) {
-          // Handle API or network errors
-          if (error.response && error.response.data) {
-            this.message = error.response.data.error || 'An unexpected error occurred.';
-            setTimeout(() => {
-              this.message = '';
-            }, 5000);
-          } else {
-            this.message = 'An error occurred while processing your request.';
-            setTimeout(() => {
-              this.message = '';
-            }, 5000);
-          }
+
+            if (error.response && error.response.data) {
+              // Check if 'errors' and 'code' exist in the response
+              if (error.response.data.error && error.response.data.error.code) {
+                this.message = error.response.data.error.code[0] || error.response.data.message || 'An unexpected error occurred.';
+                setTimeout( () =>{
+                  this.message='';
+                },5000);
+              } else {
+                this.message = error.response.data.message || 'An unexpected error occurred.';
+                setTimeout( () =>{
+                  this.message='';
+                },5000);
+              }
+
+            } else {
+              this.message = 'An error occurred while processing your request.';
+            }
+        }finally{
+          this.loading=false;
         }
       },
   

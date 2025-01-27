@@ -21,11 +21,11 @@
       <fieldset>
         <legend>Verify Code before reset</legend>
         <div class="inputs-container">
-          <input v-model="code" type="text" maxlength="7" required @input="onInput" autofocus>
+          <input v-model="code" type="text" maxlength="7" @input="onInput" autofocus>
         </div>
       </fieldset>
-      <button type="submit" v-if="loading"><i class="fa fa-spinner fa-spin"></i>&nbsp;Verifying...</button>
-      <button type="submit" v-else><i class="fa fa-check"></i>&nbsp;Verify</button>
+      <button type="submit" v-if="loading" class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"><i class="fa fa-spinner fa-spin"></i>&nbsp;Verifying...</button>
+      <button type="submit" v-else class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"><i class="fa fa-check"></i>&nbsp;Verify</button>
     </form>
   </div>
 </template>
@@ -68,11 +68,11 @@ export default {
 
         if (response.data.message) {
           this.message = response.data.message;
-          localStorage.setItem('code_valid_msg',response.data.message);
-          localStorage.setItem('pswd_resettor_code',code);
+          localStorage.setItem('code_valid_msg', response.data.message);
+          localStorage.setItem('pswd_resettor_code', code);
 
-          this.loading=false;
-          this.$router.push({name:'ResetPassword'});
+          this.loading = false;
+          this.$router.push({ name: 'ResetPassword' });
 
         } else if (response.data.error) {
           this.message = response.data.error;
@@ -81,10 +81,18 @@ export default {
       } catch (error) {
 
         if (error.response && error.response.data) {
-          this.message = error.response.data.message || error.response.data.error || 'An unexpected error occurred.';
-          // if (error.response.data.message == "Your code is expired") {
-          //   localStorage.removeItem('pswd_resettor_mail');
-          // }
+          // Check if 'errors' and 'code' exist in the response
+          if (error.response.data.errors && error.response.data.errors.code) {
+            this.message = error.response.data.errors.code[0] || error.response.data.message || 'An unexpected error occurred.';
+            setTimeout( () =>{
+              this.message='';
+            },5000);
+          } else {
+            this.message = error.response.data.message || 'An unexpected error occurred.';
+            setTimeout( () =>{
+              this.message='';
+            },5000);
+          }
         } else {
           this.message = 'An error occurred while processing your request.';
         }

@@ -33,10 +33,18 @@
           </div>
         </fieldset>
   
-        <button type="submit" v-if="loading" disabled>
+        <button 
+          type="submit"
+          v-if="loading"
+          class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold" 
+          disabled>
           <i class="fa fa-spinner fa-spin"></i>&nbsp;Submitting...
         </button>
-        <button type="submit" v-else>
+        <button
+          type="submit"
+          v-else
+          class="pt-2 pb-2 bg-gradient-to-r from-blue-600 to-sky-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 font-bold"
+          >
           <i class="fa fa-check"></i>&nbsp;Submit
         </button>
       </form>
