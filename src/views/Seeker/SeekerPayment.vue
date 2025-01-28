@@ -28,6 +28,11 @@
               </ul>
             </div>
   
+            <!-- <form action="/api/initiate-payment" method="POST">
+              <input type="text" name="phone" placeholder="Enter phone number" required />
+              <input type="number" name="amount" placeholder="Enter amount" required />
+              <button type="submit">Pay Now</button>
+          </form> -->
             <!-- Payment Form Section -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-md">
               <form method="POST" action="">
@@ -59,12 +64,21 @@
                 </div>
   
                 <!-- Submit Button -->
-                <button
+                <!-- <button
                   type="submit"
-                  class="w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+                  class="w-full text-white px-2 py-2 ml-4 mr-4 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 focus:outline-none font-semibold  transition"
                 >
                   Pay with MTN MoMo
-                </button>
+                </button> -->
+                <div class="flex justify-center"> <!-- Make sure the parent has enough space -->
+                  <button
+                    type="submit"
+                    class="w-full text-white px-2 py-2 ml-4 mr-4 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 focus:outline-none font-semibold transition"
+                  >
+                    Pay with MTN MoMo
+                  </button>
+                </div>
+
               </form>
             </div>
           </div>

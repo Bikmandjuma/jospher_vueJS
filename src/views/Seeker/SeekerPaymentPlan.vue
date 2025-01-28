@@ -20,13 +20,13 @@
                           <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 90 days (including bonus)</li>
                       </ul>
                   </div>
                   <!-- <div class="price-footer"> -->
                       <button
                         class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary"
-                        @click="redirectToPayment('5000', '3', '91')"
+                        @click="redirectToPayment('5000', '3', '90')"
                       >
                           Choose plan
                       </button>
@@ -53,7 +53,7 @@
                   <!-- <div class="price-footer"> -->
                       <button 
                          class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-red-700 to-red-200 hover:bg-gradient-to-l hover:from-red-700 hover:to-red-200 focus:outline-none focus:ring focus:ring-primary"
-                         @click="redirectToPayment('12000', '8', '243')">
+                         @click="redirectToPayment('12000', '8', '240')">
                           Choose plan
                       </button>
                   <!-- </div> -->
@@ -73,13 +73,13 @@
                           <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions depend on skills</li>
                           <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 456 days (including bonus)</li>
+                          <li><i class="far fa-check-circle"></i>&nbsp;Actively for 450 days (including bonus)</li>
                       </ul>
                   </div>
                   <div class="price-footer">
                       <button 
                           class="px-4 py-2 text-sm text-white rounded-md mb-3 bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary"
-                          @click="redirectToPayment('20000', '15', '456')">
+                          @click="redirectToPayment('20000', '15', '450')">
                           Choose plan
                       </button>
                   </div>

@@ -120,7 +120,7 @@
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 91 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 90 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
@@ -141,7 +141,7 @@
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 243 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 240 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">
@@ -162,7 +162,7 @@
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
                                     <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 456 days (including bonus)</li>
+                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 450 days (including bonus)</li>
                                 </ul>
                             </div>
                             <div class="price-footer">

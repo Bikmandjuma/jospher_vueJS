@@ -71,7 +71,7 @@
               'Access on job categories',
               'Access on job positions',
               'New opportunity notification',
-              'Actively for 91 days (including bonus)'
+              'Actively for 90 days (including bonus)'
             ],
             featured: false
           },
@@ -83,7 +83,7 @@
               'Access on job categories',
               'Access on job positions',
               'New opportunity notification',
-              'Actively for 243 days (including bonus)'
+              'Actively for 240 days (including bonus)'
             ],
             featured: true
           },
@@ -95,7 +95,7 @@
               'Access on job categories',
               'Access on job positions',
               'New opportunity notification',
-              'Actively for 456 days (including bonus)'
+              'Actively for 450 days (including bonus)'
             ],
             featured: false
           }
