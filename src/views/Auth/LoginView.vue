@@ -73,7 +73,7 @@ export default {
   methods: {
     async handleLogin() {
       this.loading = true;
-      this.errorMessage = null;  // Clear previous error message
+      this.errorMessage = null;
     
       try {
           if (!this.emailOrPhone || !this.password) {
@@ -84,7 +84,6 @@ export default {
             this.loading = false;
             return;
           }
-
         
           const loginData = {
             username: this.emailOrPhone,
@@ -107,41 +106,23 @@ export default {
 
             if (data.role === "admin") {
               console.log("Redirecting to AdminDashboard");
-              // setTimeout(() => {
-              //   this.loading = false;
-                this.$router.push({ name: "AdminDashboard" });
-              // }, 2000);
+              this.$router.push({ name: "AdminDashboard" });
             } else if (data.role === "user") {
               console.log("Redirecting to SeekerDashboard");
-              // setTimeout(() => {
-              //   this.loading = false;
-                this.$router.push({ name: "SeekerDashboard" });
-              // }, 2000);
+              this.$router.push({ name: "SeekerDashboard" });
             } else {
               console.error("Unknown role:", data.role);
               this.errorMessage = "Unknown role. Contact support.";
-              // setTimeout(() => {
-              //   this.loading = false;
-              //   this.errorMessage = null; // Clear error message after 3 seconds
-              // }, 3000);
             }
 
           } else {
             console.error("Login failed:", data);
             this.errorMessage = data.message || "Login failed. Please try again.";
-            // setTimeout(() => {
-            //   this.loading = false;
-            //   this.errorMessage = null; // Clear error message after 3 seconds
-            // }, 3000);
           }
 
       } catch (error) {
           console.error("Login error:", error);
           this.errorMessage = "An unexpected error occurred. Please try again later.";
-          // setTimeout(() => {
-          //   this.loading = false;
-          //   this.errorMessage = null; // Clear error message after 3 seconds
-          // }, 3000);
       }
       finally{
         this.loading = false;

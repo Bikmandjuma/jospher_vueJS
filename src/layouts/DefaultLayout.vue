@@ -258,21 +258,21 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-link">
                             <h2>Popular Links</h2>
-                            <a href="">About Us</a>
-                            <a href="">Contact Us</a>
-                            <a href="">Our Service</a>
-                            <a href="">Jobs</a>
-                            <a href="">Pricing Plan</a>
+                            <a href="/about">About Us</a>
+                            <a href="/services">Service</a>
+                            <a href="/jobs">Jobs</a>
+                            <a href="/pricing">Pricing</a>
+                            <a href="/contact">Contact Us</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-link">
                             <h2>Useful Links</h2>
-                            <a href="">Terms of use</a>
-                            <a href="">Privacy policy</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                            <a href="#">Terms of use</a>
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Cookies</a>
+                            <a href="#">Help</a>
+                            <a href="#">FQAs</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -287,7 +287,9 @@
                                 <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn" href=""><i class="fab fa-tiktok"></i></a>
                                 <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn" href=""><i class="fab fa-telegram"></i></a>
+                                <a class="btn" href=""><i class="fab fa-snapchat"></i></a>
                                 <a class="btn" href=""><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>

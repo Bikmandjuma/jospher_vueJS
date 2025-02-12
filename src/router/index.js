@@ -15,6 +15,7 @@ import Register from '../views/Auth/RegisterView.vue';
 import CodetoRegister from '../views/Auth/CodeToRegister.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/Admin/AdminDashboard.vue';
+import AdminViewSeeker from '../views/Admin/AdminViewSeeker.vue';
 import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 import SeekerInformation from '../views/Seeker/SeekerInformation.vue';
 import SeekerProfile from '../views/Seeker/SeekerProfile.vue';
@@ -90,8 +91,24 @@ const routes = [
     path: '/admin/dashboard',
     name: 'AdminDashboard',
     component: AdminDashboard,
-    meta: { layout: AdminLayout , requiresAuth : true},
+    meta: { 
+      layout: AdminLayout ,
+      requiresAuth : true,
+      pageTitle :"Dashboard"
+    },
   },
+
+  {
+    path: '/admin/view_seeker',
+    name: 'AdminViewSeeker',
+    component: AdminViewSeeker,
+    meta: { 
+      layout: AdminLayout ,
+      requiresAuth : true,
+      pageTitle :"View_seeker"
+    },
+  },
+
   {
     path: '/seeker/dashboard',
     name: 'SeekerDashboard',

@@ -81,7 +81,7 @@ export default {
       } catch (error) {
 
         if (error.response && error.response.data) {
-          // Check if 'errors' and 'code' exist in the response
+          
           if (error.response.data.errors && error.response.data.errors.code) {
             this.message = error.response.data.errors.code[0] || error.response.data.message || 'An unexpected error occurred.';
             setTimeout( () =>{
@@ -96,6 +96,7 @@ export default {
         } else {
           this.message = 'An error occurred while processing your request.';
         }
+
       } finally {
         this.loading = false;
       }
