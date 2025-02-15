@@ -49,8 +49,11 @@
             <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
               My jobs positions
             </h6>
-            <!-- <span class="text-xl font-semibold" v-if="totalJobPositions.length > 0">{{ totalJobPositions }}</span> -->
-            <span class="text-xl font-semibold">{{ totalJobPositions }}</span>
+            <!-- <span class="text-xl font-semibold" v-if="totalJobPositions.length > ''">{{ totalJobPositions }}</span>
+            <span class="text-xl font-semibold" v-else>{{ totalJobPositions }}</span> -->
+            <span class="text-xl font-semibold" v-if="totalJobPositions && totalJobPositions.length > 0">{{ totalJobPositions }}</span>
+            <span class="text-xl font-semibold" v-else>{{ totalJobPositions || 0 }}</span>
+
           </div>
           <div>
             <span class="fa fa-briefcase w-11 h-11 text-gray-300 dark:text-primary-dark"></span>
@@ -90,10 +93,10 @@ export default {
   name: 'SeekerDashboard',
   data() {
     return {
-      categoryJobCount: '...',
-      positionJobCount: '...',
-      myJob_categoryCount: '...',
-      totalJobPositions: '...',
+      categoryJobCount: 0,
+      positionJobCount: 0,
+      myJob_categoryCount: 0,
+      totalJobPositions: 0,
     };
   },
   mounted() {

@@ -9,7 +9,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <!-- Payment Info Section -->
           <div>
-            <h3 class="flex pb-4">Pay by using momo :&nbsp;<img src="https://images.africanfinancials.com/f41c3ca9-rw-mtn-logo.png" width="30" height="30" style="border-radius: 50%;"></h3>
+            <h3 class="flex pb-4">Pay by using MoMo-code :&nbsp;<img src="https://images.africanfinancials.com/f41c3ca9-rw-mtn-logo.png" width="30" height="30" style="border-radius: 50%;"></h3>
             <ul class="space-y-4 text-gray-700">
               <li>
                 <span class="font-semibold">Amount:</span>
@@ -17,84 +17,62 @@
               </li>
               <li>
                 <span class="font-semibold">Duration:</span>
-                {{ pay_duration == 15 ? 'Yearly + 3 Months' : pay_duration + ' Months' }}
+                {{ formattedDuration }}
               </li>
               <li>
                 <span class="font-semibold">Days:</span> {{ pay_days }} days actively
               </li>
             </ul>
+            <ul class="space-y-4 text-gray-700">
+              <li class="mt-2">
+                <p>Payment code is : <span class="py-1 px-2 bg-info rounded-lg text-white"><b>116363</b></span></p>
+              </li>
+             
+            </ul>
+
+            <ul>
+              <a
+                  style="text-decoration: none;"
+                  class="w-full mt-2 text-white text-center justify-center items-center px-2 py-2 ml-4 mr-4 rounded-xl bg-blue-400  focus:outline-none font-semibold transition"
+                >
+                *182*8*1*116363*{{ (pay_amount === '5000' ? '5000' : (pay_amount === '12000' ? '12000' : (pay_amount === '20000' ? '20000' : pay_amount)) ) + '#' }}
+                </a>
+            </ul>
+            
           </div>
+          
 
           <!-- Payment Form Section -->
           <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-            <!-- Success Message -->
-            <div v-if="message" class="p-2 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg text-center justify-center items-center" role="alert">
-              <i class="fa fa-exclamation-circle"></i> {{ message }}
-            </div>
 
-            <!-- Error Message -->
-            <div v-if="message_error" class="p-2 mb-4 text-sm text-red-700 bg-red-100 rounded-lg text-center justify-center items-center" role="alert">
-              <i class="fa fa-exclamation-circle"></i> {{ message_error }}
-            </div>
+              <div class="mb-4 ">
+                <h2 for="phone" class="block text-sm font-medium text-gray-600">Send us , payment proof on whatsapp&nbsp;<i class="fab fa-whatsapp"></i> </h2>
+                <label class="mt-2">Send us these three items</label>
+                <ul style="list-style-type: numeric;margin-top:2px;">
+                  <li>Reg-code , ex:25JSR00001</li>
+                  <li>Names : fname , lname</li>
+                  <li>proof of payment</li>
+                  ex:
+                  <div class="bg-white text-sm">
+                    <p class="p-2">
+                      Txld:18700555168. Your payment of {{ (pay_amount === '5000' ? '5000' : (pay_amount === '12000' ? '12000' : (pay_amount === '20000' ? '20000' : pay_amount)) ) }} RWF
+                      to  TECLA GROUPE Ltd 116363  has been completed at {{ formattedTime }} Your new balance:100 RWF . Fee was 0 RWF.
+                    </p>
+                  </div>
+                </ul>
+                <p class="sm:text-base md:text-md">You need to send all three required items (reg-code,your-names,payment-proof) to gain full access to {{ formattedDuration }} ({{pay_days}} days) of job positions for applying. Our WhatsApp number is <b><a href="https://wa.me/0795760041" target="_blank" style="text-decoration: none;">0795760041</a></b></p>
+                <!-- <p class="sm:text-sm">we are here to help you to get a dream job ,contact us anytime , we are available 24/7/365</p> -->
+                <p class="sm:text-base md:text-md">
+                  We are here to help you get your dream job. Contact us anytime; we are available 24/7/365.
+                </p>
 
-            <!-- Payment Form -->
-            <form @submit.prevent="submitPayment">
-              <!-- Phone Number Input -->
-              <div class="mb-4">
-                <label for="phone" class="block text-sm font-medium text-gray-600">Phone Number</label>
-                <input
-                  v-model="phone"
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  class="w-full mt-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                  placeholder="e.g., 0781234567"
-                />
-              </div>
-
-              <!-- Amount Input (Read-Only) -->
-              <div class="mb-4">
-                <label for="amount" class="block text-sm font-medium text-gray-600">Amount (Frw)</label>
-                <input
-                  type="number"
-                  id="amount"
-                  name="amount"
-                  class="w-full mt-2 p-3 border rounded-lg bg-gray-100 text-gray-600"
-                  :value="pay_amount"
-                  readonly
-                />
-              </div>
-
-              <!-- Hidden Duration Input -->
-              <div class="mb-4">
-                <input
-                  type="number"
-                  id="duration"
-                  name="duration"
-                  class="w-full mt-2 p-3 border rounded-lg bg-gray-100 text-gray-600"
-                  :value="pay_duration"
-                  style="display: none;"
-                />
               </div>
 
               <!-- Submit Button -->
               <div class="flex justify-center">
-                <button
-                  type="submit"
-                  class="w-full text-white px-2 py-2 ml-4 mr-4 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 focus:outline-none font-semibold transition"
-                  v-if="loading"
-                >
-                  <i class="fa fa-spinner fa-spin"></i>&nbsp;Paying...
-                </button>
-                <button
-                  type="submit"
-                  class="w-full text-white px-2 py-2 ml-4 mr-4 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-200 hover:bg-gradient-to-l hover:from-blue-600 hover:to-sky-200 focus:outline-none font-semibold transition"
-                  v-else
-                >
-                  Pay with MTN MoMo
-                </button>
+                
               </div>
-            </form>
+
           </div>
         </div>
       </div>
@@ -117,14 +95,41 @@ export default {
       loading: false,
       message: '',
       message_error: '',
+      formattedTime: '',
     };
   },
   mounted() {
+    this.updateTime();
     this.pay_amount = localStorage.getItem("pay_amount");
     this.pay_duration = localStorage.getItem("pay_duration");
     this.pay_days = localStorage.getItem("pay_days");
   },
+  computed: {
+    formattedDuration() {
+      if (this.pay_duration === "15") {
+        return 'Yearly + 3 Months';
+      } else if (this.pay_duration === "3" || this.pay_duration === "8") {
+        return `${this.pay_duration} Month${this.pay_duration > 1 ? 's' : ''}`;
+      } else {
+        return `${this.pay_duration} Months`;
+      }
+    }
+  },
   methods: {
+    updateTime() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed, so add 1
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      this.formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      
+      // Optionally, you can update the time every second to keep it current
+      setTimeout(this.updateTime, 5000); // Update every second
+    },
     async submitPayment() {
       this.loading = true;
       try {
@@ -187,7 +192,6 @@ export default {
         this.loading = false;
       }
     }
-
   }
 };
 </script>

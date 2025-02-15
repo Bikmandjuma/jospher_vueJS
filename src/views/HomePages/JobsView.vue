@@ -114,18 +114,18 @@ export default {
     };
   },
   methods: {
-    fetchjob_Pos_Cat_Count(){
-      axios
-        .get(`${flaskApiUrl}/count_position_category`)
-        .then((response) => {
-          console.log("Api response counts :",response.data)
-          this.job_position_count = response.data.total_job_positions
-          this.job_category_count = response.data.total_job_categories
-        })
-        .catch((error)  => {
-          console.log("error fetching data :",error)
-        });
-    },
+    // fetchjob_Pos_Cat_Count(){
+    //   axios
+    //     .get(`${flaskApiUrl}/count_position_category`)
+    //     .then((response) => {
+    //       console.log("Api response counts :",response.data)
+    //       this.job_position_count = response.data.total_job_positions
+    //       this.job_category_count = response.data.total_job_categories
+    //     })
+    //     .catch((error)  => {
+    //       console.log("error fetching data :",error)
+    //     });
+    // },
     fetchJobs() {
       axios
         .get(`${flaskApiUrl}/job_data`)
@@ -182,9 +182,15 @@ export default {
     },
   },
   mounted() {
+    const job_Position_counts = localStorage.getItem("job_Position_count");
+    const job_Category_counts = localStorage.getItem("job_Category_count");
+    
     this.fetchJobs();
-    this.fetchjob_Pos_Cat_Count();
+    this.job_position_count = job_Position_counts
+    this.job_category_count = job_Category_counts
+
     window.addEventListener('scroll', this.handleScroll); // Listen for scroll events
+  
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll); // Clean up listener when component is destroyed
