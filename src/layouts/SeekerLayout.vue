@@ -71,7 +71,7 @@
 
     <!-- Main Content -->
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-      <header class="relative bg-white dark:bg-darker sticky top-0 z-50">
+      <header class="relative bg-white dark:bg-darker sticky top-0" style="z-index:1;">
         <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
           <button 
             @click="toggleMobileMenu"
@@ -136,12 +136,12 @@
                 <i class="fa fa-bell"></i>&nbsp;Notification
               </a> -->
 
-              <a
+              <!-- <a
                 href="/seeker/recommendation_job"
                 class="px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-teal-600 hover:to-teal-100 focus:outline-none focus:ring focus:ring-primary"
               >
                 <i class="fa fa-bell text-white hover:text-teal-400"></i>&nbsp;Notification
-              </a>
+              </a> -->
 
             </div>
 
@@ -207,7 +207,7 @@
     </nav>
   </div>
 
-    <div ref="modal" class="modal">
+    <div ref="modal" class="modal z-50">
       <div class="modal-content text-center">
         <h3 class="mt-2"><u>Confirm Logout</u></h3>
         <p class="mt-2">Are you sure you want to log out of the system?</p>

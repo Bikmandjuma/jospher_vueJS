@@ -7,7 +7,7 @@
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
-                <h4 class="text-center items-center justify-center">
+                <h4 class="sticky top-0 z-5 bg-white text-center items-center justify-center">
                   Job Categories&nbsp;
                   <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span>
                 </h4>
@@ -26,6 +26,7 @@
                     >
                       ({{ getCategoryCount(category) }})
                     </span>
+                    <br/>
                   </li>
                 </ul>
               </div>
@@ -40,7 +41,7 @@
               <div class="space-y-4">
                 <h4
                   v-if="selectedCategory"
-                  class="sticky top-0 z-10 bg-white p-2 text-center justify-center items-center"
+                  class="sticky top-0 bg-white p-2 text-center justify-center items-center"
                 >
                   Jobs for <span class="text-primary">{{ selectedCategory }}</span> {{ jobPositions.length }}
                 </h4>
@@ -53,7 +54,11 @@
                       class="text-blue-600 hover:text-black"
                     >
                       <i class="fa fa-briefcase"></i>&nbsp;{{ job.title }}
-                    </a><hr>
+                    </a>
+                    <p>------------------------------------</p>
+                  </li>
+                  <li v-if="jobPositions.length > 5" class="text-center justify-center items-center">
+                    ------End------
                   </li>
                   
                 </ul>
