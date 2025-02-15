@@ -58,11 +58,24 @@
               <div class="testimonial-item-job">
                 <div class="testimonial-text">
                   <h5>{{ category }} (<i class="text-secondary">{{ jobs.length }}</i> jobs)</h5>
-                  <ul>
+                  
+                  <!-- <ul>
                     <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" :title="job">
-                      {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}
+                      {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}&nbsp;<i class="fa fa-eye float-right" :title="job"></i>
+                    </li>
+                  </ul> -->
+
+                  <!-- Add this to your Vue component or HTML file -->
+                  <ul>
+                    <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" class="relative">
+                      {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}&nbsp;
+
+                      <div class="tooltip absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 p-2 bg-black text-white text-sm rounded-lg">
+                        {{ job.length > 30 ? job.slice(0, 30) + '...' : job }}
+                      </div>
                     </li>
                   </ul>
+
                 </div>
               </div>
             </div>
@@ -188,16 +201,41 @@ export default {
 
 <style scoped>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  /* Tooltip hidden by default */
+  .tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Positioning and styling */
+    white-space: nowrap;
+  }
+
+  /* Show tooltip on hover */
+  li:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    animation: glow 1.5s ease-out infinite alternate;
+  }
+
+  /* Glowing animation */
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
+    }
+  }
 
 /* Search Section */
 .main_search_container {
