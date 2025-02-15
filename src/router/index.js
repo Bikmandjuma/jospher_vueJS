@@ -16,6 +16,8 @@ import CodetoRegister from '../views/Auth/CodeToRegister.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/Admin/AdminDashboard.vue';
 import AdminViewSeeker from '../views/Admin/AdminViewSeeker.vue';
+import AdminInformation from '../views/Admin/AdminInformation.vue';
+import AdminPassword from '../views/Admin/AdminPassword.vue';
 import SeekerDashboard from '../views/Seeker/SeekerDashboard.vue';
 import SeekerInformation from '../views/Seeker/SeekerInformation.vue';
 import SeekerProfile from '../views/Seeker/SeekerProfile.vue';
@@ -28,6 +30,7 @@ import SeekerPassword from '../views/Seeker/SeekerPassword.vue';
 import SeekerUpdateInfo from '../views/Seeker/SeekerUpdateInfo.vue';
 import SeekerResetCodePassword from '../views/Auth/CodeToResetPassword.vue';
 import SeekerResetPassword from '../views/Auth/ResetPassword.vue';
+import AdminUpdateInfo from '../views/Admin/AdminUpdateInfo.vue';
 
 const routes = [
   {
@@ -106,6 +109,39 @@ const routes = [
       layout: AdminLayout ,
       requiresAuth : true,
       pageTitle :"View_seeker"
+    },
+  },
+
+  {
+    path: '/admin/Information',
+    name: 'AdminInformation',
+    component: AdminInformation,
+    meta: { 
+      layout: AdminLayout ,
+      requiresAuth : true,
+      pageTitle :"Information"
+    },
+  },
+
+  {
+    path: '/admin/Password',
+    name: 'AdminPassword',
+    component: AdminPassword,
+    meta: { 
+      layout: AdminLayout ,
+      requiresAuth : true,
+      pageTitle :"Password"
+    },
+  },
+
+  {
+    path: '/admin/updateInfo',
+    name: 'AdminUpdateInfo',
+    component: AdminUpdateInfo,
+    meta: { 
+      layout: AdminLayout ,
+      requiresAuth : true,
+      pageTitle :"Password"
     },
   },
 

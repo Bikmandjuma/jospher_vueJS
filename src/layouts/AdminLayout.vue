@@ -95,8 +95,8 @@
                 class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark z-50"
                 ref="dropdownMenu"
               >
-                <a href="/seeker/information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</a>
-                <a href="/seeker/password" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-key"></i>&nbsp;Password</a>
+                <a href="/admin/Information" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-list-alt"></i>&nbsp;Info</a>
+                <a href="/admin/Password" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-key"></i>&nbsp;Password</a>
                 <!-- <a href="/seeker/profile" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"><i class="fa fa-image"></i>&nbsp;Profile</a> -->
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary openModal" @click="openModal"><i class="fa fa-lock"></i>&nbsp;Logout</a>
               </div>
@@ -141,7 +141,7 @@
           {{ truncatedFirstName }}
          </a>
          <a
-          href="/admin/dashboard"
+          href="/admin/dashboard" 
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
         >
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +165,6 @@
         <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
           <a href="/admin/view_seeker" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Categories</a>
         </div>
-
         
       </div>
     </nav>

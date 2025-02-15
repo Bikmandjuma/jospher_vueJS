@@ -60,7 +60,7 @@
                   <h5>{{ category }} (<i class="text-secondary">{{ jobs.length }}</i> jobs)</h5>
                   <ul>
                     <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" :title="job">
-                      {{ job.length > 34 ? job.slice(0, 34) + '...' : job }}
+                      {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}
                     </li>
                   </ul>
                 </div>
