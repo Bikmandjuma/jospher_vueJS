@@ -279,7 +279,7 @@
                         
                         <div class="footer-contact">
                             <h2>Get In Touch</h2>
-                            <p><i class="fa fa-map-marker-alt"></i>&nbsp;KG 576 St , ave 25</p>
+                            <p><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St , 25 ave</p>
                             <!-- <p><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
                             <p><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
                             <div class="footer-social">
@@ -290,7 +290,7 @@
                                 <a class="btn" href=""><i class="fab fa-youtube"></i></a>
                                 <a class="btn" href=""><i class="fab fa-telegram"></i></a>
                                 <a class="btn" href=""><i class="fab fa-snapchat"></i></a>
-                                <a class="btn" href=""><i class="fab fa-whatsapp"></i></a>
+                                <a class="btn" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
 

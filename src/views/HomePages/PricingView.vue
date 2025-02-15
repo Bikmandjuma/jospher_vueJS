@@ -26,7 +26,7 @@
                 </ul>
               </div>
               <div class="price-footer">
-                <button class="btn btn-custom openModal text-white" @click="openModal">Choose plan</button>
+                <button class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary openModal" @click="openModal">Choose plan</button>
               </div>
             </div>
           </div>
