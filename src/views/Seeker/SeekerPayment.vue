@@ -33,7 +33,7 @@
           </div>
 
           <div class="whatsapp-section">
-            <h4>Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i>,to get access</h4>
+            <h4 class="pb-2">Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i>,to get access</h4>
             <label>Send us these three items</label>
             <ul class="list-items">
               <li>Reg-code : <b>{{ userData.user_code }}</b></li>
@@ -106,6 +106,7 @@ export default {
       if (this.pay_duration === "15") {
         return 'Yearly + 3 Months';
       } else if (this.pay_duration === "3" || this.pay_duration === "8") {
+        // @ts-ignore
         return `${this.pay_duration} Month${this.pay_duration > 1 ? 's' : ''}`;
       } else {
         return `${this.pay_duration} Months`;
