@@ -178,6 +178,7 @@ export default {
           this.noCategoriesMessage = 'Error fetching job categories. Please try again.';
         });
     },
+    
     fetchUserData(token) {
       axios
         .get(`${laravelApiUrl}/user/view_info`, {

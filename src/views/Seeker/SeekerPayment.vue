@@ -36,17 +36,25 @@
             <h2>Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i></h2>
             <label>Send us these three items</label>
             <ul class="list-items">
-              <li>Reg-code, ex: 25JSR00001</li>
-              <li>Names: fname, lname</li>
-              <li>Proof of payment</li>
+              <li>Reg-code : <b>{{ userData.user_code }}</b></li>
+              <li>Names : <b>{{ userData.firstname }} {{ userData.lastname }}</b></li>
+              <li>Proof-payment</li>
+                  <p>Ex:</p>
+                  <div class="payment-example">
+                    <p>
+                      Txld:18700555168. Your payment of {{ pay_amount }} RWF to TECLA GROUPE Ltd 116363 has been completed at {{ formattedTime }}. Your new balance: 100 RWF. Fee was 0 RWF.
+                    </p>
+                  </div>
             </ul>
+            <hr>
+            <!-- <p>Ex:</p>
             <div class="payment-example">
               <p>
                 Txld:18700555168. Your payment of {{ pay_amount }} RWF to TECLA GROUPE Ltd 116363 has been completed at {{ formattedTime }}. Your new balance: 100 RWF. Fee was 0 RWF.
               </p>
-            </div>
+            </div> -->
             <p class="whatsapp-instruction">
-              You need to send all three required items (reg-code, your-names, payment-proof) to gain full access to {{ formattedDuration }} ({{ pay_days }} days) of job positions for applying. Our WhatsApp number is <b><a href="https://wa.me/0795760041" target="_blank">0795760041</a></b>
+              You need to send all three required items (Reg-code, Names, payment-proof) to gain full access to {{ formattedDuration }} ({{ pay_days }} days) of job positions for applying. Our WhatsApp number is <b><a href="https://wa.me/+250795760041" target="_blank">0795760041</a></b>
             </p>
           </div>
         </div>
@@ -63,6 +71,11 @@ export default {
   name: "SeekerPayment",
   data() {
     return {
+      userData: {
+        user_code: '',
+        firstname: '',
+        lastname: '',
+      },
       phone: '',
       pay_amount: "",
       pay_duration: "",
@@ -71,6 +84,7 @@ export default {
       message: '',
       message_error: '',
       formattedTime: '',
+      
     };
   },
   mounted() {
@@ -78,6 +92,14 @@ export default {
     this.pay_amount = localStorage.getItem("pay_amount");
     this.pay_duration = localStorage.getItem("pay_duration");
     this.pay_days = localStorage.getItem("pay_days");
+
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      this.$router.push({ name: 'Login' });
+    } else {
+      this.fetchUserData(token);
+    }
+
   },
   computed: {
     formattedDuration() {
@@ -91,6 +113,27 @@ export default {
     }
   },
   methods: {
+    fetchUserData(token) {
+      axios
+        .get(`${laravelApiUrl}/user/view_info`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then((response) => {
+          if (response.data?.user_info) {
+            this.userData = response.data.user_info;
+          } else {
+            console.error('User data not found');
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          if (error.response?.status === 401) {
+            this.$router.push({ name: 'Login' });
+          }
+        });
+    },
     updateTime() {
       const now = new Date();
       const year = now.getFullYear();
