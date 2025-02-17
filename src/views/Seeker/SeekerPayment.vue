@@ -38,7 +38,7 @@
             <ul class="list-items">
               <li>Reg-code : <b>{{ userData.user_code }}</b></li>
               <li>Names : <b>{{ userData.firstname }} {{ userData.lastname }}</b></li>
-              <li>Proof-payment</li>
+              <li>Payment-proof</li>
                   <p>Ex:</p>
                   <div class="payment-example">
                     <p>
