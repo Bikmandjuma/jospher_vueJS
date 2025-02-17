@@ -33,7 +33,7 @@
           </div>
 
           <div class="whatsapp-section">
-            <h2>Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i></h2>
+            <h4>Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i>,to get access</h4>
             <label>Send us these three items</label>
             <ul class="list-items">
               <li>Reg-code : <b>{{ userData.user_code }}</b></li>
@@ -72,9 +72,9 @@ export default {
   data() {
     return {
       userData: {
-        user_code: '',
-        firstname: '',
-        lastname: '',
+        user_code: '...',
+        firstname: '...',
+        lastname: '...',
       },
       phone: '',
       pay_amount: "",
