@@ -1,78 +1,53 @@
 <template>
-  <section class="py-8 px-4 bg-gray-100 min-h-screen">
-    <div class="max-w-4xl mx-auto">
-      <!-- Page Title -->
-      <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">MTN MoMo Payment</h1>
+  <section class="payment-section">
+    <div class="container">
+      <h1 class="page-title">MTN MoMo Payment</h1>
 
-      <div class="bg-white shadow-lg rounded-lg p-6">
-        <!-- Payment Details -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Payment Info Section -->
+      <div class="payment-box">
+        <div class="payment-grid">
           <div>
-            <h3 class="flex pb-4">Pay by using MoMo-code :&nbsp;<img src="https://images.africanfinancials.com/f41c3ca9-rw-mtn-logo.png" width="30" height="30" style="border-radius: 50%;"></h3>
-            <ul class="space-y-4 text-gray-700">
+            <h3 class="payment-header">
+              Pay by using MoMo-code:&nbsp;
+              <img src="https://images.africanfinancials.com/f41c3ca9-rw-mtn-logo.png" class="momo-logo">
+            </h3>
+            <ul class="payment-details">
               <li>
-                <span class="font-semibold">Amount:</span>
+                <span class="label">Amount:</span>
                 {{ pay_amount == '5000' ? '5,000' : pay_amount == '12000' ? '12,000' : pay_amount == '20000' ? '20,000' : pay_amount }} Frw
               </li>
-              <li>
-                <span class="font-semibold">Duration:</span>
-                {{ formattedDuration }}
-              </li>
-              <li>
-                <span class="font-semibold">Days:</span> {{ pay_days }} days actively
-              </li>
+              <li><span class="label">Duration:</span> {{ formattedDuration }}</li>
+              <li><span class="label">Days:</span> {{ pay_days }} days actively</li>
             </ul>
-            <ul class="space-y-4 text-gray-700">
-              <li class="mt-2">
-                <p>Payment code is : <span class="py-1 px-2 bg-info rounded-lg text-white"><b>116363</b></span></p>
+
+            <ul class="payment-code">
+              <li>
+                <p>Payment code is: <span class="code-box">116363</span></p>
               </li>
-             
             </ul>
 
             <ul>
-              <a
-                  style="text-decoration: none;"
-                  class="w-full mt-2 text-white text-center justify-center items-center px-2 py-2 ml-4 mr-4 rounded-xl bg-blue-400  focus:outline-none font-semibold transition"
-                >
-                *182*8*1*116363*{{ (pay_amount === '5000' ? '5000' : (pay_amount === '12000' ? '12000' : (pay_amount === '20000' ? '20000' : pay_amount)) ) + '#' }}
-                </a>
+              <a class="payment-link">
+                *182*8*1*116363*{{ pay_amount }}#
+              </a>
             </ul>
-            
           </div>
-          
 
-          <!-- Payment Form Section -->
-          <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-
-              <div class="mb-4 ">
-                <h2 for="phone" class="block text-sm font-medium text-gray-600">Send us , payment proof on whatsapp&nbsp;<i class="fab fa-whatsapp"></i> </h2>
-                <label class="mt-2">Send us these three items</label>
-                <ul style="list-style-type: numeric;margin-top:2px;">
-                  <li>Reg-code , ex:25JSR00001</li>
-                  <li>Names : fname , lname</li>
-                  <li>proof of payment</li>
-                  ex:
-                  <div class="bg-white text-sm">
-                    <p class="p-2">
-                      Txld:18700555168. Your payment of {{ (pay_amount === '5000' ? '5000' : (pay_amount === '12000' ? '12000' : (pay_amount === '20000' ? '20000' : pay_amount)) ) }} RWF
-                      to  TECLA GROUPE Ltd 116363  has been completed at {{ formattedTime }} Your new balance:100 RWF . Fee was 0 RWF.
-                    </p>
-                  </div>
-                </ul>
-                <p class="sm:text-base md:text-md">You need to send all three required items (reg-code,your-names,payment-proof) to gain full access to {{ formattedDuration }} ({{pay_days}} days) of job positions for applying. Our WhatsApp number is <b><a href="https://wa.me/0795760041" target="_blank" style="text-decoration: none;">0795760041</a></b></p>
-                <!-- <p class="sm:text-sm">we are here to help you to get a dream job ,contact us anytime , we are available 24/7/365</p> -->
-                <p class="sm:text-base md:text-md">
-                  We are here to help you get your dream job. Contact us anytime; we are available 24/7/365.
-                </p>
-
-              </div>
-
-              <!-- Submit Button -->
-              <div class="flex justify-center">
-                
-              </div>
-
+          <div class="whatsapp-section">
+            <h2>Send us payment proof on WhatsApp&nbsp;<i class="fab fa-whatsapp"></i></h2>
+            <label>Send us these three items</label>
+            <ul class="list-items">
+              <li>Reg-code, ex: 25JSR00001</li>
+              <li>Names: fname, lname</li>
+              <li>Proof of payment</li>
+            </ul>
+            <div class="payment-example">
+              <p>
+                Txld:18700555168. Your payment of {{ pay_amount }} RWF to TECLA GROUPE Ltd 116363 has been completed at {{ formattedTime }}. Your new balance: 100 RWF. Fee was 0 RWF.
+              </p>
+            </div>
+            <p class="whatsapp-instruction">
+              You need to send all three required items (reg-code, your-names, payment-proof) to gain full access to {{ formattedDuration }} ({{ pay_days }} days) of job positions for applying. Our WhatsApp number is <b><a href="https://wa.me/0795760041" target="_blank">0795760041</a></b>
+            </p>
           </div>
         </div>
       </div>
@@ -195,3 +170,120 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.payment-section {
+  padding: 2rem 1rem;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.payment-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .payment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.momo-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.payment-details {
+  list-style: none;
+  padding: 0;
+}
+
+.payment-details li {
+  margin-bottom: 0.5rem;
+  color: #4a4a4a;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.payment-code {
+  margin-top: 1rem;
+}
+
+.code-box {
+  padding: 0.25rem 0.5rem;
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 5px;
+}
+
+.payment-link {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #60a5fa;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.whatsapp-section {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-items {
+  list-style-type: decimal;
+  margin-top: 0.5rem;
+}
+
+.payment-example {
+  background: white;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.whatsapp-instruction {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.whatsapp-instruction a {
+  text-decoration: none;
+  color: #007bff;
+}
+</style>

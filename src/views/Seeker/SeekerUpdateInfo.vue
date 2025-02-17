@@ -14,9 +14,9 @@
                     :src="userData.image ? require(`../../assets/seeker_style/images/${userData.image}`) : require('../../assets/seeker_style/images/user.png')"
                     alt="User Image"
                     />
-                    <router-link to="/seeker/profile"> 
+                    <!-- <router-link to="/seeker/profile"> 
                     <i class="fa fa-pencil editImage text-primary"></i>
-                    </router-link>
+                    </router-link> -->
                     <h5 class="font-semibold text-lg mt-4">{{ userData.user_code || '...' }} , {{ userData.user_name || '...' }}</h5>
 
                     <router-link
