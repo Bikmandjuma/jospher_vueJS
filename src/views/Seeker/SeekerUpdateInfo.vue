@@ -134,6 +134,7 @@
                                     type="text"
                                     class="w-full border rounded p-2"
                                     placeholder="Enter phone number"
+                                    disabled
                                 />
                                 </div>
                                 <div>
@@ -144,6 +145,7 @@
                                     type="email"
                                     class="w-full border rounded p-2"
                                     placeholder="Enter email"
+                                    disabled
                                 />
                                 </div>
                                 <div>

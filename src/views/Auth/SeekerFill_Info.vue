@@ -14,12 +14,19 @@
           <!-- First Name -->
           <label class="block text-sm mb-4">
             <span class="text-gray-700 dark:text-gray-400">First Name</span>
+            <!-- <input
+              type="text"
+              class="block w-full mt-1 p-2 text-sm form-input"
+              placeholder="Enter firstname"
+            /> -->
             <input
               type="text"
               v-model="form.firstname"
-              class="block w-full mt-1 text-sm form-input"
+              class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500"
               placeholder="Enter firstname"
             />
+
+
             <span v-if="errors.firstname" class="text-red-500 text-sm">{{ errors.firstname[0] }}</span>
           </label>
 
@@ -29,19 +36,19 @@
             <input
               type="text"
               v-model="form.lastname"
-              class="block w-full mt-1 text-sm form-input"
-              placeholder="Enter lastname"
+              class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500"              placeholder="Enter lastname"
             />
             <span v-if="errors.lastname" class="text-red-500 text-sm">{{ errors.lastname[0] }}</span>
           </label>
 
           <!-- Gender -->
           <label class="block text-sm mb-4">
-            <span class="text-gray-700 dark:text-gray-400">Gender</span>
-            <select v-model="form.gender" class="block w-full mt-1 text-sm form-input">
+   
+            <span class="text-gray-600">Gender</span>
+            <select v-model="form.gender" class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500">
               <option value="">Select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
             <span v-if="errors.gender" class="text-red-500 text-sm">{{ errors.gender[0] }}</span>
           </label>
@@ -52,7 +59,7 @@
             <input
               type="date"
               v-model="form.birthdate"
-              class="block w-full mt-1 text-sm form-input"
+              class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500"
             />
             <span v-if="errors.birthdate" class="text-red-500 text-sm">{{ errors.birthdate[0] }}</span>
           </label>
@@ -63,7 +70,7 @@
             <input
               type="password"
               v-model="form.password"
-              class="block w-full mt-1 text-sm form-input"
+              class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500"
               placeholder="Enter password"
             />
             <span v-if="errors.password" class="text-red-500 text-sm">{{ errors.password[0] }}</span>
@@ -75,7 +82,7 @@
             <input
               type="password"
               v-model="form.password_confirmation"
-              class="block w-full mt-1 text-sm form-input"
+              class="block w-full mt-1 p-2 text-sm form-input border-2 border-gray-300 rounded-md focus:border-blue-500"
               placeholder="Confirm password"
             />
             <span v-if="errors.password_confirmation" class="text-red-500 text-sm">{{ errors.password_confirmation[0] }}</span>
