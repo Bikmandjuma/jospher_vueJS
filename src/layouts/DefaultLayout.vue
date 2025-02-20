@@ -245,62 +245,73 @@
 
     <!-- Footer Start -->
     <div class="footer" v-if="!hide_footer_authPages">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-contact">
-                            <h2>Welcome</h2>
-                            <p>
-                              <strong>Job Sphere Rwanda</strong>, your one-stop platform for job searching! We gather listings from multiple platforms to help you find opportunities faster. Receive personalized job alerts and never miss an opportunity. Let us help you streamline your job search and focus on landing your dream job.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-link">
-                            <h2>Popular Links</h2>
-                            <a href="/about">About Us</a>
-                            <a href="/services">Service</a>
-                            <a href="/jobs">Jobs</a>
-                            <a href="/pricing">Pricing</a>
-                            <a href="/contact">Contact Us</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-link">
-                            <h2>Useful Links</h2>
-                            <a href="#">Terms of use</a>
-                            <a href="#">Privacy policy</a>
-                            <a href="#">Cookies</a>
-                            <a href="#">Help</a>
-                            <a href="#">FQAs</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        
-                        <div class="footer-contact">
-                            <h2>Get In Touch</h2>
-                            <p><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St , 25 ave</p>
-                            <!-- <p><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
-                            <p><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
-                            <div class="footer-social">
-                                <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn" href=""><i class="fab fa-tiktok"></i></a>
-                                <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn" href=""><i class="fab fa-youtube"></i></a>
-                                <a class="btn" href=""><i class="fab fa-telegram"></i></a>
-                                <a class="btn" href=""><i class="fab fa-snapchat"></i></a>
-                                <a class="btn" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-wrap justify-between space-y-8 md:space-y-0">
+            <!-- Welcome Section -->
+            <div class="w-full lg:w-1/3 md:w-1/2">
+                <div class="footer-contact">
+                    <h2 class="text-2xl font-bold mb-4">Welcome</h2>
+                    <p>
+                        <strong>Job Sphere Rwanda</strong>, your one-stop platform for job searching! We gather listings from multiple platforms to help you find opportunities faster. Receive personalized job alerts and never miss an opportunity. Let us help you streamline your job search and focus on landing your dream job.
+                    </p>
+                </div>
+            </div>
 
+            <!-- Popular Links Section -->
+            <div class="w-full lg:w-1/3 md:w-1/2">
+                <div class="footer-link">
+                    <h2 class="text-2xl font-bold mb-4">Popular Links</h2>
+                    <a href="/about" class="block mb-2 text-gray-700 hover:text-blue-600">About Us</a>
+                    <a href="/services" class="block mb-2 text-gray-700 hover:text-blue-600">Service</a>
+                    <a href="/jobs" class="block mb-2 text-gray-700 hover:text-blue-600">Jobs</a>
+                    <a href="/pricing" class="block mb-2 text-gray-700 hover:text-blue-600">Pricing</a>
+                    <a href="/contact" class="block mb-2 text-gray-700 hover:text-blue-600">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 md:w-1/2">
+                <div class="footer-link">
+                    <h2>Useful Links</h2>
+                        <a href="#">Terms of use</a>
+                        <a href="#">Privacy policy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Help</a>
+                        <a href="#">FQAs</a>
+                    </div>
+            </div>
+
+            <!-- Get In Touch Section -->
+            <div class="w-full lg:w-1/3 md:w-1/2">
+                <div class="footer-contact">
+                    <h2 class="text-2xl font-bold mb-4">Get In Touch</h2>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St, 25 ave</p>
+                    <!-- <p class="mb-2"><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
+                    <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
+                    <div class="footer-social flex space-x-4">
+                        <a class="btn" href=""><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
+                        <a class="btn" href=""><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
+                        <a class="btn" href=""><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
+                        <a class="btn" href=""><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
+                        <a class="btn" href=""><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a>
+                        <a class="btn" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
+                            <i class="fab fa-whatsapp text-green-500 hover:text-green-700"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="container copyright">
-              <p>Copyright &copy; 2023 - {{ currentYear }} <a href="#">JOB SPHERE RWANDA</a>, All Rights Reserved. <!-- Designed By <a href="#">Savvy coder</a> --></p>
-            </div>
         </div>
+    </div>
+    
+    <!-- Copyright Section -->
+    <div class="container mx-auto px-4 py-4 border-t border-gray-300 text-center">
+        <p class="text-gray-700">
+            Copyright &copy; 2023 - {{ currentYear }} <a href="#" class="text-blue-600 hover:text-blue-800">JOB SPHERE RWANDA</a>, All Rights Reserved.
+        </p>
+    </div>
+</div>
+
         <!-- Footer End -->
   </div>
 </template>
