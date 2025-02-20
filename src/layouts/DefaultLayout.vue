@@ -270,12 +270,14 @@
                 </div>
 
                 <!-- Get In Touch Section -->
-                <div class="w-full lg:w-1/3 md:w-1/2 text-center items-center justify-cente">
+                <div class="w-full lg:w-1/3 md:w-1/2">
                     <div class="footer-contact">
-                        <h2 class="text-2xl font-bold mb-4">Get In Touch</h2>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St, 25 ave</p>
-                        <!-- <p class="mb-2"><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
-                        <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
+                        <div class="text-center items-center justify-cente">
+                          <h2 class="text-2xl font-bold mb-4">Get In Touch</h2>
+                          <p class="mb-2"><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St, 25 ave</p>
+                          <!-- <p class="mb-2"><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
+                          <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
+                        </div>
                         <div class="footer-social flex space-x-1">
                             <a class="btn" href="" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
                             <a class="btn" href="" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
