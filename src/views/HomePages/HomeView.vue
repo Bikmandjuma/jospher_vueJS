@@ -42,13 +42,13 @@
                             <p>
                                 Welcome to <strong>Job sphere Rwanda</strong>, your one-stop platform for streamlined job searching! We understand how time-consuming it can be to browse multiple job sites, so we bring together listings from a variety of platforms to help job seekers find opportunities faster and easier. Our mission is to make job hunting more accessible, giving you more time to focus on preparing for your dream job.
                                 </p>
-                                <p>
+                                <p style="margin-top:5px;">
                                 At <strong>Job sphere Rwanda</strong> (jobs in rwanda), we proudly offer <strong><span v-if="job_category_count > 0">{{ job_category_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job categories</strong> and <strong><span v-if="job_position_count.length > 0">{{  job_position_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
                                 </p>
-                                <p>
+                                <p style="margin-top:5px;">
                                 When new job postings appear on any of sourced platforms, you’ll receive a personalized email notification that matches your unique skills and chosen job categories. Whether you're a software developer, accountant, technician, secretary, or lawyer, we’ll make sure you’re alerted about roles relevant to your field, such as openings in Java development, accounting, technical support, and more.
                                 </p>
-                                <p>
+                                <p style="margin-top:5px;">
                                 Our real-time alert system keeps you in the loop with the latest job opportunities without the need for constant searching, so you’ll always be among the first to know and apply. If you're looking for a smart, time-saving solution to streamline your job search, <strong>job sphere rwanda</strong> is here to help. Let us do the work of finding new opportunities while you focus on landing your ideal position.
                             </p>
                         
@@ -206,7 +206,7 @@
                                     <i class="fa fa-ad" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Access to a Wide and Relevant Audience</h3>
-                                        <p>Advertise your job postings or services to thousands of active job seekers from diverse fields, ranging from software development to accounting, ensuring your ads reach the right candidates.</p>
+                                        <p style="margin-top:5px;">Advertise your job postings or services to thousands of active job seekers from diverse fields, ranging from software development to accounting, ensuring your ads reach the right candidates.</p>
                                         
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
                                     <i class="fa fa-bullhorn" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Enhanced Visibility Through Real-Time Alerts</h3>
-                                        <p>Your advertisements will be part of our real-time notifications, directly sent to users based on their selected job categories, providing maximum exposure to a targeted audience</p>
+                                        <p style="margin-top:5px;">Your advertisements will be part of our real-time notifications, directly sent to users based on their selected job categories, providing maximum exposure to a targeted audience</p>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                     <i class="fa fa-newspaper" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Focused Advertising for Specific Professions</h3>
-                                        <p>With {{ job_category_count }} job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
+                                        <p style="margin-top:5px;">With {{ job_category_count }} job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                                     <i class="fa fa-ad" style="color: #E81C2E;"></i>
                                     <div class="location-text">
                                         <h3>Cost-Effective Advertising with Measurable Results</h3>
-                                        <p>Showcase your brand or job postings on the platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
+                                        <p style="margin-top:5px;">Showcase your brand or job postings on the platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
                                     </div>
                                 </div>
                             </div>
