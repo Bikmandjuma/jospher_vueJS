@@ -245,7 +245,7 @@
 
     <!-- Footer Start -->
     <div class="footer" v-if="!hide_footer_authPages">
-        <div class="container mx-auto px-4 py-8">
+        <div class="container mx-auto px-4 py-1">
             <div class="flex flex-wrap justify-between space-y-8 md:space-y-0">
                 
               <div class="w-full lg:w-1/3 md:w-1/2 text-center items-center justify-cente">
@@ -268,7 +268,6 @@
                         <a href="/contact" class="block mb-2 text-gray-700 hover:text-blue-600">Contact Us</a>
                     </div>
                 </div>
-                
 
                 <!-- Get In Touch Section -->
                 <div class="w-full lg:w-1/3 md:w-1/2 text-center items-center justify-cente">
