@@ -258,7 +258,7 @@
             </div>
 
             <!-- Popular Links Section -->
-            <div class="w-full lg:w-1/3 md:w-1/2">
+            <div class="w-full lg:w-1/3 md:w-1/2 text-center items-center justify-center">
                 <div class="footer-link">
                     <h2 class="text-2xl font-bold mb-4">Popular Links</h2>
                     <a href="/about" class="block mb-2 text-gray-700 hover:text-blue-600">About Us</a>
