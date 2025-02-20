@@ -268,17 +268,7 @@
                     <a href="/contact" class="block mb-2 text-gray-700 hover:text-blue-600">Contact Us</a>
                 </div>
             </div>
-
-            <div class="w-full lg:w-1/3 md:w-1/2">
-                <div class="footer-link">
-                    <h2>Useful Links</h2>
-                        <a href="#">Terms of use</a>
-                        <a href="#">Privacy policy</a>
-                        <a href="#">Cookies</a>
-                        <a href="#">Help</a>
-                        <a href="#">FQAs</a>
-                    </div>
-            </div>
+            
 
             <!-- Get In Touch Section -->
             <div class="w-full lg:w-1/3 md:w-1/2">
