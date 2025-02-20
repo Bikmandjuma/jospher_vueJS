@@ -277,15 +277,15 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt"></i>&nbsp;KG 567 St, 25 ave</p>
                         <!-- <p class="mb-2"><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
                         <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
-                        <div class="footer-social flex space-x-4">
-                            <a class="btn" href=""><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
-                            <a class="btn" href=""><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
-                            <a class="btn" href=""><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
-                            <a class="btn" href=""><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
-                            <a class="btn" href=""><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
-                            <a class="btn" href=""><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
-                            <a class="btn" href=""><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a>
-                            <a class="btn" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
+                        <div class="footer-social flex space-x-1">
+                            <a class="btn" href="" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
+                            <a class="btn" href="" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
+                            <a class="btn" href="" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
+                            <a class="btn" href="" title="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
+                            <a class="btn" href="" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
+                            <a class="btn" href="" title="Telegram"><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
+                            <a class="btn" href="" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a>
+                            <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
                                 <i class="fab fa-whatsapp text-green-500 hover:text-green-700"></i>
                             </a>
                         </div>
