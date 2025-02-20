@@ -278,7 +278,7 @@
                           <!-- <p class="mb-2"><i class="fa fa-phone-alt"></i>&nbsp;+250780000000</p> -->
                           <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
                         </div>
-                        <div class="footer-social flex space-x-1">
+                        <div class="footer-social flex">
                             <a class="btn" href="" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
                             <a class="btn" href="" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
                             <a class="btn" href="" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
