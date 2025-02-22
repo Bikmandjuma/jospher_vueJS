@@ -298,7 +298,7 @@
         <!-- Copyright Section -->
         <div class="container mx-auto px-4 py-4 border-t border-gray-300 text-center">
             <p class="text-light">
-                Copyright &copy; 2023 - {{ currentYear }} <a href="#" class="text-red-500 hover:text-blue-800">JOB SPHERE RWANDA</a>, All Rights Reserved.
+                Copyright &copy; 2023 - {{ currentYear }} <a href="#" class="text-red-600 hover:text-blue-800"><b>JOB SPHERE RWANDA</b></a>, All Rights Reserved.
             </p>
         </div>
     </div>
