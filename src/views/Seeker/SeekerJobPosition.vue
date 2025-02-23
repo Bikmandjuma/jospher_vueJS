@@ -8,8 +8,10 @@
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
                 <h4 class="sticky top-0 z-5 bg-white text-center items-center justify-center">
+                  
                   Job Categories&nbsp;
                   <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span>
+                  &nbsp;&nbsp;<router-link to="/seeker/job_category"><i class="fa fa-plus text-primary"></i></router-link>
                 </h4>
 
                 <ul id="category_id">

@@ -91,13 +91,13 @@ li {
             <p>
               Welcome to <strong>{{ appName }}</strong>, your one-stop platform for streamlined job searching! We understand how time-consuming it can be to browse multiple job sites, so we bring together listings from a variety of platforms to help job seekers find opportunities faster and easier. Our mission is to make job hunting more accessible, giving you more time to focus on preparing for your dream job.
             </p>
-            <p>
+            <p style="margin-top:10px;">
               At <strong>{{ appName }}</strong>, we proudly offer <strong>{{ categoryCounts }} job categories</strong> and <strong>{{ jobCount }} job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
             </p>
-            <p>
+            <p style="margin-top:10px;">
               When new job postings appear on any of our sourced platforms, you’ll receive a personalized email notification that matches your unique skills and chosen job categories. Whether you're a software developer, accountant, technician, secretary, or lawyer, we’ll make sure you’re alerted about roles relevant to your field, such as openings in Java development, accounting, technical support, and more.
             </p>
-            <p>
+            <p style="margin-top:10px;">
               Our real-time alert system keeps you in the loop with the latest job opportunities without the need for constant searching, so you’ll always be among the first to know and apply. If you're looking for a smart, time-saving solution to streamline your job search, <strong>{{ appName }}</strong> is here to help. Let us do the work of finding new opportunities while you focus on landing your ideal position.
             </p>
           </div>
