@@ -23,8 +23,13 @@
               </div>
               <div class="mb-6">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input v-model="password" id="password" type="password" placeholder="Enter your password"
+                <input v-model="password" id="password" :type="passwordFieldType" placeholder="Enter your password"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+                  <!-- <span type="password" @click="switchVisibility">View</span>  -->
+                  <span type="password" @click="switchVisibility" id="eye-pswd-id" class="float-right cursor-pointer">
+                    <i :class="isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                  </span>
+
               </div>
 
               <!-- Loading Button or Login Button -->
@@ -63,14 +68,21 @@ import { laravelApiUrl } from '../../api';
 export default {
   data() {
     return {
-      emailOrPhone: "",
-      password: "",
+      emailOrPhone: null,
+      password: null,
       errorMessage: null,
       loading: false,
+      passwordFieldType:"password",
+      isPasswordVisible:false,
     };
   },
 
   methods: {
+    switchVisibility(){
+      this.isPasswordVisible = !this.isPasswordVisible;
+      this.passwordFieldType = this.isPasswordVisible ? "text" : "password";
+      // this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
+    },
     async handleLogin() {
       this.loading = true;
       this.errorMessage = null;
@@ -133,6 +145,9 @@ export default {
 </script>
 
 <style scoped>
+#eye-pswd-id{
+  margin-top: -17px;
+}
 #login_container{
   margin-top: -40px;
 }
