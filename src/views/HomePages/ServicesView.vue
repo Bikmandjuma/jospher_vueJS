@@ -39,9 +39,7 @@ export default {
       services: [
         { title: 'Centralized Job Listings', description: '' },
         { title: 'Personalized Job Alerts', description: '' },
-        { title: 'Advanced Job Search Filters', description: '' },
         { title: 'Career Insights and Updates', description: '' },
-        { title: 'Seamless Application Process', description: '' },
         { title: 'Employer Advertising Options', description: '' },
         { title: 'Mobile-Friendly Experience', description: '' },
         { title: 'Dedicated Support', description: '' }
@@ -53,12 +51,10 @@ export default {
     updateServiceDescriptions() {
       this.services[0].description = `Say goodbye to browsing multiple job portals. Job Sphere Rda aggregates job listings from various platforms into a single, user-friendly interface. Explore opportunities across ${this.category_counts} job categories and ${this.job_count} job positions, all in one place.`;
       this.services[1].description = `Never miss a job opportunity with our real-time alert system. Get personalized email notifications tailored to your skills and interests. From software development to accounting, we keep you informed about the latest openings relevant to your profession.`;
-      this.services[2].description = `Find your dream job faster with our advanced search options. Filter job listings by location, category, experience level, or salary range to discover the perfect match.`;
-      this.services[3].description = `Stay informed with career insights, industry updates, and tips to ace your job applications. Our platform is designed to support you throughout your job-hunting journey.`;
-      this.services[4].description = `Apply for jobs directly through our platform. We streamline the application process, ensuring your resume reaches employers efficiently and effectively.`;
-      this.services[5].description = `Employers can advertise job vacancies on our platform to reach a wider audience of skilled professionals. Showcase your company and attract top talent with our customizable ad packages.`;
-      this.services[6].description = `Access Job Sphere Rda anytime, anywhere. Our mobile-friendly design ensures you can browse job opportunities and receive alerts on the go.`;
-      this.services[7].description = `Have questions or need help? Our dedicated support team is always ready to assist you with any inquiries about our services or platform.`;
+      this.services[2].description = `Stay informed with career insights, industry updates, and tips to ace your job applications. Our platform is designed to support you throughout your job-hunting journey.`;
+      this.services[3].description = `Employers can advertise job vacancies on our platform to reach a wider audience of skilled professionals. Showcase your company and attract top talent with our customizable ad packages.`;
+      this.services[4].description = `Access Job Sphere Rda anytime, anywhere. Our mobile-friendly design ensures you can browse job opportunities and receive alerts on the go.`;
+      this.services[5].description = `Have questions or need help? Our dedicated support team is always ready to assist you with any inquiries about our services or platform.`;
     }
   },
 
