@@ -37,7 +37,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://192.168.0.82:8000', // Forward all `/api` requests to this backend server
+        target: 'http://127.0.0.1:8000', // Forward all `/api` requests to this backend server
         changeOrigin: true, // Enable cross-origin requests
         pathRewrite: { '^/api': '' }, // Optionally remove `/api` from the forwarded URL
         logLevel: 'debug', // For detailed logging (optional, useful for debugging)

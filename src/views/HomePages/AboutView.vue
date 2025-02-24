@@ -162,7 +162,7 @@ export default {
       // @ts-ignore
       factsImageUrl: require('@/assets/Homepage_images/carousel6.png'), // Path to facts image
 
-      appName: 'Job Sphere Rda',  // Example app name
+      appName: 'Job Sphere Rwanda',  // Example app name
       categoryCounts: 10,        // Example number of job categories
       jobCount: 150              // Example number of job positions
     };

@@ -104,7 +104,7 @@
             <div class="container">
                 <div class="section-header text-center">
                     <p id="ad_title">Job Seekers' Payment</p>
-                    <h2>Choose Your Plan</h2>
+                    <h2 style="margin-top:10px;">Choose Your Plan</h2>
                     <br>
                 </div>
                 <div class="row">
