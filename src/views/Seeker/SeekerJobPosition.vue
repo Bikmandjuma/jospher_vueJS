@@ -75,14 +75,13 @@
                 </div>
 
                 <div v-else-if="noPaymentStatus">
-                  <p class="text-center justify-center items-center">{{ noPaymentStatus }}</p>
+                  <p class="text-center justify-center items-center"><i class="blink-icon cursor-pointer" onclick="window.location.href='/seeker/payment_plan'">🔔</i>&nbsp;{{ noPaymentStatus }}</p>
                   <p style="margin-top:10px;" class="text-center justify-center items-center">
-                    <!-- <router-link to="/seeker/payment_plan">pay now</router-link> -->
                     <a
                       href="/seeker/payment_plan"
                       class="px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-teal-600 hover:to-teal-100 focus:outline-none focus:ring focus:ring-primary"
                     >
-                      <i class="fa fa-dollar text-white hover:text-teal-400"></i>&nbsp;Pay now
+                      <i  class="fa fa-dollar text-white hover:text-teal-400 blink-icon"></i>&nbsp;Pay now
                     </a>
                   </p>
                 </div>
@@ -234,6 +233,22 @@ export default {
 
 
 <style scoped>
+.blink-icon {
+  animation: blinkAnimation 3s infinite; /* Animation runs every 3 seconds infinitely */
+}
+
+@keyframes blinkAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .category {
   cursor: pointer;
   color: blue;
