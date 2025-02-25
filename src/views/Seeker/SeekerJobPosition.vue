@@ -76,7 +76,7 @@
 
                 <div v-else-if="noPaymentStatus">
                   <p class="text-center justify-center items-center"><i class="blink-icon cursor-pointer" onclick="window.location.href='/seeker/payment_plan'">🔔</i>&nbsp;{{ noPaymentStatus }}</p>
-                  <p style="margin-top:10px;" class="text-center justify-center items-center">
+                  <p style="margin-top:10px;" class="text-center justify-center items-center mb-2">
                     <a
                       href="/seeker/payment_plan"
                       class="px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-teal-600 hover:to-teal-100 focus:outline-none focus:ring focus:ring-primary"
