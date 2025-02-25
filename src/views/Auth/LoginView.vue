@@ -38,7 +38,7 @@
               </button>
 
               <button v-else type="submit" class="w-full px-4 py-2 text-white rounded-lg bg-gradient-to-r from-purple-600 to-sky-200 hover:bg-gradient-to-l hover:from-purple-600 hover:to-sky-200 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                <i class="fa fa-lock-open"></i>&nbsp;Login
+                <i class="fa fa-lock-open blink-icon"></i>&nbsp;Login
               </button>
             </form>
 
@@ -145,6 +145,22 @@ export default {
 </script>
 
 <style scoped>
+.blink-icon {
+  animation: blinkAnimation 3s infinite; /* Animation runs every 3 seconds infinitely */
+}
+
+@keyframes blinkAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #eye-pswd-id{
   margin-top: -17px;
 }
