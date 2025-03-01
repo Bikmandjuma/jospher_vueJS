@@ -36,7 +36,7 @@
                         </li>
                       </div>
                     </ul>
-                    <ul v-else>
+                    <ul v-else class="loading-icon">
                       <li class="text-primary">No data found yet!</li>
                     </ul>
                 </ul>
