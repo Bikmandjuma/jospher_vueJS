@@ -248,6 +248,12 @@ export default {
 
 
 <style scoped>
+.loading-icon{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
 .blink-icon {
   animation: blinkAnimation 3s infinite; /* Animation runs every 3 seconds infinitely */
 }
