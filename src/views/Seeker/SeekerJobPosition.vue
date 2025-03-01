@@ -106,26 +106,26 @@
 </template>
 
 <script>
-import { flaskApiUrl, laravelApiUrl } from '../../api';  // Import the API URLs
+import { flaskApiUrl, laravelApiUrl } from '../../api';
 import axios from 'axios';
 
 export default {
   data() {
     return {
-      categories: [],          // List of categories for jobs
-      flaskData: {},           // Data fetched from Flask API
-      selectedCategory: null,  // The selected category for jobs
-      jobPositions: [],        // List of jobs in the selected category
-      paidStatus: '',        // Payment status - paid
-      overdueStatus: '',     // Payment status - overdue
-      noPaymentStatus: '',   // Payment status - no payment
+      categories: [],
+      flaskData: {},
+      selectedCategory: null,
+      jobPositions: [],
+      paidStatus: '',
+      overdueStatus: '',
+      noPaymentStatus: '',
       loading:true,
     };
   },
 
   methods: {
       async fetchUserPayStatus() {
-      const token = localStorage.getItem('auth_token'); // Get token from localStorage
+      const token = localStorage.getItem('auth_token');
 
       try {
         const response = await axios.get(`${laravelApiUrl}/user/checkUserAccess`, {
@@ -135,9 +135,8 @@ export default {
           },
         });
 
-        console.log("API Response:", response.data);  // Log the full response for debugging
+        console.log("API Response:", response.data);
         
-        // Handle the response based on the status
         if (response.data.status === 'paid') {
           this.paidStatus = response.data.message;
           console.log('Paid Status:', this.paidStatus);
@@ -151,28 +150,25 @@ export default {
           console.log('No Payment Status:', this.noPaymentStatus);
           
         } else {
-          console.log("Unhandled status:", response.data.status);  // Log unexpected status values
+          console.log("Unhandled status:", response.data.status);
         }
       } catch (error) {
         if (error.response) {
           this.noPaymentStatus = "No payment found. Please make a payment.";
-          console.error('Error response:', error.response.data); // Log the error response
+          console.error('Error response:', error.response.data);
           
         } else if (error.request) {
-          console.error('Error request:', error.request); // Log request error
+          console.error('Error request:', error.request);
         } else {
-          console.error('Error message:', error.message); // Log other errors
+          console.error('Error message:', error.message);
         }
       }
       },
 
-
-    // Method to fetch job categories from Laravel API
     async fetchData() {
       try {
         const token = localStorage.getItem('auth_token');
         
-        // Fetch categories from Laravel API
         const laravelResponse = await fetch(`${laravelApiUrl}/user/fetch_user_job_categories`, {
           method: 'GET',
           headers: {
@@ -183,7 +179,6 @@ export default {
         const laravelData = await laravelResponse.json();
         this.categories = laravelData.category_names.map((skills) => skills.skills);
 
-        // Fetch job positions from Flask API
         const flaskResponse = await fetch(`${flaskApiUrl}/fetch_job_position`, {
           method: 'GET',
           headers: {
@@ -197,19 +192,17 @@ export default {
       }
     },
 
-    // Fetch job positions for a selected category
     fetchJobs(category) {
       this.selectedCategory = category;
       this.jobPositions = this.flaskData[category] || [];
+      // @ts-ignore
       localStorage.setItem('count_job_position', this.jobPositions.length);
     },
 
-    // Get count of jobs for a specific category
     getCategoryCount(category) {
       return this.flaskData[category]?.length || 0;
     },
 
-    // Generate job URL based on the origin of the job
     getJobUrl(job) {
       if (job.origin === "https://www.rwandajob.com/job-vacancies-search-rwanda") {
         const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100)).replace(/%20/g, '-').replace(/%2F/g, '/');
@@ -249,14 +242,14 @@ export default {
 
 <style scoped>
 .loading-icon {
-  display: flex;               /* Make the container a flexbox */
-  justify-content: center;     /* Horizontally center the content */
-  align-items: center;         /* Vertically center the content */
-  height: 100px;               /* You can adjust the height depending on the size of the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 }
 
 .blink-icon {
-  animation: blinkAnimation 3s infinite; /* Animation runs every 3 seconds infinitely */
+  animation: blinkAnimation 3s infinite;
 }
 
 @keyframes blinkAnimation {
