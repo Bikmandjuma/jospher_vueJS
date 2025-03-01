@@ -248,12 +248,13 @@ export default {
 
 
 <style scoped>
-.loading-icon{
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+.loading-icon {
+  display: flex;               /* Make the container a flexbox */
+  justify-content: center;     /* Horizontally center the content */
+  align-items: center;         /* Vertically center the content */
+  height: 100px;               /* You can adjust the height depending on the size of the container */
 }
+
 .blink-icon {
   animation: blinkAnimation 3s infinite; /* Animation runs every 3 seconds infinitely */
 }
