@@ -14,21 +14,31 @@
                 </h4>
 
                 <ul id="category_id">
-                  <li
-                    v-for="(category, index) in categories"
-                    :key="index"
-                    @click="fetchJobs(category)"
-                    class="category p-1"
-                  >
-                    <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{ category }}
-                    <span
-                      class="float-right text-sm text-gray-900"
-                      style="width: auto; white-space: nowrap;"
-                    >
-                      ({{ getCategoryCount(category) }})
-                    </span>
-                    <br/>
-                  </li>
+                    <ul v-if="categories.length > 0">
+                      <div v-if="loading">
+                         <span class="loading-icon"><i class="fas fa-spinner fa-spin"></i>&nbsp; job categories</span>
+                      </div>
+                      <div v-else>
+                        <li
+                          v-for="(category, index) in categories"
+                          :key="index"
+                          @click="fetchJobs(category)"
+                          class="category p-1"
+                        >
+                          <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{ category }}
+                          <span
+                            class="float-right text-sm text-gray-900"
+                            style="width: auto; white-space: nowrap;"
+                          >
+                            ({{ getCategoryCount(category) }})
+                          </span>
+                          <br/>
+                        </li>
+                      </div>
+                    </ul>
+                    <ul v-else>
+                      <li class="text-primary">No data found yet!</li>
+                    </ul>
                 </ul>
               </div>
             </div>
@@ -109,6 +119,7 @@ export default {
       paidStatus: '',        // Payment status - paid
       overdueStatus: '',     // Payment status - overdue
       noPaymentStatus: '',   // Payment status - no payment
+      loading:true,
     };
   },
 
@@ -227,6 +238,10 @@ export default {
         this.fetchData();
         this.fetchUserPayStatus();
       }
+
+      setTimeout(() => {
+        this.loading = false;
+      }, 10000);
   },
 };
 </script>

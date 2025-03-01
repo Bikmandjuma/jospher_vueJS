@@ -10,7 +10,7 @@
             Discover the tools, resources, and opportunities you need to thrive in today's digital world. -->
             <!-- </p> -->
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover a World of Opportunities</h1>
-            <p class="text-lg md:text-xl mb-6">JobSphere consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.</p>
+            <p class="text-lg md:text-xl mb-6">Job sphere rwanda consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.</p>
             <div class="flex justify-center space-x-4">
                 <a href="/jobs" class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-blue-500 hover:to-sky-200 font-bold"><i class="fa fa-search"></i>&nbsp;Search Jobs</a>
             </div>
@@ -243,19 +243,24 @@
                     <div class="col-lg-5">
                         <div class="location-form">
                             <h3>Request for Advertisement Placement</h3>
-                            <form>
+                            <span v-if="success" class="text-white text-sm text-center">{{ success }}</span>
+                            <form @submit.prevent="submitForm" >
                                 <div class="control-group">
-                                    <input type="text" class="form-control" placeholder="Name" required/>
+                                    <input type="text" v-model="name" class="form-control" placeholder="Name" />
+                                    <span v-if="error.name" class="text-white text-sm">{{ error.name[0] }}</span>
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control" placeholder="Email" required />
+                                    <input type="email" v-model="email" class="form-control" placeholder="Email" />
+                                    <span v-if="error.email" class="text-white text-sm">{{ error.email[0] }}</span>
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="form-control" placeholder="Description" required></textarea>
+                                    <textarea type="text" class="form-control" v-model="description" placeholder="Typing description . . ." ></textarea>
+                                    <span v-if="error.description" class="text-white text-sm">{{ error.description[0] }}</span>
                                 </div>
                                 <br>
                                 <div>
-                                    <button class="btn btn-custom" type="submit"><i class="fa fa-paper-plane"></i> Send Request</button>
+                                    <button class="btn btn-custom" type="submit" v-if="loading"><i class="fa fa-paper-plane"></i> Sending.....</button>
+                                    <button class="btn btn-custom" type="submit" v-else><i class="fa fa-paper-plane"></i> Send Request</button>
                                 </div>
                             </form>
                         </div>
@@ -281,9 +286,56 @@ export default {
         job_position_count : 0,
         job_category_count : 0,
         visitCount: 0,
+        name: "",
+        email: "",
+        description: "",
+        error: {}, // Ensure error is initialized as an object
+        success: null,
+        loading: false,
     }
   },
   methods: {
+    async submitForm() { 
+        this.error = {};
+        this.success = null;
+        this.loading = true;
+        
+        try {
+            const response = await axios.post(`${laravelApiUrl}/guest/request_advertisment`, {
+                name: this.name,
+                email: this.email,
+                description: this.description,
+            });
+
+            if (response.data.status === "success") {
+                this.success = response.data.message;
+                this.name = "";
+                this.email = "";
+                this.description = "";
+                
+                setTimeout(() => {
+                    this.loading = false;
+                    this.success = null;
+                }, 5000);
+            }
+        } catch (err) {
+            console.log(err);
+            
+            if (err.response && err.response.data && err.response.data.errors) {
+                this.error = err.response.data.errors; 
+            } else {
+                this.error = { general: err.response.data ? err.response.data.message : "Unable to connect to the server. Please try later." };
+            }
+
+            setTimeout(() => {
+                this.error = {};
+            }, 5000);
+        
+        } finally {
+            this.loading = false;
+        }
+    },
+
     async fetchVisitCount() {
       try {
         const response = await axios.get(`${laravelApiUrl}/getVisitCount`);
@@ -342,6 +394,7 @@ export default {
   
   mounted(){
     this.fetchjob_Pos_Cat_Count();
+    
   },
 
   created() {

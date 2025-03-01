@@ -42,7 +42,8 @@ export default {
         { title: 'Career Insights and Updates', description: '' },
         { title: 'Employer Advertising Options', description: '' },
         { title: 'Mobile-Friendly Experience', description: '' },
-        { title: 'Dedicated Support', description: '' }
+        { title: 'Dedicated Support', description: '' },
+        { title: 'Job Positions by Category Recommendation',description:''}
       ]
     };
   },
@@ -55,6 +56,7 @@ export default {
       this.services[3].description = `Employers can advertise job vacancies on our platform to reach a wider audience of skilled professionals. Showcase your company and attract top talent with our customizable ad packages.`;
       this.services[4].description = `Access Job Sphere Rda anytime, anywhere. Our mobile-friendly design ensures you can browse job opportunities and receive alerts on the go.`;
       this.services[5].description = `Have questions or need help? Our dedicated support team is always ready to assist you with any inquiries about our services or platform.`;
+      this.services[6].description = 'At Job Sphere Rda, we make your job search easier by offering personalized job position recommendations based on your chosen category. Whether you\'re interested in technology, healthcare, marketing, or finance, we’ll guide you to the best opportunities'
     }
   },
 
