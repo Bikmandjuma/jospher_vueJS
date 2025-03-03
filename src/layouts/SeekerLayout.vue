@@ -61,7 +61,7 @@
             </a>
             <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
               <a href="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-              <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
+              <!-- <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a> -->
             </div>
           </div>
 
@@ -201,7 +201,7 @@
         </a>
         <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
           <a href="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-          <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a>
+          <!-- <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a> -->
         </div>
       </div>
     </nav>
