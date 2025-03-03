@@ -16,7 +16,8 @@
             <div class="price-item" :class="{ 'featured-item': plan.featured }">
               <div class="price-header">
                 <h3>{{ plan.title }}</h3>
-                <h2><span></span><strong>{{ plan.price }}</strong><span>Frw</span></h2>
+                <h4><span>❌</span><strong><del>{{  plan.canceled_price }}</del></strong><span>Frw</span></h4>
+                <h2><span>✅</span><strong>{{ plan.price }}</strong><span>Frw</span></h2>
               </div>
               <div class="price-body">
                 <ul>
@@ -65,6 +66,7 @@
         plans: [
           {
             title: '2 Months',
+            canceled_price:'10,000',
             price: '5,000',
             features: [
               '+ 1 Month Bonus',
@@ -77,6 +79,7 @@
           },
           {
             title: '6 months',
+            canceled_price:'25,000',
             price: '12,000',
             features: [
               '+ 2 Months Bonus',
@@ -89,6 +92,7 @@
           },
           {
             title: 'Yearly',
+            canceled_price:'45,000',
             price: '20,000',
             features: [
               '+ 3 Months Bonus',

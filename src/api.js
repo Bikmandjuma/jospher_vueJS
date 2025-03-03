@@ -6,5 +6,5 @@
 
 const flaskApiUrl ='https://jospherflask-production.up.railway.app/api';
 const laravelApiUrl ="https://jospher.up.railway.app/api";
-
+ 
 export { flaskApiUrl, laravelApiUrl };

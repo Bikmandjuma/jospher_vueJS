@@ -13,7 +13,7 @@
           <h2>Contact for any query</h2>
         </div>
         <div class="row">
-          <!-- Quick Contact Info Section -->
+
           <div class="col-md-4">
             <div class="contact-info">
               <h2>Quick Contact Info</h2>
@@ -107,7 +107,7 @@ export default {
       this.form.email = '';
       this.form.subject = '';
       this.form.message = '';
-      alert('Message sent successfully!');
+      alert('validation error !');
     }
   }
 };
