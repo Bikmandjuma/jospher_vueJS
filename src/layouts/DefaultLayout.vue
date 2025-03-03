@@ -286,9 +286,9 @@
                             <a class="btn" href="" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
                             <a class="btn" href="" title="Telegram"><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
                             <a class="btn" href="" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a> -->
-                            <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
+                            <!-- <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
                                 <i class="fab fa-whatsapp text-green-500 hover:text-green-700"></i>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
