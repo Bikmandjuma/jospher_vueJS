@@ -29,8 +29,8 @@
                             <p id="ad_title">About Us</p>
                         </div>
 
-                        <div class="about-img">
-                            <img src="../../assets/Homepage_images/carousel5.jpg" alt="Image">
+                        <div class="about-img tex-center">
+                            <img :src="aboutImageUrl" alt="Image">
                         </div>
 
                     </div>
@@ -279,7 +279,6 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 import { flaskApiUrl,laravelApiUrl } from '../../api';
 import axios from 'axios';
 
@@ -287,13 +286,15 @@ export default {
   name: 'HomeView',
   data(){
     return {
+      // @ts-ignore
+        aboutImageUrl: require('@/assets/Homepage_images/carousel5.jpg'),
         job_position_count : 0,
         job_category_count : 0,
         visitCount: 0,
         name: "",
         email: "",
         description: "",
-        error: {}, // Ensure error is initialized as an object
+        error: {},
         success: null,
         loading: false,
     }

@@ -86,15 +86,15 @@ export default {
   data() {
     return {
       // @ts-ignore
-      headerImageUrl: require('@/assets/Homepage_images/carousel5.jpg'), // Path to header image
+      headerImageUrl: require('@/assets/Homepage_images/carousel5.jpg'),
       // @ts-ignore
-      aboutImageUrl: require('@/assets/Homepage_images/carousel5.jpg'),  // Path to about image
+      aboutImageUrl: require('@/assets/Homepage_images/carousel5.jpg'),
       // @ts-ignore
-      factsImageUrl: require('@/assets/Homepage_images/carousel6.png'), // Path to facts image
+      factsImageUrl: require('@/assets/Homepage_images/carousel6.png'),
 
-      appName: 'Job Sphere Rwanda',  // Example app name
-      categoryCounts: 10,        // Example number of job categories
-      jobCount: 150              // Example number of job positions
+      appName: 'Job Sphere Rwanda',
+      categoryCounts: 10,
+      jobCount: 150,
     };
   },
 
