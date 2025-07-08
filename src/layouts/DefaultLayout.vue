@@ -219,15 +219,15 @@
                           <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
                         </div>
                         <div class="footer-social flex text-center align-items justify-content">
-                            <a class="btn" href="" target="parent" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
-                            <a class="btn" href="https://www.facebook.com/share/r/1LBCaPF9xz/" target="parent" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
-                            <a class="btn" href="" target="parent" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
-                            <a class="btn" href="" target="parent" title="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
-                            <a class="btn" href="" target="parent" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
-                            <a class="btn" href="" target="parent" title="Telegram"><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
-                            <a class="btn" href="" target="parent" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a>
+                            <a class="btn" href="" target="parent" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700" style="font-size:30px"></i></a>
+                            <a class="btn" href="https://www.facebook.com/share/r/1LBCaPF9xz/" target="parent" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800" style="font-size:30px"></i></a>
+                            <a class="btn" href="" target="parent" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700" style="font-size:30px"></i></a>
+                            <a class="btn" href="" target="parent" title="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-700" style="font-size:30px"></i></a>
+                            <a class="btn" href="" target="parent" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700" style="font-size:30px"></i></a>
+                            <a class="btn" href="" target="parent" title="Telegram"><i class="fab fa-telegram text-blue-500 hover:text-teal-700" style="font-size:30px"></i></a>
+                            <a class="btn" href="" target="parent" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600" style="font-size:30px"></i></a>
                             <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
-                                <i class="fab fa-whatsapp text-green-500 hover:text-green-700"></i>
+                                <i class="fab fa-whatsapp text-green-500 hover:text-green-700" style="font-size:30px"></i>
                             </a>
                         </div>
                     </div>
