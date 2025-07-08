@@ -79,13 +79,13 @@
           >
             <i class="fa fa-dollar mr-2"></i>Pricing
           </router-link-->
-          <a
+          <!--a
             href="/pricing"
             :class="{'active-link': $route.path === '/pricing'}"
             class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-dollar mr-2"></i>Pricing
-          </a>
+          </a-->
 <!-- 
           <router-link
             to="/contact"
@@ -144,58 +144,6 @@
 
       <!-- Mobile Menu -->
       <div v-show="isMenuOpen" class="bg-gray-50 md:hidden">
-        <!--router-link
-          to="/"
-          :class="{'active-link': $route.path === '/'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-home mr-2"></i>Home
-        </router-link>
-        <router-link
-          to="/about"
-          :class="{'active-link': $route.path === '/about'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-list-alt mr-2"></i>About us
-        </router-link>
-        <router-link
-          to="/services"
-          :class="{'active-link': $route.path === '/services'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-cogs mr-2"></i>Services
-        </router-link>
-        <router-link
-          to="/jobs"
-          :class="{'active-link': $route.path === '/jobs'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span>
-        </router-link>
-        <router-link
-          to="/pricing"
-          :class="{'active-link': $route.path === '/pricing'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-dollar mr-2"></i>Pricing
-        </router-link>
-        <router-link
-          to="/contact"
-          :class="{'active-link': $route.path === '/contact'}"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-phone mr-2"></i>Contact
-        </router-link>
-        
-        <router-link
-          to="/login"
-          :class="{
-            'active-link': $route.path === '/login' || $route.path === '/register' || $route.path === '/forgot_password',
-          }"
-          class="block text-gray-600 px-4 py-2 hover:bg-blue-100"
-        >
-          <i class="fa fa-user mr-2"></i>Login
-        </router-link-->
 
           <a href="/" :class="{'active-link': $route.path === '/'}" class="block text-gray-600 px-4 py-2 hover:text-blue-500"><i class="fa fa-home mr-2"></i>Home</a>
 
@@ -209,14 +157,6 @@
           class="block text-gray-600 px-4 py-2 hover:text-blue-500"
           >
             <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
-          </a>
-
-          <a
-            href="/pricing"
-            :class="{'active-link': $route.path === '/pricing'}"
-            class="block text-gray-600 px-4 py-2 hover:text-blue-500"
-          >
-            <i class="fa fa-dollar mr-2"></i>Pricing
           </a>
 
           <a
@@ -264,7 +204,7 @@
                         <a href="/about" class="block mb-2 text-gray-700 hover:text-blue-600">About Us</a>
                         <a href="/services" class="block mb-2 text-gray-700 hover:text-blue-600">Service</a>
                         <a href="/jobs" class="block mb-2 text-gray-700 hover:text-blue-600">Jobs</a>
-                        <a href="/pricing" class="block mb-2 text-gray-700 hover:text-blue-600">Pricing</a>
+                        <!-- <a href="/pricing" class="block mb-2 text-gray-700 hover:text-blue-600">Pricing</a> -->
                         <a href="/contact" class="block mb-2 text-gray-700 hover:text-blue-600">Contact Us</a>
                     </div>
                 </div>
@@ -279,16 +219,16 @@
                           <p class="mb-4"><i class="fa fa-envelope"></i>&nbsp;jobsphererwanda@gmail.com</p>
                         </div>
                         <div class="footer-social flex text-center align-items justify-content">
-                            <!-- <a class="btn" href="" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
-                            <a class="btn" href="" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
-                            <a class="btn" href="" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
-                            <a class="btn" href="" title="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
-                            <a class="btn" href="" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
-                            <a class="btn" href="" title="Telegram"><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
-                            <a class="btn" href="" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a> -->
-                            <!-- <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
+                            <a class="btn" href="" target="parent" title="Twitter/X"><i class="fab fa-twitter text-blue-500 hover:text-blue-700"></i></a>
+                            <a class="btn" href="https://www.facebook.com/share/r/1LBCaPF9xz/" target="parent" title="Facebook"><i class="fab fa-facebook-f text-blue-600 hover:text-blue-800"></i></a>
+                            <a class="btn" href="" target="parent" title="Tiktok"><i class="fab fa-tiktok text-black hover:text-gray-700"></i></a>
+                            <a class="btn" href="" target="parent" title="Instagram"><i class="fab fa-instagram text-pink-500 hover:text-pink-700"></i></a>
+                            <a class="btn" href="" target="parent" title="Youtube"><i class="fab fa-youtube text-red-500 hover:text-red-700"></i></a>
+                            <a class="btn" href="" target="parent" title="Telegram"><i class="fab fa-telegram text-teal-500 hover:text-teal-700"></i></a>
+                            <a class="btn" href="" target="parent" title="Snapchat"><i class="fab fa-snapchat text-yellow-400 hover:text-yellow-600"></i></a>
+                            <a class="btn"  title="Whatsapp" href="https://www.whatsapp.com/channel/0029Vb64CPVG3R3iZBOMhw0c" target="parent">
                                 <i class="fab fa-whatsapp text-green-500 hover:text-green-700"></i>
-                            </a> -->
+                            </a>
                         </div>
                     </div>
                 </div>
