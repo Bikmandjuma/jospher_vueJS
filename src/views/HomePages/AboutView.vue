@@ -6,7 +6,7 @@
   <!-- About Start -->
   <div class="about mt-3" style="margin-top:-5%;">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row align-items-center text-center">
         <div class="col-lg-6">
           <div class="section-header text-center">
             <p>About Us</p>
@@ -220,12 +220,6 @@ export default {
     margin-bottom: 30px;
     margin-left: 0;
 }
-
-/* .about .about-img img {
-    width: 100%;
-    border-radius: 5px;
-    margin-bottom: 30px;
-} */
 
 .about .about-img img {
   display: block;
