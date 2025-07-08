@@ -5,6 +5,6 @@
 // const laravelApiUrl ="http://192.168.0.82:8000/api"
 
 const flaskApiUrl ='https://jospherflaskapi-production.up.railway.app/api';
-const laravelApiUrl ="jospherlaravelapi-production.up.railway.app/api";
+const laravelApiUrl ="https://jospherlaravelapi-production.up.railway.app/api";
  
 export { flaskApiUrl, laravelApiUrl };
