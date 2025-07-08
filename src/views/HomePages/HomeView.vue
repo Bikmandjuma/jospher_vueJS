@@ -469,6 +469,14 @@ a{
   font-weight: bold;
 }
 
+.about .about-img img {
+  display: block;
+  margin: 0 auto 30px;
+  max-width: 100%;
+  width: auto;
+  border-radius: 5px;
+}
+
 .close:hover,
 .close:focus {
   color: black;
