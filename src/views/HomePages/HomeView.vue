@@ -25,7 +25,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         
-                        <div class="section-header text-center" style="margin-top: -50px;">
+                        <div class="section-header text-center" style="margin-top: -10px;">
                             <p id="ad_title">About Us</p>
                         </div>
 

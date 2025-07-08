@@ -6,15 +6,23 @@
   <!-- About Start -->
   <div class="about mt-3" style="margin-top:-5%;">
     <div class="container">
-      <div class="row align-items-center text-center">
+      <div class="row align-items-center">
         <div class="col-lg-6">
-          <div class="section-header text-center">
+          <!-- <div class="section-header text-center">
             <p>About Us</p>
           </div>
 
           <div class="about-img text-center">
             <img :src="aboutImageUrl" alt="About Us Image">
-          </div>
+          </div> -->
+            <div class="section-header text-center" style="margin-top: -10px;">
+                <p id="ad_title">About Us</p>
+            </div>
+
+            <div class="about-img tex-center">
+                <img :src="aboutImageUrl" alt="Image">
+            </div>
+            
         </div>
         <div class="col-lg-6">
           <div class="about-content">
