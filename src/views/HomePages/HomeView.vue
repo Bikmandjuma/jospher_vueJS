@@ -98,7 +98,7 @@
 
 
         <!-- Price Start -->
-        <div class="price">
+        <!--div class="price">
             <div class="container">
                 <div class="section-header text-center">
                     <p id="ad_title">Job Seekers' Payment</p>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div-->
         <!-- Price End -->
 
         <div ref="modal" class="modal">

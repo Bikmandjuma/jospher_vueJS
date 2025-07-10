@@ -114,18 +114,6 @@ export default {
     };
   },
   methods: {
-    // fetchjob_Pos_Cat_Count(){
-    //   axios
-    //     .get(`${flaskApiUrl}/count_position_category`)
-    //     .then((response) => {
-    //       console.log("Api response counts :",response.data)
-    //       this.job_position_count = response.data.total_job_positions
-    //       this.job_category_count = response.data.total_job_categories
-    //     })
-    //     .catch((error)  => {
-    //       console.log("error fetching data :",error)
-    //     });
-    // },
     fetchJobs() {
       axios
         .get(`${flaskApiUrl}/job_data`)
@@ -186,7 +174,9 @@ export default {
     const job_Category_counts = localStorage.getItem("job_Category_count");
     
     this.fetchJobs();
+    // @ts-ignore
     this.job_position_count = job_Position_counts
+    // @ts-ignore
     this.job_category_count = job_Category_counts
 
     window.addEventListener('scroll', this.handleScroll); // Listen for scroll events
