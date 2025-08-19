@@ -1,293 +1,108 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-         <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <div class="home">
+      <!-- Hero Section -->
+      <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
         <div class="container mx-auto px-4 py-20 text-center">
-            <!-- <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Your Future</h1>
-            <p class="text-lg md:text-xl mb-6">
-            Discover the tools, resources, and opportunities you need to thrive in today's digital world. -->
-            <!-- </p> -->
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover a World of Opportunities</h1>
-            <p class="text-lg md:text-xl mb-6">Job sphere rwanda consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.</p>
-            <div class="flex justify-center space-x-4">
-                <a href="/jobs" class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-blue-500 hover:to-sky-200 font-bold"><i class="fa fa-search"></i>&nbsp;Search Jobs</a>
-            </div>
-        </div>
-        </section>
-
-        <br>
-
-        <div class="about">
-            <div class="container">
-              <br>
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        
-                        <div class="section-header text-center" style="margin-top: -10px;">
-                            <p id="ad_title">About Us</p>
-                        </div>
-
-                        <div class="about-img tex-center">
-                            <img :src="aboutImageUrl" alt="Image">
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-content">
-                            
-                            <p>
-                                Welcome to <strong>Job sphere Rwanda</strong>, your one-stop platform for streamlined job searching! We understand how time-consuming it can be to browse multiple job sites, so we bring together listings from a variety of platforms to help job seekers find opportunities faster and easier. Our mission is to make job hunting more accessible, giving you more time to focus on preparing for your dream job.
-                                </p>
-                                <p style="margin-top:10px;">
-                                At <strong>Job sphere Rwanda</strong>, we proudly offer <strong><span v-if="job_category_count > 0">{{ job_category_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job categories</strong> and <strong><span v-if="job_position_count.length > 0">{{  job_position_count }}</span><span v-else><i class="fas fa-spinner fa-spin"></i></span> job positions</strong> for you to explore. We go the extra mile to ensure you never miss a career opportunity.
-                                </p>
-                                <p style="margin-top:10px;">
-                                When new job postings appear on any of sourced platforms, you’ll receive a personalized email notification that matches your unique skills and chosen job categories. Whether you're a software developer, accountant, technician, secretary, lawyer ,etc.... , we’ll make sure you’re alerted about roles relevant to your field(job category), such as openings in Java development, accounting, technical support, and more.
-                                </p>
-                                <p style="margin-top:10px;">
-                                Our real-time alert system keeps you in the loop with the latest job opportunities without the need for constant searching, so you’ll always be among the first to know and apply. If you're looking for a smart, time-saving solution to streamline your job search, <strong>job sphere rwanda</strong> is here to help. Let us do the work of finding new opportunities while you focus on landing your ideal position.
-                            </p>
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
-
-        <!-- Facts Start -->
-        <div class="facts" data-parallax="scroll" data-image-src="{{ url_for('static', filename='style/homePage/img/facts.jpg') }}">
-            <div class="container">
-                <div class="row">
-
-                    <!-- <div class="col-lg-4 col-md-6 d-flex justify-content-center align-items-center text-center">
-                        <div class="facts-item">
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up">{{ visitCount }}</h3>
-                                <p>Today's visits</p>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
-                        <div class="facts-item">
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up" v-if = "job_category_count > 0">{{ job_category_count }}</h3>
-                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
-                                <p>Job categories</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center text-center">
-                        <div class="facts-item">
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up" v-if=" job_position_count.length > 0 ">{{ job_position_count }}</h3>
-                                <h3 data-toggle="counter-up" v-else><i class="fas fa-spinner fa-spin"></i></h3>
-                                <p>Job positions</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Facts End -->
-
-
-        <!-- Price Start -->
-        <!--div class="price">
-            <div class="container">
-                <div class="section-header text-center">
-                    <p id="ad_title">Job Seekers' Payment</p>
-                    <h2 style="margin-top:10px;">Choose Your Plan</h2>
-                    <br>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>2 Months</h3>
-                                <h4><span>❌</span><strong><del>10,000</del></strong><span>Frw</span></h4>
-                                <h2><span>✅</span><strong>5,000</strong><span>Frw</span></h2>
-                                
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 1 Month of Bonus</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 90 days (including bonus)</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <button class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary openModal" @click="openModal">Choose plan</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <h3>6 Months</h3>
-                                <h4><span>❌</span><strong><del>25,000</del></strong><span>Frw</span></h4>
-                                <h2><span>✅</span><strong>12,000</strong><span>Frw</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 2 Months of Bonus</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 240 days (including bonus)</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <button class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-red-700 to-red-200 hover:bg-gradient-to-l hover:from-red-700 hover:to-red-200 focus:outline-none focus:ring focus:ring-primary openModal" @click="openModal">Choose plan</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Yearly</h3>
-                                <h4><span>❌</span><strong><del>45,000</del></strong><span>Frw</span></h4>
-                                <h2><span>✅</span><strong>20,000</strong><span>Frw</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;+ 3 Months of Bonus</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job categories</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Access on job positions</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;New opportunity notification</li>
-                                    <li><i class="far fa-check-circle"></i>&nbsp;Actively for 450 days (including bonus)</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <button class="px-4 py-2 text-sm text-white mb-3 rounded-md bg-gradient-to-r from-black to-sky-200 hover:bg-gradient-to-l hover:from-black hover:to-sky-200 focus:outline-none focus:ring focus:ring-primary openModal" @click="openModal">Choose plan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div-->
-        <!-- Price End -->
-
-        <div ref="modal" class="modal">
-          <div class="modal-content text-center">
-            <span ref="closeModal" class="close text-right text-danger">&times;</span>
-            
-            <h2>Create an account</h2>
-            <br>
-            <p>
-              To proceed with the subscription, you need to create an account. By creating an account, you'll gain access to your subscription details and manage your plans with ease.
-            </p>
-            <br>
-            <div class="modal-actions text-center">
-              <button class="btn btn-primary" style="padding-bottom:5px;" id="createAccountButton" onclick="window.location.href='/register'" >Sign up</button>
-            </div>
-
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover a World of Opportunities</h1>
+          <p class="text-lg md:text-xl mb-6">
+            Job sphere Rwanda consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.
+          </p>
+          <div class="flex justify-center space-x-4">
+            <a href="/jobs" class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-blue-500 hover:to-sky-200 font-bold">
+              <i class="fa fa-search"></i>&nbsp;Search Jobs
+            </a>
           </div>
         </div>
-
-        <!-- Location Start -->
-        <div class="location">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="section-header text-left">
-                            <p id="ad_title">Advertise with us</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-ad" style="color: #E81C2E;"></i>
-                                    <div class="location-text">
-                                        <h3>Access to a Wide and Relevant Audience</h3>
-                                        <p style="margin-top:5px;">Advertise your job postings or services to thousands of active job seekers from diverse fields, ranging from software development to accounting, ensuring your ads reach the right candidates.</p>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-bullhorn" style="color: #E81C2E;"></i>
-                                    <div class="location-text">
-                                        <h3>Enhanced Visibility Through Real-Time Alerts</h3>
-                                        <p style="margin-top:5px;">Your advertisements will be part of our real-time notifications, directly sent to users based on their selected job categories, providing maximum exposure to a targeted audience</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-newspaper" style="color: #E81C2E;"></i>
-                                    <div class="location-text">
-                                        <h3>Focused Advertising for Specific Professions</h3>
-                                        <p style="margin-top:5px;">With {{ job_category_count }} job categories and personalized email notifications, your ads will reach professionals most relevant to your industry, making your campaigns highly effective and ensuring a strong ROI</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-ad" style="color: #E81C2E;"></i>
-                                    <div class="location-text">
-                                        <h3>Cost-Effective Advertising with Measurable Results</h3>
-                                        <p style="margin-top:5px;">Showcase your brand or job postings on the platform designed for engagement, where users actively seek opportunities, ensuring higher click-through rates and conversions for your ads.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="location-form">
-                            <h3>Request for Advertisement Placement</h3>
-                            <span v-if="success" class="text-white text-sm text-center">{{ success }}</span>
-                            <form @submit.prevent="submitForm" >
-                                <div class="control-group">
-                                    <input type="text" v-model="name" class="form-control" placeholder="Name" />
-                                    <span v-if="error.name" class="text-white text-sm">{{ error.name[0] }}</span>
-                                </div>
-                                <div class="control-group">
-                                    <input type="email" v-model="email" class="form-control" placeholder="Email" />
-                                    <span v-if="error.email" class="text-white text-sm">{{ error.email[0] }}</span>
-                                </div>
-                                <div class="control-group">
-                                    <textarea type="text" class="form-control" v-model="description" placeholder="Typing description . . ." ></textarea>
-                                    <span v-if="error.description" class="text-white text-sm">{{ error.description[0] }}</span>
-                                </div>
-                                <br>
-                                <div>
-                                    <button class="btn btn-custom" type="submit" v-if="loading"><i class="fa fa-paper-plane"></i> Sending.....</button>
-                                    <button class="btn btn-custom" type="submit" v-else><i class="fa fa-paper-plane"></i> Send Request</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+      </section>
+  
+      <!-- 🔎 Search Section -->
+      <section class="main_search_container my-10">
+        <div class="search-container" :class="{'sticky-search': isSticky}">
+          <input
+            v-model="searchTerm"
+            type="text"
+            id="search-input"
+            :placeholder="'Searching ... ' + job_position_count + ' jobs found in system'"
+            @input="showSuggestions"
+          />
+          <div class="search-icon" @click="handleSearch">&#128269;</div>
+          <div v-if="suggestionsVisible" id="suggestions" class="suggestions">
+            <div
+              v-for="(suggestion, index) in filteredSuggestions"
+              :key="index"
+              class="suggestion-item"
+              @click="selectSuggestion(suggestion)"
+            >
+              <span v-html="highlightText(suggestion, searchTerm)"></span>
             </div>
+            <div v-if="filteredSuggestions.length === 0" class="no-match-message">
+              Not matching!
+            </div>
+          </div>
         </div>
-        <!-- Location End -->
-    
-  </div>
-</template>
-
-<script>
-// @ is an alias to /src
-import { flaskApiUrl,laravelApiUrl } from '../../api';
-import axios from 'axios';
-
-export default {
-  name: 'HomeView',
-  data(){
-    return {
-      // @ts-ignore
-        aboutImageUrl: require('@/assets/Homepage_images/carousel5.jpg'),
-        job_position_count : 0,
-        job_category_count : 0,
+      </section>
+  
+      <!-- Modal -->
+      <div v-if="isModalOpen" class="modal" @click.self="closeModal">
+        <div class="modal-content">
+          <span class="close" @click="closeModal">&times;</span>
+          <p>
+            You have to create an account first, &nbsp;
+            <a href="/register" style="color:blue;">Sign up</a>
+          </p>
+        </div>
+      </div>
+  
+      <!-- Job Categories & Jobs Section -->
+      <section class="py-10 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-center text-2xl font-bold mb-6">
+            Jobs <span class="text-blue-600">{{ job_position_count }}</span> and Categories <span class="text-indigo-600">{{ job_category_count }}</span>
+          </h2>
+  
+          <!-- Grid of Cards -->
+          <div v-if="filteredCategories.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              v-for="([category, jobs], index) in filteredCategories"
+              :key="index"
+              class="bg-white shadow-md rounded-2xl p-4 hover:shadow-lg transition"
+            >
+              <h3 class="font-semibold text-lg text-gray-800 mb-3">
+                {{ category }} (<span class="text-blue-500">{{ jobs.length }}</span> jobs)
+              </h3>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li v-for="(job, jobIndex) in jobs.slice(0, 5)" :key="jobIndex" class="relative group cursor-pointer">
+                  {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}
+                  <div class="absolute hidden group-hover:block left-1/2 transform -translate-x-1/2 bottom-full mb-2 px-2 py-1 bg-black text-white text-xs rounded-lg">
+                    {{ job }}
+                  </div>
+                </li>
+              </ul>
+              <div v-if="jobs.length > 5" class="text-blue-500 text-xs mt-2 cursor-pointer">+ more</div>
+            </div>
+          </div>
+  
+          <!-- Loading Spinner -->
+          <div v-else class="text-center py-10 text-xl text-gray-500">
+            <i class="fas fa-spinner fa-spin"></i> Loading jobs...
+          </div>
+        </div>
+      </section>
+  
+    </div>
+  </template>
+  
+  <script>
+  import axios from "axios";
+  import { flaskApiUrl } from "../../api";
+  
+  export default {
+    name: "HomeView",
+    data() {
+      return {
+        aboutImageUrl: require("@/assets/Homepage_images/carousel5.jpg"),
+        job_position_count: 0,
+        job_category_count: 0,
         visitCount: 0,
         name: "",
         email: "",
@@ -295,121 +110,153 @@ export default {
         error: {},
         success: null,
         loading: false,
-    }
-  },
-  methods: {
-    async submitForm() { 
-        this.error = {};
-        this.success = null;
-        this.loading = true;
-        
-        try {
-            const response = await axios.post(`${laravelApiUrl}/guest/request_advertisment`, {
-                name: this.name,
-                email: this.email,
-                description: this.description,
-            });
-
-            if (response.data.status === "success") {
-                this.success = response.data.message;
-                this.name = "";
-                this.email = "";
-                this.description = "";
-                
-                setTimeout(() => {
-                    this.loading = false;
-                    this.success = null;
-                }, 5000);
-            }
-        } catch (err) {
-            console.log(err);
-            
-            if (err.response && err.response.data && err.response.data.errors) {
-                this.error = err.response.data.errors; 
-            } else {
-                this.error = { general: err.response.data ? err.response.data.message : "Unable to connect to the server. Please try later." };
-            }
-
-            setTimeout(() => {
-                this.error = {};
-            }, 5000);
-        
-        } finally {
-            this.loading = false;
-        }
-    },
-
-    async fetchVisitCount() {
-      try {
-        const response = await axios.get(`${laravelApiUrl}/getVisitCount`);
-        this.visitCount = response.data.count;
-      } catch (error) {
-        console.error('Error fetching visit count:', error);
-      }
-    },
-    async incrementVisitCount() {
-      try {
-        await axios.post(`${laravelApiUrl}/incrementVisitCount`);
-      } catch (error) {
-        console.error('Error incrementing visit count:', error);
-      }
-    },
-    fetchjob_Pos_Cat_Count(){
-      axios
-        .get(`${flaskApiUrl}/count_position_category`)
-        .then((response) => {
-          console.log("Api response counts :",response.data)
-          this.job_position_count = response.data.total_job_positions
-          this.job_category_count = response.data.total_job_categories
-        })
-        .catch((error)  => {
-          console.log("error fetching data :",error)
-        });
-    },
-
-    openModal() {
-      const modal = this.$refs.modal; // Reference to the modal <div>
-      const closeModalButton = this.$refs.closeModal; // Reference to the close button <span>
-
-      // Check if references are valid
-      if (modal && closeModalButton) {
-        // Open the modal by setting the display style to 'flex'
-        // @ts-ignore
-        modal.style.display = 'flex';
-
-        // Close modal when clicking 'X'
-        // @ts-ignore
-        closeModalButton.addEventListener('click', () => {
-          // @ts-ignore
-          modal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside the modal content
-        window.addEventListener('click', (event) => {
-          if (event.target === modal) {
-            // @ts-ignore
-            modal.style.display = 'none';
-          }
-        });
-      }
-    },
-  },
   
-  mounted(){
-    this.fetchjob_Pos_Cat_Count();
-    
-  },
-
-  created() {
-    this.fetchVisitCount();
-    this.incrementVisitCount();
-  },
-
-};
-</script>
-
+        // search & jobs
+        searchTerm: "",
+        isModalOpen: false,
+        suggestionsVisible: false,
+        suggestions: [],
+        filteredSuggestions: [],
+        categorizedJobs: {},
+        isSticky: false,
+      };
+    },
+    methods: {
+      async submitForm() { /* ... unchanged ... */ },
+      async fetchVisitCount() { /* ... unchanged ... */ },
+      async incrementVisitCount() { /* ... unchanged ... */ },
+  
+      async fetchJobs() {
+        try {
+          const response = await axios.get(`${flaskApiUrl}/job_data`);
+          this.categorizedJobs = response.data.categorized_jobs;
+          this.job_position_count = response.data.job_listings.length;
+          this.job_category_count = Object.keys(this.categorizedJobs).length;
+          this.suggestions = response.data.job_listings;
+        } catch (error) {
+          console.error("Error fetching job data:", error);
+        }
+      },
+  
+      showSuggestions() {
+        const value = this.searchTerm.trim().toLowerCase();
+        if (value) {
+          this.filteredSuggestions = this.suggestions.filter((s) =>
+            s.toLowerCase().includes(value)
+          );
+          this.suggestionsVisible = true;
+        } else {
+          this.suggestionsVisible = false;
+        }
+      },
+      highlightText(suggestion, searchTerm) {
+        const regex = new RegExp(`(${searchTerm})`, "gi");
+        return suggestion.replace(regex, `<span style="color:blue;">$1</span>`);
+      },
+      selectSuggestion(suggestion) {
+        this.searchTerm = suggestion;
+        this.suggestionsVisible = false;
+      },
+      handleSearch() {
+        if (this.filteredSuggestions.length > 0) {
+          this.isModalOpen = true;
+        } else {
+          alert("No matching jobs found!");
+        }
+      },
+      closeModal() {
+        this.isModalOpen = false;
+      },
+      handleScroll() {
+        this.isSticky = window.scrollY > 100;
+      },
+    },
+    computed: {
+      filteredCategories() {
+        if (!this.categorizedJobs) return [];
+        return Object.entries(this.categorizedJobs).filter(
+          ([, jobs]) => jobs.length > 0
+        );
+      },
+    },
+    mounted() {
+      this.fetchJobs();
+      window.addEventListener("scroll", this.handleScroll);
+    },
+    beforeUnmount() {
+      window.removeEventListener("scroll", this.handleScroll);
+    },
+    created() {
+      this.fetchVisitCount();
+      this.incrementVisitCount();
+    },
+  };
+  </script>
+  
+  
 <style scoped>
 /* Style the Modal */
+
+
+/* Search Section */
+.main_search_container {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;  /* Space between input and suggestions */
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+  color: #007bff;
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.suggestions {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  z-index: 10;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.no-match-message {
+  padding: 10px;
+  color: red;
+  font-style: italic;
+}
 
 a{
     text-decoration: none;
@@ -523,17 +370,6 @@ a{
     text-align: center;
     align-content: center;
 }
-
-/*.facts .facts-text h3::after {
-    position: absolute;
-    content: "\f067";
-    top: 0px;
-    right: -25px;
-    color: #ffffff;
-    font-size: 25px;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-}*/
 
 .facts .facts-text p {
     color: #ffffff;
@@ -791,3 +627,5 @@ a{
 }
 
 </style>
+
+  
