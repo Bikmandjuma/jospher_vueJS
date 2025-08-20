@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <!-- <section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white"> -->
+    <section class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-purple-500 to-sky-200 hover:bg-gradient-to-l hover:from-purple-500 hover:to-sky-200 font-bold">
       <div class="container mx-auto px-4 py-20 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           Discover a World of Opportunities
@@ -9,14 +10,14 @@
         <p class="text-lg md:text-xl mb-6">
           Job sphere Rwanda consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.
         </p>
-        <div class="flex justify-center space-x-4">
+        <!-- <div class="flex justify-center space-x-4">
           <a
             href="/jobs"
             class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-blue-500 to-sky-200 hover:bg-gradient-to-l hover:from-blue-500 hover:to-sky-200 font-bold"
           >
             <i class="fa fa-search"></i>&nbsp;Search Jobs
           </a>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -58,17 +59,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Modal -->
-    <div v-if="isModalOpen" class="modal" @click.self="closeModal">
-      <div class="modal-content">
-        <span class="close" @click="closeModal">&times;</span>
-        <p>
-          You have to create an account first, &nbsp;
-          <a href="/register" style="color:blue;">Sign up</a>
-        </p>
-      </div>
-    </div>
 
     <!-- Job Categories & Jobs Section -->
     <section class="py-10 bg-gray-50">
@@ -254,7 +244,6 @@ export default {
   text-align: center;
 }
 
-/* Search Section */
 .main_search_container {
   margin: 20px 0;
   padding: 10px;
@@ -317,371 +306,6 @@ export default {
 a{
     text-decoration: none;
 }
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 10px;
-  border: 1px solid #888;
-  width: 50%;
-  height: 45%;
-}
-
-@media(max-width:600px){
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 0% auto;
-        width: 90%;
-        margin-top:30% ;
-        height: 50%;
-        margin-bottom:5% ;
-        border: 1px solid #888;
-    }   
-}
-
-.close {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.about .about-img img {
-  display: block;
-  margin: 0 auto 30px;
-  max-width: 100%;
-  width: auto;
-  border-radius: 5px;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-/*******end of model price***/
-
-/*******************************/
-/********** Facts CSS **********/
-/*******************************/
-.facts {
-    position: relative;
-    width: 100%;
-    min-height: 200px;
-    margin: 45px 0;
-    display: flex;
-    align-items: center;
-    background: #202C45;
-}
-
-.facts .facts-item {
-    display: flex;
-    flex-direction: row;
-    margin: 25px 0;
-}
-
-.facts .facts-item i {
-    margin-top: 15px;
-    font-size: 45px;
-    color: #E81C2E;
-}
-
-.facts .facts-text {
-    padding-left: 20px;
-}
-
-.facts .facts-text h3 {
-    position: relative;
-    display: inline-block;
-    color: #ffffff;
-    font-size: 60px;
-    font-weight: 700;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-}
-
-.facts .facts-text p {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-}
-
-/*******************************/
-/********* Pricing CSS *********/
-/*******************************/
-    .price {
-        position: relative;
-        width: 100%;
-        padding: 5px 0 15px 0;
-    }
-
-    .price .row {
-        padding: 0 15px;
-    }
-
-    .price .col-md-4 {
-        padding: 0;
-    }
-
-    .price .price-item {
-        position: relative;
-        margin-bottom: 30px;
-        background: #ffffff;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .price .featured-item {
-        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-        z-index: 1;
-    }
-
-    .price .price-header {
-        padding: 45px 0 30px 0;
-    }
-
-    .price .price-header h3 {
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-
-    .price .price-header h2 {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        font-size: 60px;
-        font-weight: 700;
-        letter-spacing: 5px;
-    }
-
-    .price .price-header h2 span {
-        font-size: 25px;
-        line-height: 80px;
-    }
-
-    .price .price-item.featured-item h2,
-    .price .price-item.featured-item h3 {
-        color: #E81C2E;
-    }
-
-    .price .price-body {
-        padding: 0 0 20px 0;
-    }
-
-    .price .price-body ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .price .price-body ul li {
-        padding: 0 0 15px 0;
-    }
-
-    .price .price-body ul li i {
-        margin-right: 10px;
-    }
-
-    .price .price-body ul li i.fa-check-circle {
-        color: #39B972;
-    }
-
-    .price .price-body ul li i.fa-times-circle {
-        color: #cccccc;
-    }
-
-    .price .price-item .price-footer {
-        padding-bottom: 45px;
-    }
-
-    .price .price-item .price-footer .btn.btn-custom {
-        color: #E81C2E;
-        background: #202C45;
-        box-shadow: inset 0 0 0 0 #E81C2E;
-    }
-
-    .price .price-item .price-footer .btn.btn-custom:hover {
-        color: #ffffff;
-        background: #E81C2E;
-        box-shadow: inset 200px 0 0 0 #E81C2E;
-    }
-
-    .price .price-item.featured-item .price-footer .btn.btn-custom {
-        color: #ffffff;
-        background: #E81C2E;
-        box-shadow: inset 0 0 0 0 #202C45;
-    }
-
-    .price .price-item.featured-item .price-footer .btn.btn-custom:hover {
-        color: #E81C2E;
-        background: #202C45;
-        box-shadow: inset 200px 0 0 0 #202C45;
-    }
-
-/*******************************/
-/******** Location CSS *********/
-/*******************************/
-
-#ad_title{
-    color: #E81C2E;
-    font-size:20px;
-    font-weight: bold;
-}
-
-#ad_title {
-  position: relative;
-  display: inline-block;  /* Ensures the underline is centered relative to the text */
-}
-
-#ad_title::after {
-  content: '';  /* This creates an empty element */
-  position: absolute;
-  bottom: 0;  /* Aligns the underline at the bottom of the text */
-  left: 50%;  /* Centers the underline */
-  transform: translateX(-50%);  /* Adjusts the positioning to truly center the underline */
-  width: 50%;  /* The width of the underline (adjust as needed) */
-  height: 2px;  /* The thickness of the underline */
-  background-color: black;  /* Color of the underline */
-}
-
-@media(max-width:600px){
-    .location{
-        margin-top: -80px;
-    }
-}
-
-.location {
-    position: relative;
-    width: 100%;
-    padding: 45px 0;
-}
-
-.location .location-item {
-    display: flex;
-    margin-bottom: 30px;
-}
-
-.location .location-item i {
-    padding-top: 3px;
-    font-size: 30px;
-    color: #E81C2E;
-}
-
-.location .location-text {
-    padding-left: 15px;
-}
-
-.location .location-text h3 {
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.location .location-text p {
-    margin-bottom: 5px;
-}
-
-.location .location-text p strong {
-    margin-right: 5px;
-    font-weight: 600;
-}
-
-.location .location-form {
-    padding: 45px 30px;
-    background: #E81C2E;
-    border-radius: 5px;
-}
-
-.location-item i{
-    color: #E81C2E;
-}
-
-.location .location-form h3 {
-    color: #ffffff;
-    font-size: 25px;
-    font-weight: 700;
-    margin-bottom: 25px;
-}
-
-.location .location-form .control-group {
-    margin-bottom: 15px;
-}
-
-.location .location-form .form-control {
-    height: 45px;
-    color: #ffffff;
-    padding: 0 15px;
-    border-radius: 5px;
-    border: 1px solid #ffffff;
-    background: transparent;
-}
-
-.location .location-form textarea.form-control {
-    height: 120px;
-    padding: 15px;
-}
-
-.location .location-form .form-control::placeholder {
-    color: #ffffff;
-    opacity: 1;
-}
-
-.location .location-form .form-control:-ms-input-placeholder,
-.location .location-form .form-control::-ms-input-placeholder {
-    color: #ffffff;
-}
-
-.location .location-form .btn.btn-custom {
-    width: 100%;
-    color: #E81C2E;
-    background: #ffffff;
-    box-shadow: inset 0 0 0 0 #202C45;
-}
-
-.location .location-form .btn.btn-custom:hover {
-    color: #ffffff;
-    background: #E81C2E;
-    box-shadow: inset 400px 0 0 0 #202C45;
-}
-
-@media(min-width: 576px) and (max-width: 991.89px) {
-    .location .location-form .btn.btn-custom:hover {
-        box-shadow: inset 650px 0 0 0 #202C45;
-    }
-}
-
 </style>
 
   
