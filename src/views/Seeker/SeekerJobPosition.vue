@@ -7,11 +7,11 @@
           <div class="card border rounded-lg shadow-md">
             <div class="card-body p-1">
               <div style="max-height: 400px; overflow: auto;">
-                <h4 class="sticky top-0 z-5 bg-white text-center items-center justify-center">
+                <h5 class="sticky top-0 z-5 bg-white text-center items-center justify-center">
                   Job Categories&nbsp;
                   <span class="badge bg-primary" style="border-radius: 50%;">{{ categories.length }}</span>
                   &nbsp;&nbsp;<router-link to="/seeker/job_category"><i class="fa fa-plus text-primary"></i></router-link>
-                </h4>
+                </h5>
 
                 <ul id="category_id">
                     <ul v-if="categories.length > 0">
@@ -58,7 +58,8 @@
                 </h4>
                 
                 <!-- Paid Status Block -->
-                <div v-if="paidStatus">
+                <!-- <div v-if="paidStatus"> -->
+                  <div>
 
                   <ul v-if="jobPositions.length > 0" class="pb-3 p-2">
                     <li v-for="(job, index) in jobPositions" :key="index" class="mt-2">
@@ -80,11 +81,11 @@
                   <p v-else class="text-center justify-center items-center">No jobs found for this category.</p>
                 </div>
 
-                <div v-else-if="overdueStatus">
+                <!-- <div v-else-if="overdueStatus">
                   <p>{{ overdueStatus }}</p>
-                </div>
+                </div> -->
 
-                <div v-else-if="noPaymentStatus">
+                <!--div v-else-if="noPaymentStatus">
                   <p class="text-center justify-center items-center"><i class="blink-icon cursor-pointer" onclick="window.location.href='/seeker/payment_plan'">🔔</i>&nbsp;{{ noPaymentStatus }}</p>
                   <p style="margin-top:10px;" class="text-center justify-center items-center mb-2">
                     <a
@@ -94,7 +95,7 @@
                       <i  class="fa fa-dollar text-white hover:text-teal-400 blink-icon"></i>&nbsp;Pay now
                     </a>
                   </p>
-                </div>
+                </div-->
                 
               </div>
             </div>
@@ -107,7 +108,7 @@
 
 <script>
 import { flaskApiUrl, laravelApiUrl } from '../../api';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   data() {
@@ -116,54 +117,54 @@ export default {
       flaskData: {},
       selectedCategory: null,
       jobPositions: [],
-      paidStatus: '',
-      overdueStatus: '',
-      noPaymentStatus: '',
+      // paidStatus: '',
+      // overdueStatus: '',
+      // noPaymentStatus: '',
       loading:true,
     };
   },
 
   methods: {
-      async fetchUserPayStatus() {
-      const token = localStorage.getItem('auth_token');
+      // async fetchUserPayStatus() {
+      // const token = localStorage.getItem('auth_token');
 
-      try {
-        const response = await axios.get(`${laravelApiUrl}/user/checkUserAccess`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+      // try {
+      //   const response = await axios.get(`${laravelApiUrl}/user/checkUserAccess`, {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       'Content-Type': 'application/json',
+      //     },
+      //   });
 
-        console.log("API Response:", response.data);
+      //   console.log("API Response:", response.data);
         
-        if (response.data.status === 'paid') {
-          this.paidStatus = response.data.message;
-          console.log('Paid Status:', this.paidStatus);
+      //   if (response.data.status === 'paid') {
+      //     this.paidStatus = response.data.message;
+      //     console.log('Paid Status:', this.paidStatus);
 
-        } else if (response.data.status === 'overdue') {
-          this.overdueStatus = response.data.message;
-          console.log('Overdue Status:', this.overdueStatus);
+      //   } else if (response.data.status === 'overdue') {
+      //     this.overdueStatus = response.data.message;
+      //     console.log('Overdue Status:', this.overdueStatus);
 
-        } else if (response.data.status === 'noPayment') {
-          this.noPaymentStatus = response.data.message;
-          console.log('No Payment Status:', this.noPaymentStatus);
+      //   } else if (response.data.status === 'noPayment') {
+      //     this.noPaymentStatus = response.data.message;
+      //     console.log('No Payment Status:', this.noPaymentStatus);
           
-        } else {
-          console.log("Unhandled status:", response.data.status);
-        }
-      } catch (error) {
-        if (error.response) {
-          this.noPaymentStatus = "No payment found. Please make a payment.";
-          console.error('Error response:', error.response.data);
+      //   } else {
+      //     console.log("Unhandled status:", response.data.status);
+      //   }
+      // } catch (error) {
+      //   if (error.response) {
+      //     this.noPaymentStatus = "No payment found. Please make a payment.";
+      //     console.error('Error response:', error.response.data);
           
-        } else if (error.request) {
-          console.error('Error request:', error.request);
-        } else {
-          console.error('Error message:', error.message);
-        }
-      }
-      },
+      //   } else if (error.request) {
+      //     console.error('Error request:', error.request);
+      //   } else {
+      //     console.error('Error message:', error.message);
+      //   }
+      // }
+      // },
 
     async fetchData() {
       try {
@@ -229,7 +230,7 @@ export default {
 
       } else {
         this.fetchData();
-        this.fetchUserPayStatus();
+        // this.fetchUserPayStatus();
       }
 
       setTimeout(() => {

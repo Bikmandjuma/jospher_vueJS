@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <component :is="layout">
     <router-view></router-view>
   </component>
@@ -16,13 +16,13 @@ export default defineComponent({
     }
   }
 });
-</script> -->
-
-<template>
+</script>
+<!-- 
+<template> -->
   <!-- <component :is="layout">
     <router-view></router-view>
   </component> -->
-  <div class="maintenance">
+  <!-- <div class="maintenance">
     <h2>🔧 Job Sphere Rwanda - System Maintenance</h2>
     <p>Our system is currently undergoing scheduled maintenance.</p>
     <p>We are working hard to bring it back online as soon as possible.</p>
@@ -61,4 +61,4 @@ export default defineComponent({
   font-size: 16px;
   margin: 5px 0;
 }
-</style>
+</style> -->
