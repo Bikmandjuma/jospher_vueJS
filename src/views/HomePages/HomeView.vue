@@ -87,7 +87,7 @@
                 :key="jobIndex"
                 class="relative group cursor-pointer"
               >
-                {{ job.length > 20 ? job.slice(0, 20) + '...' : job }}
+                {{ job.length > 30 ? job.slice(0, 30) + '...' : job }}
                 <div
                   class="absolute hidden group-hover:block left-1/2 transform -translate-x-1/2 bottom-full mb-2 px-2 py-1 bg-black text-white text-xs rounded-lg"
                 >
