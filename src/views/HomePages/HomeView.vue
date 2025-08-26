@@ -12,18 +12,6 @@
       </div>
     </section>
 
-    <!-- AdSense after Hero -->
-    <div class="adsense-container">
-      <ins
-        class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-        data-ad-slot="1234567890"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </div>
-
     <!-- Search Section -->
     <section class="main_search_container my-10">
       <div class="search-container" :class="{'sticky-search': isSticky}">
@@ -42,7 +30,7 @@
             class="suggestion-item"
             @click="selectSuggestion(suggestion)"
           >
-            <span v-html="highlightText(suggestion, searchTerm)"></span>
+            <span v-html="highlightText(suggestion.title, searchTerm)"></span>
           </div>
           <div v-if="filteredSuggestions.length === 0" class="no-match-message">
             Not matching!
@@ -69,27 +57,27 @@
             class="bg-white shadow-md rounded-2xl p-4 hover:shadow-lg transition"
           >
             <h3 class="font-semibold text-lg text-gray-800 mb-3">
-              {{ category }}
-              (<span class="text-blue-500">{{ jobs.length }}</span> 
-              {{ jobs.length === 1 ? "job" : "jobs" }})
+              {{ category }} (<span class="text-blue-500">{{ jobs?.length || 0 }}</span>)
             </h3>
             <ul class="text-sm text-gray-600 space-y-1">
               <li
-                v-for="(job, jobIndex) in jobs.slice(0, 3)"
+                v-for="(job, jobIndex) in (jobs || []).slice(0, 3)"
                 :key="jobIndex"
-                class="relative group cursor-pointer"
+                class="relative group"
               >
-                {{ job.length > 30 ? job.slice(0, 30) + "..." : job }}
-                <div
-                  class="absolute hidden group-hover:block left-1/2 transform -translate-x-1/2 bottom-full mb-2 px-2 py-1 bg-black text-white text-xs rounded-lg"
+                <a
+                  :href="getJobUrl(job)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-black hover:text-purple-400"
                 >
-                  {{ job }}
-                </div>
+                  {{ jobIndex+1 }} : {{ job.title.length > 35 ? job.title.slice(0, 35) + "..." : job.title }}
+                </a>
               </li>
             </ul>
 
             <div
-              v-if="jobs.length > 3"
+              v-if="(jobs?.length || 0) > 3"
               class="text-blue-500 text-xs mt-2 cursor-pointer"
               @click="openModal(category, jobs)"
             >
@@ -113,11 +101,18 @@
         <h3 class="mt-2 font-bold text-lg"><u>{{ selectedCategory }}</u></h3>
         <ul class="text-sm text-gray-700 mt-3 space-y-1">
           <li
-            v-for="(job, index) in selectedJobs"
+            v-for="(job, index) in (selectedJobs || [])"
             :key="index"
             class="p-1 border-b border-gray-200"
           >
-            {{ index + 1 }} : {{ job }}
+            <a
+              :href="getJobUrl(job)"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-black hover:text-purple-400 "
+            >
+              {{ index + 1 }} : {{ job.title }}
+            </a>
           </li>
         </ul>
         <div class="text-center mt-4">
@@ -130,25 +125,12 @@
         </div>
       </div>
     </div>
-
-    <!-- Bottom AdSense -->
-    <div class="adsense-container">
-      <ins
-        class="adsbygoogle"
-        style="display:block"
-        data-ad-client="pub-8868912095987519"
-        data-ad-slot="6888165290"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </div>
   </div>
 </template>
 
 <script>
-/* global adsbygoogle */
 import axios from "axios";
-import { flaskApiUrl, laravelApiUrl } from "../../api";
+import { flaskApiUrl } from "../../api";
 
 export default {
   name: "HomeView",
@@ -156,7 +138,6 @@ export default {
     return {
       job_position_count: 0,
       job_category_count: 0,
-      visitCount: 0,
       isModalOpen: false,
       selectedCategory: "",
       selectedJobs: [],
@@ -169,37 +150,18 @@ export default {
     };
   },
   methods: {
-    async fetchVisitCount() {
-      try {
-        const response = await axios.get(`${laravelApiUrl}/getVisitCount`);
-        this.visitCount = response.data.count;
-      } catch (error) {
-        console.error("Error fetching visit count:", error);
-      }
-    },
-    async incrementVisitCount() {
-      try {
-        await axios.post(`${laravelApiUrl}/incrementVisitCount`);
-      } catch (error) {
-        console.error("Error incrementing visit count:", error);
-      }
-    },
     async fetchJobs() {
       try {
-        const response = await axios.get(`${flaskApiUrl}/job_data`);
-        this.categorizedJobs = response.data.categorized_jobs;
-        this.suggestions = response.data.job_listings;
+        const response = await axios.get(`${flaskApiUrl}/fetch_job_position`);
+        this.categorizedJobs = response.data.categorized_jobs || {};
+        // Build suggestions list from all jobs
+        this.suggestions = Object.values(this.categorizedJobs)
+          .flat()
+          .filter(job => job.title && job.origin);
+        this.job_position_count = this.suggestions.length;
+        this.job_category_count = Object.keys(this.categorizedJobs).length;
       } catch (error) {
         console.error("Error fetching job data:", error);
-      }
-    },
-    async fetchjob_Pos_Cat_Count() {
-      try {
-        const response = await axios.get(`${flaskApiUrl}/count_position_category`);
-        this.job_position_count = response.data.total_job_positions;
-        this.job_category_count = response.data.total_job_categories;
-      } catch (error) {
-        console.log("Error fetching data:", error);
       }
     },
     openModal(category, jobs) {
@@ -215,21 +177,22 @@ export default {
     showSuggestions() {
       const value = this.searchTerm.trim().toLowerCase();
       if (value) {
-        this.filteredSuggestions = this.suggestions.filter((s) =>
-          s.toLowerCase().includes(value)
+        this.filteredSuggestions = this.suggestions.filter(s =>
+          s.title.toLowerCase().includes(value)
         );
         this.suggestionsVisible = true;
       } else {
         this.suggestionsVisible = false;
       }
     },
-    highlightText(suggestion, searchTerm) {
-      const regex = new RegExp(`(${searchTerm})`, "gi");
-      return suggestion.replace(regex, `<span style="color:blue;">$1</span>`);
-    },
     selectSuggestion(suggestion) {
-      this.searchTerm = suggestion;
+      this.searchTerm = suggestion.title;
       this.suggestionsVisible = false;
+      window.open(this.getJobUrl(suggestion), "_blank");
+    },
+    highlightText(text, term) {
+      const regex = new RegExp(`(${term})`, "gi");
+      return text.replace(regex, `<span style="color:blue;">$1</span>`);
     },
     handleSearch() {
       if (this.filteredSuggestions.length === 0) {
@@ -239,31 +202,36 @@ export default {
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
+    getJobUrl(job) {
+      if (job.origin === "https://www.rwandajob.com/job-vacancies-search-rwanda") {
+        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
+          .replace(/%20/g, '-')
+          .replace(/%2F/g, '/');
+        return `${job.origin}/${sanitizedTitle}`;
+      } else if (job.origin === "https://www.jobinrwanda.com/") {
+        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
+          .replace(/%20/g, '+');
+        return `https://www.jobinrwanda.com/jobs/search-result?filter_titles_field=${sanitizedTitle}`;
+      } else if (job.origin === "https://jobportal.kora.rw/service/service-job") {
+        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
+          .replace(/%20/g, '+');
+        return `https://jobportal.kora.rw/service/service-job?title=${sanitizedTitle}`;
+      }
+
+      return job.origin;
+    },
   },
   computed: {
     filteredCategories() {
       if (!this.categorizedJobs) return [];
       return Object.entries(this.categorizedJobs).filter(
-        ([, jobs]) => jobs.length > 0
+        ([, jobs]) => (jobs?.length || 0) > 0
       );
     },
   },
   mounted() {
     this.fetchJobs();
-    this.fetchjob_Pos_Cat_Count();
     window.addEventListener("scroll", this.handleScroll);
-
-    if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
-      try {
-        adsbygoogle.push({});
-      } catch (e) {
-        console.warn("AdSense push error:", e);
-      }
-    }
-  },
-  created() {
-    this.fetchVisitCount();
-    this.incrementVisitCount();
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -271,7 +239,11 @@ export default {
 };
 </script>
 
+
 <style scoped>
+a:link{
+  color: black;
+}
 .adsense-container {
   margin: 20px 0;
   text-align: center;
