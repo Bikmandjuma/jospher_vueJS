@@ -22,7 +22,7 @@
           :placeholder="'Searching . . . . . .  ex : Software developer'"
           @input="showSuggestions"
         />
-        <div class="search-icon" @click="handleSearch">&#128269;</div>
+        <!-- <div class="search-icon" @click="handleSearch">&#128269;</div> -->
         <div v-if="suggestionsVisible" id="suggestions" class="suggestions">
           <div
             v-for="(suggestion, index) in filteredSuggestions"
@@ -194,11 +194,11 @@ export default {
       const regex = new RegExp(`(${term})`, "gi");
       return text.replace(regex, `<span style="color:blue;">$1</span>`);
     },
-    handleSearch() {
-      if (this.filteredSuggestions.length === 0) {
-        alert("No matching jobs found!");
-      }
-    },
+    // handleSearch() {
+    //   if (this.filteredSuggestions.length === 0) {
+    //     alert("No matching jobs found!");
+    //   }
+    // },
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
