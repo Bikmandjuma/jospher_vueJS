@@ -40,7 +40,7 @@
           v-model="searchTerm"
           type="text"
           id="search-input"
-          :placeholder="'Searching ... ' + job_position_count + ' jobs found in system'"
+          :placeholder="'Searching . . . . . .  ex : Software developer'"
           @input="showSuggestions"
         />
         <div class="search-icon" @click="handleSearch">&#128269;</div>
@@ -186,12 +186,21 @@ export default {
       try {
         const response = await axios.get(`${flaskApiUrl}/job_data`);
         this.categorizedJobs = response.data.categorized_jobs;
-        this.job_position_count = response.data.job_listings.length;
-        this.job_category_count = Object.keys(this.categorizedJobs).length;
+        // this.job_position_count = response.data.job_listings.length;
+        // this.job_category_count = Object.keys(this.categorizedJobs).length;
         this.suggestions = response.data.job_listings;
       } catch (error) {
         console.error("Error fetching job data:", error);
       }
+    },
+    async fetchjob_Pos_Cat_Count(){
+      try{
+        const response = await axios.get(`${flaskApiUrl}/count_position_category`)
+          this.job_position_count = response.data.total_job_positions;
+          this.job_category_count = response.data.total_job_categories;
+        }catch(error)  {
+          console.log("error fetching data :",error);
+        }
     },
     showSuggestions() {
       const value = this.searchTerm.trim().toLowerCase();
@@ -236,6 +245,8 @@ export default {
   },
   mounted() {
     this.fetchJobs();
+    this.fetchjob_Pos_Cat_Count();
+
     window.addEventListener("scroll", this.handleScroll);
 
     // ✅ Load AdSense after component renders
@@ -250,7 +261,7 @@ export default {
     }
   },
   created() {
-    this.fetchVisitCount();
+    this.fetchVisitCount()+500;
     this.incrementVisitCount();
   },
   beforeUnmount() {
