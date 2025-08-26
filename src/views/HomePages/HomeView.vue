@@ -78,7 +78,10 @@
             :key="index"
             class="bg-white shadow-md rounded-2xl p-4 hover:shadow-lg transition"
           >
-            <h3 class="font-semibold text-lg text-gray-800 mb-3">
+            <h3 v-if="jobs.length == 1" class="font-semibold text-lg text-gray-800 mb-3">
+              {{ category }} (<span class="text-blue-500">{{ jobs.length }}</span> job)
+            </h3>
+            <h3 v-else class="font-semibold text-lg text-gray-800 mb-3">
               {{ category }} (<span class="text-blue-500">{{ jobs.length }}</span> jobs)
             </h3>
             <ul class="text-sm text-gray-600 space-y-1">
@@ -95,12 +98,41 @@
                 </div>
               </li>
             </ul>
-            <div
+            <!-- <div
               v-if="jobs.length > 5"
               class="text-blue-500 text-xs mt-2 cursor-pointer"
             >
               + more
+            </div> -->
+            <div
+              v-if="jobs.length > 5"
+              class="text-blue-500 text-xs mt-2 cursor-pointer"
+              @click="openModal(category, jobs)"
+            >
+              + more
             </div>
+
+            <!-- Modal -->
+            <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+              <div class="bg-white p-6 rounded-lg max-w-lg w-full max-h-[80vh] overflow-y-auto">
+                <h3 class="mt-2 font-bold text-lg"><u>{{ selectedCategory }}</u></h3>
+                <ul class="text-sm text-gray-700 mt-3 space-y-1">
+                  <li 
+                    v-for="(job, index) in selectedJobs" 
+                    :key="index"
+                    class="p-1 border-b border-gray-200"
+                  >
+                  {{ index + 1 }} : {{ job }}
+                  </li>
+                </ul>
+                <div class="text-center mt-4">
+                  <button class="px-4 py-2 bg-red-500 text-white rounded" @click="closeModal">
+                    <i class="fa fa-times"></i>&nbsp; Close
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -111,16 +143,7 @@
       </div>
     </section>
 
-    <!-- ✅ AdSense after Job Categories -->
     <div class="adsense-container">
-      <!-- <ins
-        class="adsbygoogle"
-        style="display:block"
-        data-ad-client="pub-8868912095987519"
-        data-ad-slot="9876543210"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins> -->
       <ins
         class="adsbygoogle"
         style="display:block"
@@ -153,10 +176,10 @@ export default {
       error: {},
       success: null,
       loading: false,
-
-      // search & jobs
-      searchTerm: "",
       isModalOpen: false,
+      selectedCategory: "",
+      selectedJobs: [],
+      searchTerm: "",
       suggestionsVisible: false,
       suggestions: [],
       filteredSuggestions: [],
@@ -202,6 +225,19 @@ export default {
           console.log("error fetching data :",error);
         }
     },
+    openModal(category, jobs) {
+      console.log("Opening modal for", category, jobs); // ✅ debug
+      this.selectedCategory = category;
+      this.selectedJobs = jobs;
+      this.isModalOpen = true;
+    },
+
+
+    closeModal() {
+      this.isModalOpen = false;
+      this.selectedCategory = "";
+      this.selectedJobs = [];
+    },
     showSuggestions() {
       const value = this.searchTerm.trim().toLowerCase();
       if (value) {
@@ -221,16 +257,16 @@ export default {
       this.searchTerm = suggestion;
       this.suggestionsVisible = false;
     },
-    handleSearch() {
-      if (this.filteredSuggestions.length > 0) {
-        this.isModalOpen = true;
-      } else {
-        alert("No matching jobs found!");
-      }
-    },
-    closeModal() {
-      this.isModalOpen = false;
-    },
+    // handleSearch() {
+    //   if (this.filteredSuggestions.length > 0) {
+    //     this.isModalOpen = true;
+    //   } else {
+    //     alert("No matching jobs found!");
+    //   }
+    // },
+    // closeModal() {
+    //   this.isModalOpen = false;
+    // },
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
@@ -261,7 +297,7 @@ export default {
     }
   },
   created() {
-    this.fetchVisitCount()+500;
+    this.fetchVisitCount();
     this.incrementVisitCount();
   },
   beforeUnmount() {
