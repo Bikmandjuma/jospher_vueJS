@@ -137,7 +137,7 @@
 <script>
 /* global adsbygoogle */
 import axios from "axios";
-import { flaskApiUrl } from "../../api";
+import { flaskApiUrl,laravelApiUrl } from "../../api";
 
 export default {
   name: "HomeView",
@@ -165,6 +165,23 @@ export default {
     };
   },
   methods: {
+
+    async fetchVisitCount() {
+      try {
+        const response = await axios.get(`${laravelApiUrl}/getVisitCount`);
+        this.visitCount = response.data.count;
+      } catch (error) {
+        console.error('Error fetching visit count:', error);
+      }
+    },
+    async incrementVisitCount() {
+      try {
+        await axios.post(`${laravelApiUrl}/incrementVisitCount`);
+      } catch (error) {
+        console.error('Error incrementing visit count:', error);
+      }
+    },
+
     async fetchJobs() {
       try {
         const response = await axios.get(`${flaskApiUrl}/job_data`);
@@ -231,6 +248,10 @@ export default {
         console.warn("AdSense push error:", e);
       }
     }
+  },
+  created() {
+    this.fetchVisitCount();
+    this.incrementVisitCount();
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);

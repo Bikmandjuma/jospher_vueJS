@@ -45,7 +45,7 @@
             </div>
           </div>
 
-          <div>
+          <!--div>
             <a
               href="#"
               @click.prevent="toggleSubMenu('pricing')"
@@ -61,9 +61,8 @@
             </a>
             <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
               <a href="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-              <!-- <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a> -->
             </div>
-          </div>
+          </div-->
 
         </nav>
       </div>
@@ -188,7 +187,7 @@
         </div>
 
         <!-- job Link -->
-        <a
+        <!--a
           href="#"
           @click.prevent="toggleSubMenu('pricing')"
           class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
@@ -198,11 +197,10 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
           </svg>
           <span class="ml-2 text-sm">Pricing</span>
-        </a>
-        <div v-show="open.pricing" class="mt-2 space-y-2 px-7">
+        </a-->
+        <!--div v-show="open.pricing" class="mt-2 space-y-2 px-7">
           <a href="/seeker/payment_plan" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">Payment</a>
-          <!-- <a href="#history" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-light">History</a> -->
-        </div>
+        </div-->
       </div>
     </nav>
   </div>
