@@ -1,13 +1,17 @@
 <template>
   <div class="home">
     <!-- Hero Section -->
-    <section class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-purple-500 to-sky-200 hover:bg-gradient-to-l hover:from-purple-500 hover:to-sky-200 font-bold">
+    <section
+      class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-purple-500 to-sky-200 hover:bg-gradient-to-l hover:from-purple-500 hover:to-sky-200 font-bold"
+    >
       <div class="container mx-auto px-4 py-20 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           Discover a World of Opportunities
         </h1>
         <p class="text-lg md:text-xl mb-6">
-          Job sphere Rwanda consolidates job listings from various platforms, providing you with a comprehensive view of available positions tailored to your skills.
+          Job sphere Rwanda consolidates job listings from various platforms,
+          providing you with a comprehensive view of available positions tailored
+          to your skills.
         </p>
       </div>
     </section>
@@ -22,7 +26,6 @@
           :placeholder="'Searching . . . . . .  ex : Software developer'"
           @input="showSuggestions"
         />
-        <!-- <div class="search-icon" @click="handleSearch">&#128269;</div> -->
         <div v-if="suggestionsVisible" id="suggestions" class="suggestions">
           <div
             v-for="(suggestion, index) in filteredSuggestions"
@@ -40,19 +43,24 @@
     </section>
 
     <!-- Job Categories & Jobs Section -->
-    <section class="py-10 bg-gray-50" >
+    <section class="py-10 bg-gray-50">
       <div class="container mx-auto px-4">
-        <h2 class="text-center text-2xl font-bold mb-6" v-if="filteredCategories.length > 0">
-          Jobs <span class="text-blue-600">{{ job_position_count }}</span> and Categories
+        <h2
+          class="text-center text-2xl font-bold mb-6"
+          v-if="filteredCategories.length > 0"
+        >
+          Jobs <span class="text-blue-600">{{ job_position_count }}</span> and
+          Categories
           <span class="text-indigo-600">{{ job_category_count }}</span>
         </h2>
 
+        <!-- Cards with Pagination -->
         <div
           v-if="filteredCategories.length > 0"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <div
-            v-for="([category, jobs], index) in filteredCategories"
+            v-for="([category, jobs], index) in paginatedCategories"
             :key="index"
             class="bg-white shadow-md rounded-2xl p-4 hover:shadow-lg transition"
           >
@@ -86,6 +94,41 @@
           </div>
         </div>
 
+        <!-- Pagination -->
+        <div
+          v-if="totalPages > 1"
+          class="flex justify-center items-center space-x-2 mt-8"
+        >
+          <!-- Prev Button -->
+          <button
+            class="px-3 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+            :disabled="currentPage === 1"
+            @click="currentPage--"
+          >
+            ‹ Prev
+          </button>
+
+          <!-- Page Numbers -->
+          <button
+            v-for="page in totalPages"
+            :key="page"
+            @click="currentPage = page"
+            class="px-4 py-2 rounded-lg"
+            :class="page === currentPage ? 'bg-purple-500 text-white font-bold shadow-md' : 'bg-gray-200 hover:bg-gray-300'"
+          >
+            {{ page }}
+          </button>
+
+          <!-- Next Button -->
+          <button
+            class="px-3 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+            :disabled="currentPage === totalPages"
+            @click="currentPage++"
+          >
+            Next ›
+          </button>
+        </div>
+
         <div v-else class="text-center py-10 text-xl text-gray-500">
           <i class="fas fa-spinner fa-spin"></i> Loading jobs...
         </div>
@@ -109,7 +152,7 @@
               :href="getJobUrl(job)"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-black hover:text-purple-400 "
+              class="text-black hover:text-purple-400"
             >
               {{ index + 1 }} : {{ job.title }}
             </a>
@@ -147,6 +190,10 @@ export default {
       filteredSuggestions: [],
       categorizedJobs: {},
       isSticky: false,
+
+      // Pagination
+      currentPage: 1,
+      itemsPerPage: 9, // how many cards per page
     };
   },
   methods: {
@@ -154,12 +201,9 @@ export default {
       try {
         const response = await axios.get(`${flaskApiUrl}/fetch_job_position`);
         this.categorizedJobs = response.data.categorized_jobs || {};
-        // Build suggestions list from all jobs
         this.suggestions = Object.values(this.categorizedJobs)
           .flat()
           .filter(job => job.title && job.origin);
-        // this.job_position_count = this.suggestions.length;
-        // this.job_category_count = Object.keys(this.categorizedJobs).length;
       } catch (error) {
         console.error("Error fetching job data:", error);
       }
@@ -205,30 +249,22 @@ export default {
       const regex = new RegExp(`(${term})`, "gi");
       return text.replace(regex, `<span style="color:blue;">$1</span>`);
     },
-    // handleSearch() {
-    //   if (this.filteredSuggestions.length === 0) {
-    //     alert("No matching jobs found!");
-    //   }
-    // },
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
     getJobUrl(job) {
       if (job.origin === "https://www.rwandajob.com/job-vacancies-search-rwanda") {
         const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
-          .replace(/%20/g, '-')
-          .replace(/%2F/g, '/');
+          .replace(/%20/g, "-")
+          .replace(/%2F/g, "/");
         return `${job.origin}/${sanitizedTitle}`;
       } else if (job.origin === "https://www.jobinrwanda.com/") {
-        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
-          .replace(/%20/g, '+');
+        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100)).replace(/%20/g, "+");
         return `https://www.jobinrwanda.com/jobs/search-result?filter_titles_field=${sanitizedTitle}`;
       } else if (job.origin === "https://jobportal.kora.rw/service/service-job") {
-        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
-          .replace(/%20/g, '+');
+        const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100)).replace(/%20/g, "+");
         return `https://jobportal.kora.rw/service/service-job?title=${sanitizedTitle}`;
       }
-
       return job.origin;
     },
   },
@@ -238,6 +274,13 @@ export default {
       return Object.entries(this.categorizedJobs).filter(
         ([, jobs]) => (jobs?.length || 0) > 0
       );
+    },
+    totalPages() {
+      return Math.ceil(this.filteredCategories.length / this.itemsPerPage);
+    },
+    paginatedCategories() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      return this.filteredCategories.slice(start, start + this.itemsPerPage);
     },
   },
   mounted() {
@@ -250,7 +293,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 a:link{
