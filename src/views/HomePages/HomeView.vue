@@ -13,7 +13,7 @@
     </section>
 
     <!-- Search Section -->
-    <section class="main_search_container my-10">
+    <section class="main_search_container my-10" v-if="filteredCategories.length > 0">
       <div class="search-container" :class="{'sticky-search': isSticky}">
         <input
           v-model="searchTerm"
@@ -40,9 +40,9 @@
     </section>
 
     <!-- Job Categories & Jobs Section -->
-    <section class="py-10 bg-gray-50">
+    <section class="py-10 bg-gray-50" >
       <div class="container mx-auto px-4">
-        <h2 class="text-center text-2xl font-bold mb-6">
+        <h2 class="text-center text-2xl font-bold mb-6" v-if="filteredCategories.length > 0">
           Jobs <span class="text-blue-600">{{ job_position_count }}</span> and Categories
           <span class="text-indigo-600">{{ job_category_count }}</span>
         </h2>
@@ -158,12 +158,23 @@ export default {
         this.suggestions = Object.values(this.categorizedJobs)
           .flat()
           .filter(job => job.title && job.origin);
-        this.job_position_count = this.suggestions.length;
-        this.job_category_count = Object.keys(this.categorizedJobs).length;
+        // this.job_position_count = this.suggestions.length;
+        // this.job_category_count = Object.keys(this.categorizedJobs).length;
       } catch (error) {
         console.error("Error fetching job data:", error);
       }
     },
+
+    async fetchjob_Pos_Cat_Count() {
+      try {
+        const response = await axios.get(`${flaskApiUrl}/count_position_category`);
+        this.job_position_count = response.data.total_job_positions;
+        this.job_category_count = response.data.total_job_categories;
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    },
+
     openModal(category, jobs) {
       this.selectedCategory = category;
       this.selectedJobs = jobs;
@@ -231,6 +242,7 @@ export default {
   },
   mounted() {
     this.fetchJobs();
+    this.fetchjob_Pos_Cat_Count();
     window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
