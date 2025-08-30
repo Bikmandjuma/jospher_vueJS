@@ -5,10 +5,10 @@
       class="text-white px-6 py-2 rounded-lg shadow bg-gradient-to-r from-purple-500 to-sky-200 hover:bg-gradient-to-l hover:from-purple-500 hover:to-sky-200 font-bold"
     >
       <div class="container mx-auto px-4 py-20 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
           Discover a World of Opportunities
         </h1>
-        <p class="text-lg md:text-xl mb-6">
+        <p class="text-base sm:text-lg md:text-xl mb-6">
           Job sphere Rwanda consolidates job listings from various platforms,
           providing you with a comprehensive view of available positions tailored
           to your skills.
@@ -17,25 +17,34 @@
     </section>
 
     <!-- Search Section -->
-    <section class="main_search_container my-10" v-if="filteredCategories.length > 0">
-      <div class="search-container" :class="{'sticky-search': isSticky}">
+    <section class="main_search_container my-6 px-3" v-if="filteredCategories.length > 0">
+      <div class="relative max-w-xl mx-auto" :class="{'sticky-search': isSticky}">
         <input
           v-model="searchTerm"
           type="text"
           id="search-input"
-          :placeholder="'Searching . . . . . .  ex : Software developer'"
+          class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm sm:text-base"
+          placeholder="Searching . . . ex: Software developer"
           @input="showSuggestions"
         />
-        <div v-if="suggestionsVisible" id="suggestions" class="suggestions">
+        <!-- Suggestions dropdown -->
+        <div
+          v-if="suggestionsVisible"
+          id="suggestions"
+          class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto z-10"
+        >
           <div
             v-for="(suggestion, index) in filteredSuggestions"
             :key="index"
-            class="suggestion-item"
+            class="px-3 py-2 hover:bg-purple-100 cursor-pointer text-sm sm:text-base"
             @click="selectSuggestion(suggestion)"
           >
             <span v-html="highlightText(suggestion.title, searchTerm)"></span>
           </div>
-          <div v-if="filteredSuggestions.length === 0" class="no-match-message">
+          <div
+            v-if="filteredSuggestions.length === 0"
+            class="px-3 py-2 text-gray-500 text-sm"
+          >
             Not matching!
           </div>
         </div>
@@ -46,25 +55,26 @@
     <section class="py-10 bg-gray-50">
       <div class="container mx-auto px-4">
         <h2
-          class="text-center text-2xl font-bold mb-6"
+          class="text-center text-xl sm:text-2xl font-bold mb-6"
           v-if="filteredCategories.length > 0"
         >
           Jobs <span class="text-blue-600">{{ job_position_count }}</span> and
-          Categories
-          <span class="text-indigo-600">{{ job_category_count }}</span>
+          Categories <span class="text-indigo-600">{{ job_category_count }}</span>
         </h2>
+
+        <!-- <span class="loading-icon"><i class="fas fa-spinner fa-spin"></i></span> -->
 
         <!-- Cards with Pagination -->
         <div
           v-if="filteredCategories.length > 0"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <div
             v-for="([category, jobs], index) in paginatedCategories"
             :key="index"
             class="bg-white shadow-md rounded-2xl p-4 hover:shadow-lg transition"
           >
-            <h3 class="font-semibold text-lg text-gray-800 mb-3">
+            <h3 class="font-semibold text-base sm:text-lg text-gray-800 mb-3">
               {{ category }} (<span class="text-blue-500">{{ jobs?.length || 0 }}</span>)
             </h3>
             <ul class="text-sm text-gray-600 space-y-1">
@@ -113,7 +123,7 @@
             v-for="page in totalPages"
             :key="page"
             @click="currentPage = page"
-            class="px-4 py-2 rounded-lg"
+            class="px-3 sm:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base"
             :class="page === currentPage ? 'bg-purple-500 text-white font-bold shadow-md' : 'bg-gray-200 hover:bg-gray-300'"
           >
             {{ page }}
@@ -129,7 +139,7 @@
           </button>
         </div>
 
-        <div v-else class="text-center py-10 text-xl text-gray-500">
+        <div v-else class="text-center py-10 text-lg sm:text-xl text-gray-500">
           <i class="fas fa-spinner fa-spin"></i> Loading jobs...
         </div>
       </div>
@@ -141,7 +151,7 @@
       class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
     >
       <div class="bg-white p-6 rounded-lg max-w-lg w-full max-h-[80vh] overflow-y-auto">
-        <h3 class="mt-2 font-bold text-lg"><u>{{ selectedCategory }}</u></h3>
+        <h3 class="mt-2 font-bold text-base sm:text-lg"><u>{{ selectedCategory }}</u></h3>
         <ul class="text-sm text-gray-700 mt-3 space-y-1">
           <li
             v-for="(job, index) in (selectedJobs || [])"
@@ -173,7 +183,7 @@
 
 <script>
 import axios from "axios";
-import { flaskApiUrl } from "../../api";
+import { flaskApiUrl,laravelApiUrl } from "../../api";
 
 export default {
   name: "HomeView",
@@ -191,19 +201,32 @@ export default {
       categorizedJobs: {},
       isSticky: false,
 
-      // Pagination
       currentPage: 1,
-      itemsPerPage: 9, // how many cards per page
+      itemsPerPage: 18,
     };
   },
   methods: {
+    async incrementVisitCount() {
+      try {
+        await axios.post(`${laravelApiUrl}/incrementVisitCount`); 
+      } catch (error) {
+        console.error("Error incrementing visit count:", error);
+      }
+    },
     async fetchJobs() {
       try {
         const response = await axios.get(`${flaskApiUrl}/fetch_job_position`);
         this.categorizedJobs = response.data.categorized_jobs || {};
-        this.suggestions = Object.values(this.categorizedJobs)
-          .flat()
-          .filter(job => job.title && job.origin);
+
+        // ✅ remove duplicate job titles (case-insensitive)
+        this.suggestions = [
+          ...new Map(
+            Object.values(this.categorizedJobs)
+              .flat()
+              .filter(job => job.title && job.origin)
+              .map(job => [job.title.toLowerCase(), job])
+          ).values(),
+        ];
       } catch (error) {
         console.error("Error fetching job data:", error);
       }
@@ -229,29 +252,34 @@ export default {
       this.selectedCategory = "";
       this.selectedJobs = [];
     },
+
     showSuggestions() {
       const value = this.searchTerm.trim().toLowerCase();
       if (value) {
-        this.filteredSuggestions = this.suggestions.filter(s =>
-          s.title.toLowerCase().includes(value)
-        );
+        this.filteredSuggestions = this.suggestions
+          .filter(s => s.title.toLowerCase().includes(value))
+          .slice(0, 10);
         this.suggestionsVisible = true;
       } else {
         this.suggestionsVisible = false;
       }
     },
+
     selectSuggestion(suggestion) {
       this.searchTerm = suggestion.title;
       this.suggestionsVisible = false;
       window.open(this.getJobUrl(suggestion), "_blank");
     },
+
     highlightText(text, term) {
       const regex = new RegExp(`(${term})`, "gi");
-      return text.replace(regex, `<span style="color:blue;">$1</span>`);
+      return text.replace(regex, `<span class="text-blue-600">$1</span>`);
     },
+
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
+
     getJobUrl(job) {
       if (job.origin === "https://www.rwandajob.com/job-vacancies-search-rwanda") {
         const sanitizedTitle = encodeURIComponent(job.title.substring(0, 100))
@@ -286,6 +314,7 @@ export default {
   mounted() {
     this.fetchJobs();
     this.fetchjob_Pos_Cat_Count();
+    this.incrementVisitCount();
     window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {

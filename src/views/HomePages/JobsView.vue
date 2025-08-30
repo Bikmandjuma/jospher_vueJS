@@ -89,7 +89,6 @@
         jobs
       </div>
 
-    
     </section>
   </div>
 </template>
@@ -104,13 +103,13 @@ export default {
       job_position_count:0,
       job_category_count:0,
       searchTerm: "",
-      isModalOpen: false,  // Modal control flag
+      isModalOpen: false,
       suggestionsVisible: false,
       suggestions: [],
       filteredSuggestions: [],
       jobCount: 0,
       categorizedJobs: {},
-      isSticky: false, // Track scroll position for sticky effect
+      isSticky: false,
     };
   },
   methods: {
@@ -148,15 +147,12 @@ export default {
     },
     handleSearch() {
       if (this.filteredSuggestions.length > 0) {
-        // If suggestions are found, open the modal
         this.isModalOpen = true;
 
-        // Wait for Vue to update the DOM and then log the status of the modal
         this.$nextTick(() => {
           console.log('Modal is open:', this.isModalOpen);
         });
       } else {
-        // If no suggestions, show no results message
         alert("No matching jobs found!");
       }
     },
@@ -164,9 +160,8 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     },
-    // Method to handle scroll and add sticky class
     handleScroll() {
-      this.isSticky = window.scrollY > 100; // Adjust based on your requirement
+      this.isSticky = window.scrollY > 100;
     },
   },
   mounted() {
@@ -179,22 +174,21 @@ export default {
     // @ts-ignore
     this.job_category_count = job_Category_counts
 
-    window.addEventListener('scroll', this.handleScroll); // Listen for scroll events
+    window.addEventListener('scroll', this.handleScroll);
   
   },
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll); // Clean up listener when component is destroyed
+    window.removeEventListener('scroll', this.handleScroll);
   },
   computed: {
     filteredCategories() {
       if (!this.categorizedJobs) return [];
-      // Destructure both category and jobs, then return the entries where jobs exist
       return Object.entries(this.categorizedJobs).filter(([, jobs]) => jobs.length > 0);
     },
   },
 };
 </script>
-
+    
 <style scoped>
 
   * {
