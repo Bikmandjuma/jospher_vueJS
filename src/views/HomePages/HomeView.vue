@@ -17,8 +17,9 @@
     </section>
 
     <!-- Search Section -->
-    <section class="main_search_container my-6 px-3" v-if="filteredCategories.length > 0">
-      <div class="relative max-w-xl mx-auto" :class="{'sticky-search': isSticky}">
+    <section class="main_search_container my-6 px-3">
+      <div class="relative max-w-xl mx-auto">
+        <!-- Search Input -->
         <input
           v-model="searchTerm"
           type="text"
@@ -26,43 +27,50 @@
           class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm sm:text-base"
           placeholder="Searching . . . ex: Software developer"
           @input="showSuggestions"
+          @compositionend="showSuggestions"
+          @focus="suggestionsVisible = searchTerm.trim().length > 0"
+          @blur="hideSuggestionsWithDelay"
+          autocomplete="off"
         />
-        <!-- Suggestions dropdown -->
+
+        <!-- Suggestions Dropdown -->
         <div
-          v-if="suggestionsVisible"
+          v-show="suggestionsVisible"
           id="suggestions"
-          class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto z-10"
+          class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50 w-full"
         >
+          <!-- Suggestions List -->
           <div
             v-for="(suggestion, index) in filteredSuggestions"
             :key="index"
             class="px-3 py-2 hover:bg-purple-100 cursor-pointer text-sm sm:text-base"
-            @click="selectSuggestion(suggestion)"
+            @mousedown.prevent="selectSuggestion(suggestion)"
           >
             <span v-html="highlightText(suggestion.title, searchTerm)"></span>
           </div>
+
+          <!-- No Matches -->
           <div
             v-if="filteredSuggestions.length === 0"
             class="px-3 py-2 text-gray-500 text-sm"
           >
-            Not matching!
+            <span v-if="filteredCategories.length > 0">
+              No matching results.
+            </span>
+            <span v-else>
+              <i class="fas fa-spinner fa-spin"></i> Loading jobs, please wait...
+            </span>
           </div>
+
         </div>
       </div>
     </section>
 
+
     <!-- Job Categories & Jobs Section -->
     <section class="py-10 bg-gray-50">
       <div class="container mx-auto px-4">
-        <!-- <h2
-          class="text-center text-xl sm:text-2xl font-bold mb-6"
-          v-if="filteredCategories.length > 0"
-        >
-          Jobs <span class="text-blue-600">{{ job_position_count }}</span> and
-          Categories <span class="text-indigo-600">{{ job_category_count }}</span>
-        </h2> -->
-
-        <!-- Show spinner when both counts are 0 -->
+        
         <span 
           v-if="job_position_count === 0 && job_category_count === 0" 
           class="loading-icon text-center block mb-6"
@@ -280,11 +288,17 @@ export default {
     showSuggestions() {
       const value = this.searchTerm.trim().toLowerCase();
       if (value) {
+        const searchWords = value.split(/\s+/); // split search by spaces
         this.filteredSuggestions = this.suggestions
-          .filter(s => s.title.toLowerCase().includes(value))
+          .filter(s => {
+            const title = s.title.toLowerCase();
+            // Check if all words in searchWords are present in title
+            return searchWords.every(word => title.includes(word));
+          })
           .slice(0, 10);
         this.suggestionsVisible = true;
       } else {
+        this.filteredSuggestions = [];
         this.suggestionsVisible = false;
       }
     },
@@ -295,11 +309,28 @@ export default {
       window.open(this.getJobUrl(suggestion), "_blank");
     },
 
-    highlightText(text, term) {
-      const regex = new RegExp(`(${term})`, "gi");
-      return text.replace(regex, `<span class="text-blue-600">$1</span>`);
+    hideSuggestionsWithDelay() {
+      // Keep dropdown visible briefly to allow mobile tap
+      setTimeout(() => {
+        this.suggestionsVisible = false;
+      }, 200); // slightly longer delay
     },
 
+    highlightText(text, term) {
+      if (!term) return text;
+
+      const words = term.trim().toLowerCase().split(/\s+/);
+      let highlighted = text;
+
+      words.forEach(word => {
+        if (!word) return;
+        const regex = new RegExp(`(${word})`, "gi");
+        highlighted = highlighted.replace(regex, `<span class="text-blue-600 font-semibold">$1</span>`);
+      });
+
+      return highlighted;
+    },
+        
     handleScroll() {
       this.isSticky = window.scrollY > 100;
     },
@@ -348,6 +379,13 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 a:link{
   color: black;
 }
