@@ -27,14 +27,14 @@
 
           <a href="/services" :class="{'active-link': $route.path === '/services'}" class="text-gray-600 hover:text-blue-500"><i class="fas fa-cogs mr-2"></i>Services</a>
           
-          <a href="/jobs" v-if = " job_position_count.length > 0 " :class="{'active-link': $route.path === '/jobs'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span></a>
+          <!-- <a href="/jobs" v-if = " job_position_count.length > 0 " :class="{'active-link': $route.path === '/jobs'}" class="text-gray-600 hover:text-blue-500"><i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span></a>
 
 
           <a v-else href="/jobs" :class="{'active-link': $route.path === '/jobs'}"
           class="text-gray-600 hover:text-blue-500"
           >
             <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
-          </a>
+          </a> -->
 
           <a
             href="/contact"
@@ -83,13 +83,13 @@
 
           <a href="/services" :class="{'active-link': $route.path === '/services'}" class="block text-gray-600 px-4 py-2 hover:text-blue-500"><i class="fas fa-cogs mr-2"></i>Services</a>
 
-          <a href="/jobs" v-if = " job_position_count.length > 0 " :class="{'active-link': $route.path === '/jobs'}" class="block text-gray-600 px-4 py-2 hover:text-blue-500"><i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span></a>
+          <!-- <a href="/jobs" v-if = " job_position_count.length > 0 " :class="{'active-link': $route.path === '/jobs'}" class="block text-gray-600 px-4 py-2 hover:text-blue-500"><i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<span class="badge" style="background-color: purple;">{{  job_position_count }}</span></a>
 
           <a v-else href="/jobs" :class="{'active-link': $route.path === '/jobs'}"
           class="block text-gray-600 px-4 py-2 hover:text-blue-500"
           >
             <i class="fa fa-briefcase mr-2"></i>Jobs&nbsp;<i class="fas fa-spinner fa-spin"></i>
-          </a>
+          </a> -->
 
           <a
             href="/contact"
@@ -135,7 +135,7 @@
                         <h2 class="text-2xl font-bold mb-4">Popular Links</h2>
                         <a href="/about" class="block mb-2 text-gray-700 hover:text-blue-600">About Us</a>
                         <a href="/services" class="block mb-2 text-gray-700 hover:text-blue-600">Service</a>
-                        <a href="/jobs" class="block mb-2 text-gray-700 hover:text-blue-600">Jobs</a>
+                        <!-- <a href="/jobs" class="block mb-2 text-gray-700 hover:text-blue-600">Jobs</a> -->
                         <!-- <a href="/pricing" class="block mb-2 text-gray-700 hover:text-blue-600">Pricing</a> -->
                         <a href="/contact" class="block mb-2 text-gray-700 hover:text-blue-600">Contact Us</a>
                     </div>
