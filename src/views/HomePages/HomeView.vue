@@ -54,13 +54,37 @@
     <!-- Job Categories & Jobs Section -->
     <section class="py-10 bg-gray-50">
       <div class="container mx-auto px-4">
-        <h2
+        <!-- <h2
           class="text-center text-xl sm:text-2xl font-bold mb-6"
           v-if="filteredCategories.length > 0"
         >
           Jobs <span class="text-blue-600">{{ job_position_count }}</span> and
           Categories <span class="text-indigo-600">{{ job_category_count }}</span>
+        </h2> -->
+
+        <!-- Show spinner when both counts are 0 -->
+        <span 
+          v-if="job_position_count === 0 && job_category_count === 0" 
+          class="loading-icon text-center block mb-6"
+        >
+          <!-- <i class="fas fa-spinner fa-spin text-2xl text-gray-500"></i> -->
+          <h2
+            class="text-center text-xl sm:text-2xl font-bold mb-6"
+          >
+            Jobs <i class="fas fa-spinner fa-spin text-2xl text-gray-500"></i> and
+            Categories <i class="fas fa-spinner fa-spin text-2xl text-gray-500"></i>
+          </h2>
+        </span>
+
+        <!-- Show heading when counts are available -->
+        <h2
+          v-else
+          class="text-center text-xl sm:text-2xl font-bold mb-6"
+        >
+          Jobs <span class="text-blue-600">{{ job_position_count }}</span> and
+          Categories <span class="text-indigo-600">{{ job_category_count }}</span>
         </h2>
+
 
         <!-- <span class="loading-icon"><i class="fas fa-spinner fa-spin"></i></span> -->
 
